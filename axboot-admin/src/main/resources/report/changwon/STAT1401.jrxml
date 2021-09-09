@@ -1,0 +1,2805 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="STAT1401" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b78c609-402b-4708-a8e3-01f9acca074c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="local_suwon"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://localhost:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/suwon/stat/STAT1401"/>
+	<subDataset name="Dataset1" uuid="8f2eef30-ab0c-4999-a187-09484eec96b5">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="from1" class="java.lang.String"/>
+		<parameter name="to1" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT  COUNT(*) TOT_CNT
+    , DATEDIFF($P{to1}, $P{from1})+1 AS TERM	
+	, SUM(IF(H.OBJT IN ('TMC0300001') AND D.ADDR_CODE = '1076' ,1,0)) AS SUWON_DAEIN
+	, SUM(IF(H.OBJT IN ('TMC0300002') AND D.ADDR_CODE = '1076' ,1,0)) AS SUWON_SOIN
+	, SUM(IF(H.OBJT IN ('TMC0300003') AND D.ADDR_CODE = '1076' ,1,0)) AS SUWON_SASAN
+	, SUM(IF(H.OBJT IN ('TMC0300007') AND D.ADDR_CODE = '1076' ,1,0)) AS SUWON_UGOL
+	
+	, SUM(IF(H.OBJT IN ('TMC0300001') AND D.ADDR_CODE NOT IN ('1076') AND (h.dc_amt/h.rentalfee)*100 <> 50 ,1,0)) AS GWANWAE_DAEIN
+	, SUM(IF(H.OBJT IN ('TMC0300002') AND D.ADDR_CODE NOT IN ('1076') AND (h.dc_amt/h.rentalfee)*100 <> 50 ,1,0)) AS GWANWAE_SOIN
+	, SUM(IF(H.OBJT IN ('TMC0300003') AND D.ADDR_CODE NOT IN ('1076') AND (h.dc_amt/h.rentalfee)*100 <> 50 ,1,0)) AS GWANWAE_SASAN
+	, SUM(IF(H.OBJT IN ('TMC0300007') AND D.ADDR_CODE NOT IN ('1076') AND (h.dc_amt/h.rentalfee)*100 <> 50 ,1,0)) AS GWANWAE_UGOL
+
+	, SUM(IF(H.OBJT IN ('TMC0300001') AND D.ADDR_CODE = '1089' AND (h.dc_amt/h.rentalfee)*100 = 50 ,1,0)) AS OSAN_DAEIN
+	, SUM(IF(H.OBJT IN ('TMC0300002') AND D.ADDR_CODE = '1089' AND (h.dc_amt/h.rentalfee)*100 = 50 ,1,0)) AS OSAN_SOIN
+	, SUM(IF(H.OBJT IN ('TMC0300003') AND D.ADDR_CODE = '1089' AND (h.dc_amt/h.rentalfee)*100 = 50 ,1,0)) AS OSAN_SASAN
+	, SUM(IF(H.OBJT IN ('TMC0300007') AND D.ADDR_CODE = '1089' AND (h.dc_amt/h.rentalfee)*100 = 50 ,1,0)) AS OSAN_UGOL
+	
+	, SUM(IF(H.OBJT IN ('TMC0300001') AND D.ADDR_CODE = '1100' AND (h.dc_amt/h.rentalfee)*100 = 50 ,1,0)) AS HWA_DAEIN
+	, SUM(IF(H.OBJT IN ('TMC0300002') AND D.ADDR_CODE = '1100' AND (h.dc_amt/h.rentalfee)*100 = 50 ,1,0)) AS HWA_SOIN
+	, SUM(IF(H.OBJT IN ('TMC0300003') AND D.ADDR_CODE = '1100' AND (h.dc_amt/h.rentalfee)*100 = 50 ,1,0)) AS HWA_SASAN
+	, SUM(IF(H.OBJT IN ('TMC0300007') AND D.ADDR_CODE = '1100' AND (h.dc_amt/h.rentalfee)*100 = 50 ,1,0)) AS HWA_UGOL
+	
+	, SUM(IF(H.OBJT IN ('TMC0300001') AND D.ADDR_CODE = '1093' AND (h.dc_amt/h.rentalfee)*100 = 50 AND (D.dead_addr2 LIKE '%상현동%' OR D.dead_addr2 LIKE '%성복동%' OR D.dead_addr2 LIKE '%신갈동%' OR D.dead_addr2 LIKE '%영덕동%' OR D.dead_addr2 LIKE '%보정동%') ,1,0)) AS YONG_DAEIN
+	, SUM(IF(H.OBJT IN ('TMC0300002') AND D.ADDR_CODE = '1093' AND (h.dc_amt/h.rentalfee)*100 = 50 AND (D.dead_addr2 LIKE '%상현동%' OR D.dead_addr2 LIKE '%성복동%' OR D.dead_addr2 LIKE '%신갈동%' OR D.dead_addr2 LIKE '%영덕동%' OR D.dead_addr2 LIKE '%보정동%') ,1,0)) AS YONG_SOIN
+	, SUM(IF(H.OBJT IN ('TMC0300003') AND D.ADDR_CODE = '1093' AND (h.dc_amt/h.rentalfee)*100 = 50 AND (D.dead_addr2 LIKE '%상현동%' OR D.dead_addr2 LIKE '%성복동%' OR D.dead_addr2 LIKE '%신갈동%' OR D.dead_addr2 LIKE '%영덕동%' OR D.dead_addr2 LIKE '%보정동%') ,1,0)) AS YONG_SASAN
+	, SUM(IF(H.OBJT IN ('TMC0300007') AND D.ADDR_CODE = '1093' AND (h.dc_amt/h.rentalfee)*100 = 50 AND (D.dead_addr2 LIKE '%상현동%' OR D.dead_addr2 LIKE '%성복동%' OR D.dead_addr2 LIKE '%신갈동%' OR D.dead_addr2 LIKE '%영덕동%' OR D.dead_addr2 LIKE '%보정동%') ,1,0)) AS YONG_UGOL
+		
+FROM HWA_CREMATION H
+JOIN THEDEAD D
+ON D.DEAD_ID = H.DEAD_ID
+WHERE H.CREM_DATE BETWEEN $P{from1} AND $P{to1}
+ORDER BY H.CREM_DATE DESC]]>
+		</queryString>
+		<field name="TOT_CNT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="TOT_CNT"/>
+		</field>
+		<field name="SUWON_DAEIN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="SUWON_DAEIN"/>
+		</field>
+		<field name="SUWON_SOIN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="SUWON_SOIN"/>
+		</field>
+		<field name="SUWON_SASAN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="SUWON_SASAN"/>
+		</field>
+		<field name="SUWON_UGOL" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="SUWON_UGOL"/>
+		</field>
+		<field name="GWANWAE_DAEIN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GWANWAE_DAEIN"/>
+		</field>
+		<field name="GWANWAE_SOIN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GWANWAE_SOIN"/>
+		</field>
+		<field name="GWANWAE_SASAN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GWANWAE_SASAN"/>
+		</field>
+		<field name="GWANWAE_UGOL" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GWANWAE_UGOL"/>
+		</field>
+		<field name="OSAN_DAEIN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="OSAN_DAEIN"/>
+		</field>
+		<field name="OSAN_SOIN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="OSAN_SOIN"/>
+		</field>
+		<field name="OSAN_SASAN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="OSAN_SASAN"/>
+		</field>
+		<field name="OSAN_UGOL" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="OSAN_UGOL"/>
+		</field>
+		<field name="HWA_DAEIN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="HWA_DAEIN"/>
+		</field>
+		<field name="HWA_SOIN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="HWA_SOIN"/>
+		</field>
+		<field name="HWA_SASAN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="HWA_SASAN"/>
+		</field>
+		<field name="HWA_UGOL" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="HWA_UGOL"/>
+		</field>
+		<field name="YONG_DAEIN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="YONG_DAEIN"/>
+		</field>
+		<field name="YONG_SOIN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="YONG_SOIN"/>
+		</field>
+		<field name="YONG_SASAN" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="YONG_SASAN"/>
+		</field>
+		<field name="YONG_UGOL" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="YONG_UGOL"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="TERM" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="TERM"/>
+		</field>
+		<variable name="TOT_DAEIN" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{SUWON_DAEIN}+$F{GWANWAE_DAEIN}+$F{OSAN_DAEIN}+$F{HWA_DAEIN}+$F{YONG_DAEIN}]]></variableExpression>
+		</variable>
+		<variable name="TOT_SOIN" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{SUWON_SOIN}+$F{GWANWAE_SOIN}+$F{OSAN_SOIN}+$F{HWA_SOIN}+$F{YONG_SOIN}]]></variableExpression>
+		</variable>
+		<variable name="TOT_SASAN" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{SUWON_SASAN}+$F{GWANWAE_SASAN}+$F{OSAN_SASAN}+$F{HWA_SASAN}+$F{YONG_SASAN}]]></variableExpression>
+		</variable>
+		<variable name="TOT_UGOL" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{SUWON_UGOL}+$F{GWANWAE_UGOL}+$F{OSAN_UGOL}+$F{HWA_UGOL}+$F{YONG_UGOL}]]></variableExpression>
+		</variable>
+		<variable name="TOT_SUWON" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{SUWON_DAEIN}+$F{SUWON_SOIN}+$F{SUWON_SASAN}+$F{SUWON_UGOL}]]></variableExpression>
+		</variable>
+		<variable name="TOT_GWANWAE" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{GWANWAE_DAEIN}+$F{GWANWAE_SOIN}+$F{GWANWAE_SASAN}+$F{GWANWAE_UGOL}]]></variableExpression>
+		</variable>
+		<variable name="TOT_50" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{OSAN_DAEIN}+$F{OSAN_SOIN}+$F{OSAN_SASAN}+$F{OSAN_UGOL}+$F{HWA_DAEIN}+$F{HWA_SOIN}+$F{HWA_SASAN}+$F{HWA_UGOL}+$F{YONG_DAEIN}+$F{YONG_SOIN}+$F{YONG_SASAN}+$F{YONG_UGOL}]]></variableExpression>
+		</variable>
+		<variable name="TOT_OSAN" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{OSAN_DAEIN}+$F{OSAN_SOIN}+$F{OSAN_SASAN}+$F{OSAN_UGOL}]]></variableExpression>
+		</variable>
+		<variable name="TOT_HWA" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{HWA_DAEIN}+$F{HWA_SOIN}+$F{HWA_SASAN}+$F{HWA_UGOL}]]></variableExpression>
+		</variable>
+		<variable name="TOT_YONG" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{YONG_DAEIN}+$F{YONG_SOIN}+$F{YONG_SASAN}+$F{YONG_UGOL}]]></variableExpression>
+		</variable>
+		<variable name="TOT_50DAEIN" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{OSAN_DAEIN}+$F{HWA_DAEIN}+$F{YONG_DAEIN}]]></variableExpression>
+		</variable>
+		<variable name="TOT_50SOIN" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{OSAN_SOIN}+$F{HWA_SOIN}+$F{YONG_SOIN}]]></variableExpression>
+		</variable>
+		<variable name="TOT_50SASAN" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{OSAN_SASAN}+$F{HWA_SASAN}+$F{YONG_SASAN}]]></variableExpression>
+		</variable>
+		<variable name="TOT_50UGOL" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{OSAN_UGOL}+$F{HWA_UGOL}+$F{YONG_UGOL}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="Dataset2" uuid="c3c7a92c-fac7-4f14-ab04-d7aca75b7c54">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="from2" class="java.lang.String"/>
+		<parameter name="to2" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT 
+COUNT(*) TOT_CNT
+, DATEDIFF($P{to2}, $P{from2})+1 AS TERM
+, (SELECT COUNT(*) FROM HWA_CREMATION WHERE CREM_DATE BETWEEN $P{from2} AND $P{to2} AND OBJT <> 'TMC0300006') CREMCNT
+, SUM(IF(EN.ENS_TYPE = 'TFM1000001' AND ED.ADDR_PART = 'TCM1000001' ,1,0)) AS GWANNAE_SOLO
+, SUM(IF(EN.ENS_TYPE = 'TFM1000003' AND ED.ADDR_PART = 'TCM1000001' ,1,0)) AS GWANNAE_COUPLE
+, SUM(IF(EN.ENS_TYPE = 'TFM1000001' AND ED.ADDR_PART = 'TCM1000003' ,1,0)) AS GWANWAE_SOLO
+, SUM(IF(EN.ENS_TYPE = 'TFM1000003' AND ED.ADDR_PART = 'TCM1000003' ,1,0)) AS GWANWAE_COUPLE
+
+FROM ENSHRINE EN
+JOIN ENSDEAD ED
+ON EN.ENS_DATE = ED.ENS_DATE
+AND EN.ENS_SEQ = ED.ENS_SEQ
+JOIN THEDEAD D
+ON D.DEAD_ID = ED.DEAD_ID
+WHERE EN.ENS_DATE BETWEEN $P{from2} AND $P{to2}
+AND EN.ENS_TYPE <> 'TFM1000004'
+ORDER BY EN.ENS_DATE DESC]]>
+		</queryString>
+		<field name="TOT_CNT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="TOT_CNT"/>
+		</field>
+		<field name="TERM" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="TERM"/>
+		</field>
+		<field name="CREMCNT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="CREMCNT"/>
+		</field>
+		<field name="GWANNAE_SOLO" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GWANNAE_SOLO"/>
+		</field>
+		<field name="GWANNAE_COUPLE" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GWANNAE_COUPLE"/>
+		</field>
+		<field name="GWANWAE_SOLO" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GWANWAE_SOLO"/>
+		</field>
+		<field name="GWANWAE_COUPLE" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GWANWAE_COUPLE"/>
+		</field>
+		<variable name="TOT_SOLO" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{GWANNAE_SOLO}+$F{GWANWAE_SOLO}]]></variableExpression>
+		</variable>
+		<variable name="TOT_COUPLE" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{GWANNAE_COUPLE}+$F{GWANWAE_COUPLE}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="Dataset3" uuid="f4b169b9-1da2-437f-91c6-bd051eeba437">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="from3" class="java.lang.String"/>
+		<parameter name="to3" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT 
+COUNT(*) TOT_CNT
+, DATEDIFF($P{to3}, $P{from3})+1 AS TERM
+, (SELECT COUNT(*) FROM HWA_CREMATION WHERE CREM_DATE BETWEEN $P{from3} AND $P{to3} AND OBJT <> 'TMC0300006') CREMCNT
+, SUM(IF(ND.ADDR_PART = 'TCM1000001' ,1,0)) AS NAT_GWANNAE
+, SUM(IF(ND.ADDR_PART = 'TCM1000003' ,1,0)) AS NAT_GWANWAE
+
+FROM NATURE NT
+JOIN NATUREDEAD ND
+ON NT.NAT_DATE = ND.NAT_DATE
+AND NT.NAT_SEQ = ND.NAT_SEQ
+JOIN THEDEAD D
+ON D.DEAD_ID = ND.DEAD_ID
+WHERE NT.NAT_DATE BETWEEN $P{from3} AND $P{to3}
+AND nd.objt <> 'TFM1400002'
+
+ORDER BY NT.NAT_DATE DESC
+;]]>
+		</queryString>
+		<field name="TOT_CNT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="TOT_CNT"/>
+		</field>
+		<field name="TERM" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="TERM"/>
+		</field>
+		<field name="CREMCNT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="CREMCNT"/>
+		</field>
+		<field name="NAT_GWANNAE" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="NAT_GWANNAE"/>
+		</field>
+		<field name="NAT_GWANWAE" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="NAT_GWANWAE"/>
+		</field>
+		<variable name="TOT_NAT" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{NAT_GWANNAE}+$F{NAT_GWANWAE}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="Dataset4" uuid="cfea5a93-46bc-4e5f-bcd9-62be27e965fe">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="from4" class="java.lang.String"/>
+		<parameter name="to4" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT 
+COUNT(*) TOT_CNT
+, DATEDIFF($P{to4}, $P{from4})+1 AS TERM
+, SUM(IF(H.SCAT_USE_GB = '1' AND H.ADDR_PART = 'TCM1000001' ,1,0)) AS SCAT_GWANNAE
+, SUM(IF(H.SCAT_USE_GB = '1' AND H.ADDR_PART = 'TCM1000003' ,1,0)) AS SCAT_GWANWAE
+
+FROM HWA_CREMATION H
+JOIN THEDEAD D
+ON D.DEAD_ID = H.DEAD_ID
+WHERE H.CREM_DATE BETWEEN $P{from4} AND $P{to4}
+
+ORDER BY H.CREM_DATE DESC]]>
+		</queryString>
+		<field name="TOT_CNT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="TOT_CNT"/>
+		</field>
+		<field name="TERM" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="TERM"/>
+		</field>
+		<field name="SCAT_GWANNAE" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="SCAT_GWANNAE"/>
+		</field>
+		<field name="SCAT_GWANWAE" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="SCAT_GWANWAE"/>
+		</field>
+		<variable name="TOT_SCAT" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{SCAT_GWANNAE}+$F{SCAT_GWANWAE}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="Dataset5" uuid="40aa5b65-d4d5-45c0-abf4-5552664308c2">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="from5" class="java.lang.String"/>
+		<parameter name="to5" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT 
+DATEDIFF($P{to5}, $P{from5})+1 AS TERM
+, SUM(IF(F.DC_CODE IN ('001','002') AND F.ANCHI_ROOM <> '00' ,1,0)) AS ANCHI_GWANNAE
+, SUM(IF(F.DC_CODE NOT IN ('001','002') AND F.ANCHI_ROOM <> '00' ,1,0)) AS ANCHI_GWANWAE
+
+, SUM(IF(B.BINSO_TYPE = '1' ,1,0)) AS GRADE1
+, SUM(IF(B.BINSO_TYPE = '2' ,1,0)) AS GRADE2
+, SUM(IF(B.BINSO_TYPE = '3' ,1,0)) AS GRADE3
+
+FROM FUNERAL F 
+JOIN THEDEAD D
+ON D.DEAD_ID = F.DEAD_ID
+JOIN BINSO B
+ON F.BINSO_CODE = B.BINSO_CODE
+WHERE F.BALIN_DATE BETWEEN $P{from5} AND $P{to5}
+
+ORDER BY F.BALIN_DATE DESC]]>
+		</queryString>
+		<field name="TERM" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="TERM"/>
+		</field>
+		<field name="ANCHI_GWANNAE" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="ANCHI_GWANNAE"/>
+		</field>
+		<field name="ANCHI_GWANWAE" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="ANCHI_GWANWAE"/>
+		</field>
+		<field name="GRADE1" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GRADE1"/>
+		</field>
+		<field name="GRADE2" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GRADE2"/>
+		</field>
+		<field name="GRADE3" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GRADE3"/>
+		</field>
+		<variable name="TOT_BINSO" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{GRADE1}+$F{GRADE2}+$F{GRADE3}]]></variableExpression>
+		</variable>
+		<variable name="TOT_ANCHI" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{ANCHI_GWANNAE}+$F{ANCHI_GWANWAE}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="Dataset6" uuid="8e510cc6-c16f-436b-a668-48ac8817ce91">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="from6" class="java.lang.String"/>
+		<parameter name="to6" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT
+SUM(IF(PC.PART_CODE = '70-001' ,IN_AMOUNT,0)) AS CREM_AMT
+, SUM(IF(PC.PART_CODE IN ('80-001','81-001','81-002') ,IN_AMOUNT,0)) AS ENSH_AMT
+, SUM(IF(PC.PART_CODE = '90-001' ,IN_AMOUNT,0)) AS NAT_AMT
+
+, SUM(IF(PC.PART_CODE = '10-001' ,F_DIV_AMT01,0)) AS BINSO_AMT
+, SUM(IF(PC.PART_CODE = '10-001' ,F_DIV_AMT02,0)) AS ANCHI_AMT
+
+FROM PAYMENT_CALC PC
+WHERE PC.IN_DATE BETWEEN $P{from6} AND $P{to6}
+
+ORDER BY PC.IN_DATE DESC]]>
+		</queryString>
+		<field name="CREM_AMT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="CREM_AMT"/>
+		</field>
+		<field name="ENSH_AMT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="ENSH_AMT"/>
+		</field>
+		<field name="NAT_AMT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="NAT_AMT"/>
+		</field>
+		<field name="BINSO_AMT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="BINSO_AMT"/>
+		</field>
+		<field name="ANCHI_AMT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="ANCHI_AMT"/>
+		</field>
+		<variable name="TOT_AMT" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{CREM_AMT}+$F{ENSH_AMT}+$F{NAT_AMT}+$F{BINSO_AMT}+$F{ANCHI_AMT}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="Dataset7" uuid="74ea7e06-04ae-47c2-b2b0-a651dd60f52f">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="from2" class="java.lang.String"/>
+		<parameter name="to2" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT 
+COUNT(*) TOT_CNT
+, DATEDIFF($P{to2}, $P{from2})+1 AS TERM
+, (SELECT COUNT(*) FROM HWA_CREMATION WHERE CREM_DATE BETWEEN $P{from2} AND $P{to2} AND OBJT <> 'TMC0300006') CREMCNT
+, SUM(IF(EN.ENS_TYPE = 'TFM1000001' AND ED.ADDR_PART = 'TCM1000001' ,1,0)) AS GWANNAE_SOLO
+, SUM(IF(EN.ENS_TYPE = 'TFM1000003' AND ED.ADDR_PART = 'TCM1000001' ,1,0)) AS GWANNAE_COUPLE
+, SUM(IF(EN.ENS_TYPE = 'TFM1000001' AND ED.ADDR_PART = 'TCM1000003' ,1,0)) AS GWANWAE_SOLO
+, SUM(IF(EN.ENS_TYPE = 'TFM1000003' AND ED.ADDR_PART = 'TCM1000003' ,1,0)) AS GWANWAE_COUPLE
+
+FROM ENSHRINE EN
+JOIN ENSDEAD ED
+ON EN.ENS_DATE = ED.ENS_DATE
+AND EN.ENS_SEQ = ED.ENS_SEQ
+JOIN THEDEAD D
+ON D.DEAD_ID = ED.DEAD_ID
+WHERE EN.ENS_DATE BETWEEN $P{from2} AND $P{to2}
+AND EN.ENS_TYPE <> 'TFM1000004'
+AND LEFT(EN.ens_no,1) = 'D' 
+ORDER BY EN.ENS_DATE DESC]]>
+		</queryString>
+		<field name="TOT_CNT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="TOT_CNT"/>
+		</field>
+		<field name="TERM" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="TERM"/>
+		</field>
+		<field name="CREMCNT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="CREMCNT"/>
+		</field>
+		<field name="GWANNAE_SOLO" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GWANNAE_SOLO"/>
+		</field>
+		<field name="GWANNAE_COUPLE" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GWANNAE_COUPLE"/>
+		</field>
+		<field name="GWANWAE_SOLO" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GWANWAE_SOLO"/>
+		</field>
+		<field name="GWANWAE_COUPLE" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GWANWAE_COUPLE"/>
+		</field>
+		<variable name="TOT_SOLO" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{GWANNAE_SOLO}+$F{GWANWAE_SOLO}]]></variableExpression>
+		</variable>
+		<variable name="TOT_COUPLE" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{GWANNAE_COUPLE}+$F{GWANWAE_COUPLE}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="from" class="java.lang.String"/>
+	<parameter name="to" class="java.lang.String"/>
+	<parameter name="printName" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT DOC_NAME1
+, CONCAT(date_format( $P{from} ,'%Y년 %m월 %d일 '),'(',SUBSTR(_UTF8'일월화수목금토', DAYOFWEEK( $P{from} ), 1 ),'요일)') DATE
+, FIELD1
+,(SELECT USER_NM FROM USER_M WHERE USER_CD = $P{printName}) AS printUser
+FROM docform
+WHERE docform.`DOC_CODE` = 'STAT1401']]>
+	</queryString>
+	<field name="DOC_NAME1" class="java.lang.String"/>
+	<field name="printUser" class="java.lang.String"/>
+	<field name="FIELD1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="30" uuid="0082ee7b-ae55-47d5-8393-4f078d1f3e8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOC_NAME1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="720" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="102" height="15" uuid="73e8bcfe-7ce7-4f91-985d-ead93829c0f5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="8" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[□ 화장]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="15" width="102" height="30" uuid="06ef7a9f-a170-4d9e-8857-0fd917e336a2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[구분]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="45" width="102" height="15" uuid="e2ea52be-4a70-49b1-9f11-9a7420630fe4"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="102" height="15" uuid="6cf1e51e-074a-477a-86c6-fbe25f816167"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[수원시]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="75" width="102" height="15" uuid="60b3467a-c5b3-4c67-bb03-fcf6eb6ceb13"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[관외지역]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="40" height="60" uuid="0afa67f8-8bf8-4d44-b869-d440a8762521"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[인접지역50%감면]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="90" width="62" height="15" uuid="8a817fd8-efb5-4101-b5ff-9d9c99ca1858"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[소계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="105" width="62" height="15" uuid="959f2d17-6a64-4fcb-a50a-ae72fd349c3f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[오산시]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="120" width="62" height="15" uuid="6c1c7496-9dbf-48aa-88db-a6ed2574f97a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[화성시]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="135" width="62" height="15" uuid="ec9c321f-74af-45da-a46c-1a372bcdc439"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[용인시]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="15" width="67" height="30" uuid="92528a1b-724e-4d98-a0cc-d11b327f584c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[소계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="30" width="77" height="15" uuid="86bb30ee-efbd-4447-a2e8-c5aa318f38c4"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[소인]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="30" width="77" height="15" uuid="f0df71d3-26d2-4d89-bcc3-57b847b3f6b2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[개장유골]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="477" y="30" width="78" height="15" uuid="5db51f09-55b6-466f-896a-02c398e4a029"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1일평균]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="30" width="77" height="15" uuid="d00323c9-2686-47b9-b192-73420ae348a3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[대인]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="150" width="102" height="15" uuid="b55d0e28-a20d-4bc9-ad5a-725d4943aa06"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font fontName="font" size="8" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[□ 유골처리]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="180" width="102" height="45" uuid="c6819c9b-5058-4079-bb6f-2df58236faf5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[구분]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="225" width="102" height="30" uuid="125a106f-6762-4b0d-a58f-57139f3656b5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="255" width="102" height="30" uuid="cc8766c7-ccaa-4ed6-a543-c47eef8cffe6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="195" width="226" height="15" uuid="93a3e906-0453-4d68-9c9c-db9f4ac2dd03"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[개인단]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="195" width="226" height="15" uuid="481557d1-8ab1-43cb-9fcb-a7ad83951003"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[부부단]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="165" width="118" height="15" uuid="0231d6d4-1332-49b3-86c9-9e7232ea0f93"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="8" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[○ 추모의 집(봉안)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="285" width="102" height="30" uuid="081fcb83-07d7-480c-9016-75a7cc60db75"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="210" width="113" height="15" uuid="97edbdf4-fe95-4c5c-abff-d34ecf42a6fb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[건수(화장대비)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="210" width="113" height="15" uuid="23751eb6-e938-418a-9d33-5a1b1dd5a885"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1일평균]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="210" width="113" height="15" uuid="86ca3cf6-2ee5-4b2d-8ceb-295eaad9ed11"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1일평균]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="210" width="113" height="15" uuid="00a72e17-d2a0-43cf-96a3-4fd791c2f3de"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[건수(화장대비)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="465" width="118" height="15" uuid="ac7a56a4-0263-4c99-810c-dcaed11d0c7b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="8" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[○ 자연장(매장)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="480" width="102" height="15" uuid="78eb747c-4864-4f6a-81dc-a4f4e3623bad"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[기간]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="495" width="102" height="15" uuid="b311a5ee-7a02-4375-b4d9-f336c69b6b8c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="252" y="495" width="150" height="15" uuid="2ecac5d2-2509-4a4e-8fb1-e83341c1a7fc"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[관외(화장대비)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="495" width="150" height="15" uuid="20d90327-9456-405f-85f4-b25372b29817"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[관내(화장대비)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="402" y="495" width="152" height="15" uuid="82461855-901a-4f17-809c-d385a12c9c6b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1일평균]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="555" width="150" height="15" uuid="07e1a8da-bb1c-45f1-bac4-7d969fa6a8ce"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[관내(화장대비)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="555" width="102" height="15" uuid="92a1eaa4-3a16-4f0c-ba63-4ce1638af925"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="402" y="555" width="152" height="15" uuid="ddfa68ff-59e0-4fe5-9b6b-fe28f9641d7f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1일평균]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="252" y="555" width="150" height="15" uuid="cce339f7-7d1f-415b-8d3b-09343fb35bba"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[관외(화장대비)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="525" width="128" height="15" uuid="cadc03c0-bb2f-419b-b500-693f1d23ae7b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="8" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[○ 유택동산(산골 등)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="540" width="102" height="15" uuid="a409bc5e-ecc8-40a5-8bd0-f2398fe21fc5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[기간]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="630" width="70" height="15" uuid="3758138e-5215-4b7a-8110-e0a3fde12457"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="585" width="102" height="15" uuid="07d191b7-4dd2-44d8-85fd-3129b68200f0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="8" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[□ 장례식장]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="615" width="277" height="15" uuid="721b508a-f585-4a4a-981f-23c8b310d255"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[안치실]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="615" width="277" height="15" uuid="13f091b0-18f6-45c2-b171-c26a4b58e9e8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[빈소]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="630" width="69" height="15" uuid="200f3420-3ea4-4c13-bece-6af34dae88d0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[특실(2실)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="630" width="69" height="15" uuid="729061f2-17ac-43ae-ad8d-d7af6fdd6c5f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[일반실(6실)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="139" y="630" width="69" height="15" uuid="7325ae9d-4b33-492e-96b7-f3d09c4062a3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[준특실(2실)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="630" width="93" height="15" uuid="d9117228-1aa4-488c-8ea2-6772d6946bc2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="369" y="630" width="92" height="15" uuid="c3a100df-cfe0-4bbc-a2d6-2287c0750bf1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="630" width="92" height="15" uuid="cdbe8b9e-3748-4e42-bb25-212e9b387301"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="660" width="102" height="15" uuid="2cd7fcf7-9bb1-4635-bc1e-a0230465ae65"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="8" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[□ 수입]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="690" width="102" height="15" uuid="fd6780d1-d265-4e34-9040-9180ec85b08e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="690" width="90" height="15" uuid="c0c06134-6e9a-427f-a828-613ac477a0ce"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[화장]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="690" width="90" height="15" uuid="ad9ce571-2ed5-4b31-8386-0f5134aaa0b8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[봉안]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="690" width="90" height="15" uuid="cbf82da3-e178-46ec-8c7d-2c96851d0644"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[자연장]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="372" y="690" width="90" height="15" uuid="2a7c8f8e-bb8b-4790-84e5-72359dcd1a0d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[빈소]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="462" y="690" width="92" height="15" uuid="31bea42b-5c4b-4cdd-a8eb-3fbb26a4485b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[안치실]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="102" y="45" width="453" height="105" uuid="7327be91-26fe-461e-89e4-73d72c79409d"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset1" uuid="d9732d5d-9e39-4546-b6cc-fb133d381319">
+						<datasetParameter name="from1">
+							<datasetParameterExpression><![CDATA[$P{from}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="to1">
+							<datasetParameterExpression><![CDATA[$P{to}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="105" width="453">
+						<textField>
+							<reportElement x="0" y="0" width="67" height="15" uuid="a69e4c1e-b1d6-41b6-856c-b6bc02ed2509"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{TOT_CNT}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="15" width="67" height="15" uuid="669f9348-6ef5-4318-a747-3bce7c383b4e"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_SUWON}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="30" width="67" height="15" uuid="96625ead-5ffa-41fd-8010-bbd400d44c97"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_GWANWAE}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="45" width="67" height="15" uuid="8a6dbeb8-6aa3-492a-8752-6f48463941a6"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_50}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="60" width="67" height="15" uuid="5f0dac64-9547-41be-a504-7afb0c99ccc7"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_OSAN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="75" width="67" height="15" uuid="bdf8b004-a743-45fc-b7c9-3a5ae4c51c65"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_HWA}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="90" width="67" height="15" uuid="4a5fecb2-f1da-4d73-a9c2-fb853929d530"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_YONG}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="67" y="0" width="77" height="15" uuid="aacc8044-0b5b-4844-afe2-50870e4f27da"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_DAEIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="67" y="15" width="77" height="15" uuid="46d3e36f-92fc-4baa-84fe-42f83926f374"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{SUWON_DAEIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="67" y="30" width="77" height="15" uuid="5be9390c-c4dd-4be6-865b-ea36a38e867c"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANWAE_DAEIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="67" y="45" width="77" height="15" uuid="fb01ed29-247e-4eeb-830b-0ed87a2bf3b9"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_50DAEIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="67" y="60" width="77" height="15" uuid="61f17bea-cc48-41e3-ac30-2663d9087f02"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{OSAN_DAEIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="67" y="75" width="77" height="15" uuid="242100cb-9a12-4a3d-ac9d-96dd122ade21"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{HWA_DAEIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="67" y="90" width="77" height="15" uuid="fe36a4eb-8e87-4653-a6ab-bdeda512b461"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{YONG_DAEIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="144" y="0" width="77" height="15" uuid="fd53c31e-0b6f-46d0-9c36-8a462f25b7e7"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_SOIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="144" y="15" width="77" height="15" uuid="2be38b1b-7fae-4bbf-8653-cf7908b11301"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{SUWON_SOIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="144" y="30" width="77" height="15" uuid="8f64aaaa-1883-4f77-9f54-a4591ca175e4"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANWAE_SOIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="144" y="45" width="77" height="15" uuid="e4396050-3976-4a39-8831-fcde8c2e5f51"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_50SOIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="144" y="60" width="77" height="15" uuid="80ea5b73-d2e9-4f40-bcdc-c217c7727651"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{OSAN_SOIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="144" y="75" width="77" height="15" uuid="ed94058f-9c5f-45c8-bc8e-7171261d8002"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{HWA_SOIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="144" y="90" width="77" height="15" uuid="df21e4fe-003c-4116-8678-a032bf4f4f92"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{YONG_SOIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="221" y="0" width="77" height="15" uuid="7deac58f-b42d-4ace-bb9d-bfc1045eeebd"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_SASAN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="221" y="15" width="77" height="15" uuid="6cba4395-b80a-46a7-a07c-8dddff1d91e6"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{SUWON_SASAN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="221" y="30" width="77" height="15" uuid="9e076570-87e5-45e4-bef8-cf04acddc2fe"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANWAE_SASAN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="221" y="45" width="77" height="15" uuid="932ca5e8-cce7-4b18-a740-469c2653bafe"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_50SASAN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="221" y="60" width="77" height="15" uuid="2013bd98-49d5-4a4e-89aa-9b3bd05fc34e"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{OSAN_SASAN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="221" y="75" width="77" height="15" uuid="a0d6e49b-e507-406b-ae67-c2ef6866f2d1"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{HWA_SASAN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="221" y="90" width="77" height="15" uuid="239d5f2f-178f-4d3d-9e9b-a7077f6b1319"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{YONG_SASAN}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="375" y="0" width="78" height="15" uuid="0b4716ae-2df2-4135-a349-b501845e203e"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{TOT_CNT}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="375" y="15" width="78" height="15" uuid="7bcb21ee-423e-435f-bcb3-6a982dbe01f1"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_SUWON}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="375" y="30" width="78" height="15" uuid="24d7aa35-0da7-4507-b57e-a473451717eb"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_GWANWAE}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="375" y="45" width="78" height="15" uuid="dfdf4571-0273-4676-9c12-fa2d80ed8595"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_50}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="375" y="60" width="78" height="15" uuid="f36774af-296b-4d4b-8d96-fda795ccb14c"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_OSAN}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="375" y="75" width="78" height="15" uuid="748b2ba0-dd8b-4d08-b7ff-6d744b1493f3"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_HWA}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="375" y="90" width="78" height="15" uuid="7dc3f9ad-3018-4597-a78c-6d6729914d7b"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_YONG}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="298" y="45" width="77" height="15" uuid="c6fc3dba-fed3-444c-b5c7-48b522d084ee"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_50UGOL}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="298" y="75" width="77" height="15" uuid="4950c74b-9fcf-438c-bca2-93878de50c04"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{HWA_UGOL}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="298" y="30" width="77" height="15" uuid="7fe41ba2-9838-4f7c-8ccd-bfa57474a9f7"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANWAE_UGOL}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="298" y="60" width="77" height="15" uuid="fa625122-608e-457e-b764-23f80415f1ea"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{OSAN_UGOL}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="298" y="15" width="77" height="15" uuid="fdc8ff06-79e7-4677-ac80-ed005af879e6"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{SUWON_UGOL}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="298" y="90" width="77" height="15" uuid="71bf2d2a-4883-4dcb-b848-add77539fd22"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{YONG_UGOL}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="298" y="0" width="77" height="15" uuid="1bb1bc9f-d526-497f-bf9b-590c50fc7202"/>
+							<box>
+								<topPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_UGOL}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="102" y="225" width="452" height="90" uuid="7207f8f4-7c3b-445e-9e75-1ef1fedc6bfc"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset2" uuid="e8ed5c62-d969-4156-80dd-2212cf1a88b6">
+						<datasetParameter name="from2">
+							<datasetParameterExpression><![CDATA[$P{from}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="to2">
+							<datasetParameterExpression><![CDATA[$P{to}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="90" width="452">
+						<textField>
+							<reportElement x="0" y="0" width="113" height="15" uuid="8d20fe80-59dd-43e8-9947-fcd14f383508"/>
+							<box>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_SOLO}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="30" width="113" height="15" uuid="2a6a8361-37e3-4190-bae3-437b0ae2e5dd"/>
+							<box>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANNAE_SOLO}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="60" width="113" height="15" uuid="540a0360-1cfa-4b9c-a990-16f64c71e071"/>
+							<box>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANWAE_SOLO}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="113" y="30" width="113" height="30" uuid="27eb0d37-526d-439a-b385-0712b3431da7"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANNAE_SOLO}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="113" y="0" width="113" height="30" uuid="d1f9aac5-59da-4373-acae-9a2685d57069"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_SOLO}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="113" y="60" width="113" height="30" uuid="9280857f-aa11-424b-90ef-09f931a3bd10"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANWAE_SOLO}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="226" y="30" width="113" height="15" uuid="9a69e163-08b5-4c09-9200-42f618ef9c70"/>
+							<box>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANNAE_COUPLE}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="226" y="0" width="113" height="15" uuid="f0079987-8c68-46a9-834f-4afaaf10fdb6"/>
+							<box>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_COUPLE}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="226" y="60" width="113" height="15" uuid="5105d91c-15a1-4e74-a84d-376b8306ec0f"/>
+							<box>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANWAE_COUPLE}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="339" y="30" width="113" height="30" uuid="0716e6e8-5c69-4083-9ec7-cddb1e046cd1"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANNAE_COUPLE}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="339" y="0" width="113" height="30" uuid="49a69fe6-7283-4406-93a6-ac7113cd7b94"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_COUPLE}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="339" y="60" width="113" height="30" uuid="d415acad-14fb-48b4-9994-95cf31cf35de"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANWAE_COUPLE}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="226" y="15" width="113" height="15" uuid="ad9f915d-a728-4323-b44b-8fd9bcce3e3d"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($V{TOT_COUPLE}.doubleValue()/$F{CREMCNT}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="0" y="15" width="113" height="15" uuid="983fc1fd-c01e-4253-ac03-7df1d25a8418"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($V{TOT_SOLO}.doubleValue()/$F{CREMCNT}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="226" y="45" width="113" height="15" uuid="9db673b1-e81f-4f1d-8f9f-abf71dfc75ca"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{GWANNAE_COUPLE}.doubleValue()/$F{CREMCNT}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="0" y="45" width="113" height="15" uuid="e9deee0e-42b8-4660-a80f-857207c9ca05"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{GWANNAE_SOLO}.doubleValue()/$F{CREMCNT}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="226" y="75" width="113" height="15" uuid="1cb49ec3-2431-42d2-b23b-e8ba73feda86"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{GWANWAE_COUPLE}.doubleValue()/$F{CREMCNT}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="0" y="75" width="113" height="15" uuid="7a17b27f-0a69-404a-9bfe-cbab7b633005"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{GWANWAE_SOLO}.doubleValue()/$F{CREMCNT}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="0" y="510" width="554" height="15" uuid="589d22f6-9b3f-481b-946d-b81ae929e09e"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset3" uuid="7093077e-ac3c-4264-aba9-6ce818d614c7">
+						<datasetParameter name="from3">
+							<datasetParameterExpression><![CDATA[$P{from}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="to3">
+							<datasetParameterExpression><![CDATA[$P{to}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="15" width="554">
+						<textField>
+							<reportElement x="0" y="0" width="102" height="15" uuid="490b4ca5-b0bd-4ecd-adda-7252efc6d247"/>
+							<box>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_NAT}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="102" y="0" width="75" height="15" uuid="dae39660-c3e1-4cf1-bb21-8c3d4ec58b10"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{NAT_GWANNAE}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="252" y="0" width="75" height="15" uuid="815e2eb4-dd31-4d8a-a907-6892a27b5f0e"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{NAT_GWANWAE}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="402" y="0" width="152" height="15" uuid="fb87b55b-49ef-4d2a-9638-cc02d212fd9f"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_NAT}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="177" y="0" width="75" height="15" uuid="80285db2-3634-4a74-86b4-eae075b12114"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{NAT_GWANNAE}.doubleValue()/$F{CREMCNT})*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="327" y="0" width="75" height="15" uuid="2c30c847-a09b-4b58-ae16-8e8674669bef"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{NAT_GWANWAE}.doubleValue()/$F{CREMCNT})*100]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="0" y="570" width="554" height="15" uuid="e8eba392-b1dd-471a-85f4-7f2f24cc6851"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset4" uuid="ad50db5b-5c86-47b1-97e1-5a62ee66f09d">
+						<datasetParameter name="from4">
+							<datasetParameterExpression><![CDATA[$P{from}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="to4">
+							<datasetParameterExpression><![CDATA[$P{to}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="15" width="554">
+						<textField>
+							<reportElement x="0" y="0" width="102" height="15" uuid="a2994590-b2ef-45fb-8807-c5f536fcb162"/>
+							<box>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_SCAT}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="102" y="0" width="75" height="15" uuid="905fff97-86fc-43f3-a6bb-8d1f561ebb46"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{SCAT_GWANNAE}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="252" y="0" width="75" height="15" uuid="fda40905-67c7-41fd-b19d-822816f6ffe7"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{SCAT_GWANWAE}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="402" y="0" width="152" height="15" uuid="18d4bccb-1b69-4925-957a-1a2dae0f8dac"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_SCAT}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="177" y="0" width="75" height="15" uuid="e365e459-e264-4004-9d83-c2708b43a1ee"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{SCAT_GWANNAE}.doubleValue()/$F{TOT_CNT})*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="327" y="0" width="75" height="15" uuid="49d473db-1047-4eb0-aa43-bd092e194f5f"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{SCAT_GWANWAE}.doubleValue()/$F{TOT_CNT})*100]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="0" y="645" width="554" height="15" uuid="e8bb3080-67cb-41b0-9eee-1b35993019e2"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset5" uuid="6fc6aa35-a857-475e-9b80-91230822e11c">
+						<datasetParameter name="from5">
+							<datasetParameterExpression><![CDATA[$P{from}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="to5">
+							<datasetParameterExpression><![CDATA[$P{to}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="15" width="554">
+						<textField>
+							<reportElement x="0" y="0" width="70" height="15" uuid="8973dcf9-d361-4b8a-abdf-b0508a5b8c18"/>
+							<box>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_BINSO}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="70" y="0" width="69" height="15" uuid="8715d1e6-17c1-442b-aef3-5663c1aeaa5a"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GRADE1}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="139" y="0" width="69" height="15" uuid="20dc4db4-3093-45cd-868a-365fbb264e24"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GRADE2}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="208" y="0" width="69" height="15" uuid="f75c7c3c-413d-4e7f-91f3-369586952afa"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GRADE3}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="369" y="0" width="92" height="15" uuid="de443ab3-c2e9-48b8-bca6-f3784a4d04bc"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{ANCHI_GWANNAE}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="277" y="0" width="92" height="15" uuid="70eedec3-2e2a-42f2-8f75-8120260f3a17"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_ANCHI}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="461" y="0" width="93" height="15" uuid="b9a02360-8a35-4ba9-92f7-d50a0df69a5f"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{ANCHI_GWANWAE}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="0" y="705" width="554" height="15" uuid="7eada610-03b2-438b-9361-2e716a9f7f0c"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset6" uuid="40546397-2283-465e-b4e4-74a1955f9c7e">
+						<datasetParameter name="from6">
+							<datasetParameterExpression><![CDATA[$P{from}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="to6">
+							<datasetParameterExpression><![CDATA[$P{to}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="15" width="554">
+						<textField pattern="#,###">
+							<reportElement x="0" y="0" width="102" height="15" uuid="f461b2a0-a1ea-4fa2-8fc9-4e88c21959d1"/>
+							<box>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_AMT}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,###">
+							<reportElement x="102" y="0" width="90" height="15" uuid="966457e2-0e13-4827-aba7-a2527f62464d"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CREM_AMT}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,###">
+							<reportElement x="192" y="0" width="90" height="15" uuid="bdf0f370-8ae7-4def-887b-c6898b9a1878"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{ENSH_AMT}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,###">
+							<reportElement x="282" y="0" width="90" height="15" uuid="febbcd31-dfdd-4490-8399-2e99619bbc1c"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{NAT_AMT}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,###">
+							<reportElement x="462" y="0" width="92" height="15" uuid="3d06f54c-ec01-450b-bd0a-1402d6fa184c"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{ANCHI_AMT}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,###">
+							<reportElement x="372" y="0" width="90" height="15" uuid="7f9f7198-319b-4963-b36f-1081ad83a239"/>
+							<box>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{BINSO_AMT}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<textField>
+				<reportElement x="169" y="15" width="386" height="15" uuid="bbc54ea9-1ab7-491f-bd0a-c888837eacfa"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font&#xD;&#xA;&#xD;&#xA;font&#xD;&#xA;font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{from}+" ~ "+$P{to}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="180" width="452" height="15" uuid="7fbafa5a-4ecf-4430-a495-385490ca59dc"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{from}+" ~ "+$P{to}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="480" width="452" height="15" uuid="643327ee-a633-4825-8501-90e1e6611b5a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{from}+" ~ "+$P{to}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="540" width="452" height="15" uuid="fa8b16d1-148a-4570-acf2-9b1ae0bc5238"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{from}+" ~ "+$P{to}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="600" width="452" height="15" uuid="2745486c-ee76-4daa-86cb-e3b4acc405c7"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{from}+" ~ "+$P{to}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="323" y="30" width="77" height="15" uuid="85db1be4-56d5-4490-88b2-994685def8d9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[사산아]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="675" width="452" height="15" uuid="c60ff0c6-ff8f-4f86-b78e-bf435c75a9a6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{from}+" ~ "+$P{to}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="600" width="102" height="15" uuid="ab79af82-3174-4893-9b62-5a55b4d724e5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[기간]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="675" width="102" height="15" uuid="bc2a380f-5754-47e2-ae0b-e5eb8989d130"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[기간]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="330" width="102" height="45" uuid="3201d9af-6a18-4e4e-a148-55b70bbc2b0d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[구분]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="375" width="102" height="30" uuid="f068c5fa-e1a9-46fc-9a52-2e33db2f764e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="405" width="102" height="30" uuid="76ba49e8-07ef-494f-aebe-e2bd5c3d748c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="345" width="226" height="15" uuid="6f24afa0-8061-4bb2-b18c-752abfa9f7eb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[개인단]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="345" width="226" height="15" uuid="55019fdd-ffca-4636-a754-446cdfe58342"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[부부단]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="315" width="118" height="15" uuid="18f2a345-928c-4e24-95ff-fe4e1fe4197d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="8" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[○ 추모의 집(봉안담)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="435" width="102" height="30" uuid="32c2e8db-333b-4f7d-bbae-b7dbb0d1575c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="360" width="113" height="15" uuid="921a2156-c50d-4371-b040-04ea1ca5859f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[건수(화장대비)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="360" width="113" height="15" uuid="f023e405-377b-4956-8db0-f6c675d03d60"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1일평균]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="360" width="113" height="15" uuid="f539e482-eb30-42f9-87c2-00b0af9c8d24"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1일평균]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="360" width="113" height="15" uuid="990d2e29-0884-48af-aea1-6cfc72595959"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[건수(화장대비)]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="102" y="375" width="452" height="90" uuid="4ef49a43-21a3-4a29-ad5e-475cc01b07d0"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset7" uuid="067b5822-c908-4317-8a49-70dcc920df38">
+						<datasetParameter name="from2">
+							<datasetParameterExpression><![CDATA[$P{from}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="to2">
+							<datasetParameterExpression><![CDATA[$P{to}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="90" width="452">
+						<textField>
+							<reportElement x="0" y="0" width="113" height="15" uuid="0683c8d4-307e-4eb6-98ce-453973f877b0"/>
+							<box>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_SOLO}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="30" width="113" height="15" uuid="a98ea3df-083d-4477-87e4-a4b5e0fd993d"/>
+							<box>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANNAE_SOLO}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="60" width="113" height="15" uuid="07bbe612-02e9-456b-95d2-6965dabc10e7"/>
+							<box>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANWAE_SOLO}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="113" y="30" width="113" height="30" uuid="11047d47-198c-449a-af54-e399a5ccba71"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANNAE_SOLO}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="113" y="0" width="113" height="30" uuid="8ef989ea-c072-4072-832c-234032e114fe"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_SOLO}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="113" y="60" width="113" height="30" uuid="dbc5112f-cb7d-4c1e-9984-6ce0186e0f53"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANWAE_SOLO}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="226" y="30" width="113" height="15" uuid="cebe9aaf-d4e1-45e5-9812-4e77f884054f"/>
+							<box>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANNAE_COUPLE}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="226" y="0" width="113" height="15" uuid="229763bc-6eb9-4000-861f-c6387ada86e5"/>
+							<box>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_COUPLE}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="226" y="60" width="113" height="15" uuid="da1cfceb-136b-4e37-8248-1414e3d3566f"/>
+							<box>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANWAE_COUPLE}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="339" y="30" width="113" height="30" uuid="e474de53-7ccb-47fe-8978-3101f9df8ea3"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANNAE_COUPLE}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="339" y="0" width="113" height="30" uuid="c7cfd632-e10f-4c57-ae91-40237726febc"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TOT_COUPLE}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement x="339" y="60" width="113" height="30" uuid="30a8009e-e0f9-47b7-9918-5cd37ceff6f6"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GWANWAE_COUPLE}.doubleValue()/$F{TERM}]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="226" y="15" width="113" height="15" uuid="c1e53824-8200-4791-929e-bfbca52e0c30"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($V{TOT_COUPLE}.doubleValue()/$F{CREMCNT}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="0" y="15" width="113" height="15" uuid="179c2064-445c-4307-8858-e86887727323"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($V{TOT_SOLO}.doubleValue()/$F{CREMCNT}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="226" y="45" width="113" height="15" uuid="ab0c3287-993e-4685-8f1b-15892d2e3c43"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{GWANNAE_COUPLE}.doubleValue()/$F{CREMCNT}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="0" y="45" width="113" height="15" uuid="705663e1-b97e-4b0a-b28b-47982f2bbff9"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{GWANNAE_SOLO}.doubleValue()/$F{CREMCNT}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="226" y="75" width="113" height="15" uuid="0b1f3e26-32c9-4df4-b978-e1ec121a5063"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{GWANWAE_COUPLE}.doubleValue()/$F{CREMCNT}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="(##.# &apos;%&apos;)">
+							<reportElement x="0" y="75" width="113" height="15" uuid="d4cadc70-2217-4c6f-8efa-cdc2e84e2a95"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{GWANWAE_SOLO}.doubleValue()/$F{CREMCNT}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<textField>
+				<reportElement x="102" y="330" width="452" height="15" uuid="705d4cf5-d5c2-4f0f-82bd-f91935863308"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{from}+" ~ "+$P{to}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="2" width="554" height="17" uuid="d5dbd9ba-5eee-4544-b19b-bb0955ce265a">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FIELD1}+" "+ DATEFORMAT( new Date(),"yyyy/MM/dd HH:mm:ss")+" 출력자 : "+$F{printUser}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

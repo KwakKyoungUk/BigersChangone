@@ -1,0 +1,2977 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FUNE9021" pageWidth="3501" pageHeight="595" orientation="Landscape" columnWidth="3461" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c3e4a5ab-81af-4240-a3ce-6158395246a2">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jupiter"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://105.1.72.37:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/suwon/fune/FUNE9021_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/suwon/fune/FUNE9021"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="FROM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{FROM}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{TO}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT TRANSFER_NAME
+, COUNT(CASE WHEN KWANNAE_GUNSU_01 > 0 THEN 1 END) AS KWANNAE_GUNSU_01
+, SUM(KWANNAE_AMOUNT_01) AS KWANNAE_AMOUNT_01
+, COUNT(CASE WHEN KWANWOE_GUNSU_01 > 0 THEN 1 END) AS KWANWOE_GUNSU_01
+, SUM(KWANWOE_AMOUNT_01) AS KWANWOE_AMOUNT_01
+, COUNT(CASE WHEN KWANNAE_GUNSU_02 > 0 THEN 1 END) AS KWANNAE_GUNSU_02
+, SUM(KWANNAE_AMOUNT_02) AS KWANNAE_AMOUNT_02
+, COUNT(CASE WHEN KWANWOE_GUNSU_02 > 0 THEN 1 END) AS KWANWOE_GUNSU_02
+, SUM(KWANWOE_AMOUNT_02) AS KWANWOE_AMOUNT_02
+, COUNT(CASE WHEN KWANNAE_GUNSU_03 > 0 THEN 1 END) AS KWANNAE_GUNSU_03
+, SUM(KWANNAE_AMOUNT_03) AS KWANNAE_AMOUNT_03
+, COUNT(CASE WHEN KWANWOE_GUNSU_03 > 0 THEN 1 END) AS KWANWOE_GUNSU_03
+, SUM(KWANWOE_AMOUNT_03) AS KWANWOE_AMOUNT_03
+, COUNT(CASE WHEN KWANNAE_GUNSU_04 > 0 THEN 1 END) AS KWANNAE_GUNSU_04
+, SUM(KWANNAE_AMOUNT_04) AS KWANNAE_AMOUNT_04
+, COUNT(CASE WHEN KWANWOE_GUNSU_04 > 0 THEN 1 END) AS KWANWOE_GUNSU_04
+, SUM(KWANWOE_AMOUNT_04) AS KWANWOE_AMOUNT_04
+, COUNT(CASE WHEN KWANNAE_GUNSU_05 > 0 THEN 1 END) AS KWANNAE_GUNSU_05
+, SUM(KWANNAE_AMOUNT_05) AS KWANNAE_AMOUNT_05
+, COUNT(CASE WHEN KWANWOE_GUNSU_05 > 0 THEN 1 END) AS KWANWOE_GUNSU_05
+, SUM(KWANWOE_AMOUNT_05) AS KWANWOE_AMOUNT_05
+, COUNT(CASE WHEN KWANNAE_GUNSU_06 > 0 THEN 1 END) AS KWANNAE_GUNSU_06
+, SUM(KWANNAE_AMOUNT_06) AS KWANNAE_AMOUNT_06
+, COUNT(CASE WHEN KWANWOE_GUNSU_06 > 0 THEN 1 END) AS KWANWOE_GUNSU_06
+, SUM(KWANWOE_AMOUNT_06) AS KWANWOE_AMOUNT_06
+, COUNT(CASE WHEN KWANNAE_GUNSU_07 > 0 THEN 1 END) AS KWANNAE_GUNSU_07
+, SUM(KWANNAE_AMOUNT_07) AS KWANNAE_AMOUNT_07
+, COUNT(CASE WHEN KWANWOE_GUNSU_07 > 0 THEN 1 END) AS KWANWOE_GUNSU_07
+, SUM(KWANWOE_AMOUNT_07) AS KWANWOE_AMOUNT_07
+, COUNT(CASE WHEN KWANNAE_GUNSU_08 > 0 THEN 1 END) AS KWANNAE_GUNSU_08
+, SUM(KWANNAE_AMOUNT_08) AS KWANNAE_AMOUNT_08
+, COUNT(CASE WHEN KWANWOE_GUNSU_08 > 0 THEN 1 END) AS KWANWOE_GUNSU_08
+, SUM(KWANWOE_AMOUNT_08) AS KWANWOE_AMOUNT_08
+, COUNT(CASE WHEN KWANNAE_GUNSU_09 > 0 THEN 1 END) AS KWANNAE_GUNSU_09
+, SUM(KWANNAE_AMOUNT_09) AS KWANNAE_AMOUNT_09
+, COUNT(CASE WHEN KWANWOE_GUNSU_09 > 0 THEN 1 END) AS KWANWOE_GUNSU_09
+, SUM(KWANWOE_AMOUNT_09) AS KWANWOE_AMOUNT_09
+, COUNT(CASE WHEN KWANNAE_GUNSU_10 > 0 THEN 1 END) AS KWANNAE_GUNSU_10
+, SUM(KWANNAE_AMOUNT_10) AS KWANNAE_AMOUNT_10
+, COUNT(CASE WHEN KWANWOE_GUNSU_10 > 0 THEN 1 END) AS KWANWOE_GUNSU_10
+, SUM(KWANWOE_AMOUNT_10) AS KWANWOE_AMOUNT_10
+, COUNT(CASE WHEN KWANNAE_GUNSU_11 > 0 THEN 1 END) AS KWANNAE_GUNSU_11
+, SUM(KWANNAE_AMOUNT_11) AS KWANNAE_AMOUNT_11
+, COUNT(CASE WHEN KWANWOE_GUNSU_11 > 0 THEN 1 END) AS KWANWOE_GUNSU_11
+, SUM(KWANWOE_AMOUNT_11) AS KWANWOE_AMOUNT_11
+, COUNT(CASE WHEN KWANNAE_GUNSU_12 > 0 THEN 1 END) AS KWANNAE_GUNSU_12
+, SUM(KWANNAE_AMOUNT_12) AS KWANNAE_AMOUNT_12
+, COUNT(CASE WHEN KWANWOE_GUNSU_12 > 0 THEN 1 END) AS KWANWOE_GUNSU_12
+, SUM(KWANWOE_AMOUNT_12) AS KWANWOE_AMOUNT_12
+, (SELECT DOC_NAME1 FROM DOCFORM WHERE DOC_CODE = 'FUNE9021') AS DOC_NAME1
+FROM(
+	SELECT LEFT(BALIN_DATE, 7) AS BALIN_DATE 
+	, TRANSFER.NAME AS TRANSFER_NAME
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-01'), 1, 0) AS KWANNAE_GUNSU_01
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-01'), TRANSFER_CAR_PRICE, 0) AS KWANNAE_AMOUNT_01
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-01'), 1, 0) AS KWANWOE_GUNSU_01
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-01'), TRANSFER_CAR_PRICE, 0) AS KWANWOE_AMOUNT_01
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-02'), 1, 0) AS KWANNAE_GUNSU_02
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-02'), TRANSFER_CAR_PRICE, 0) AS KWANNAE_AMOUNT_02
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-02'), 1, 0) AS KWANWOE_GUNSU_02
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-02'), TRANSFER_CAR_PRICE, 0) AS KWANWOE_AMOUNT_02
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-03'), 1, 0) AS KWANNAE_GUNSU_03
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-03'), TRANSFER_CAR_PRICE, 0) AS KWANNAE_AMOUNT_03
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-03'), 1, 0) AS KWANWOE_GUNSU_03
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-03'), TRANSFER_CAR_PRICE, 0) AS KWANWOE_AMOUNT_03
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-04'), 1, 0) AS KWANNAE_GUNSU_04
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-04'), TRANSFER_CAR_PRICE, 0) AS KWANNAE_AMOUNT_04
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-04'), 1, 0) AS KWANWOE_GUNSU_04
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-04'), TRANSFER_CAR_PRICE, 0) AS KWANWOE_AMOUNT_04
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-05'), 1, 0) AS KWANNAE_GUNSU_05
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-05'), TRANSFER_CAR_PRICE, 0) AS KWANNAE_AMOUNT_05
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-05'), 1, 0) AS KWANWOE_GUNSU_05
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-05'), TRANSFER_CAR_PRICE, 0) AS KWANWOE_AMOUNT_05
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-06'), 1, 0) AS KWANNAE_GUNSU_06
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-06'), TRANSFER_CAR_PRICE, 0) AS KWANNAE_AMOUNT_06
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-06'), 1, 0) AS KWANWOE_GUNSU_06
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-06'), TRANSFER_CAR_PRICE, 0) AS KWANWOE_AMOUNT_06
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-07'), 1, 0) AS KWANNAE_GUNSU_07
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-07'), TRANSFER_CAR_PRICE, 0) AS KWANNAE_AMOUNT_07
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-07'), 1, 0) AS KWANWOE_GUNSU_07
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-07'), TRANSFER_CAR_PRICE, 0) AS KWANWOE_AMOUNT_07
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-08'), 1, 0) AS KWANNAE_GUNSU_08
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-08'), TRANSFER_CAR_PRICE, 0) AS KWANNAE_AMOUNT_08
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-08'), 1, 0) AS KWANWOE_GUNSU_08
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-08'), TRANSFER_CAR_PRICE, 0) AS KWANWOE_AMOUNT_08
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-09'), 1, 0) AS KWANNAE_GUNSU_09
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-09'), TRANSFER_CAR_PRICE, 0) AS KWANNAE_AMOUNT_09
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-09'), 1, 0) AS KWANWOE_GUNSU_09
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-09'), TRANSFER_CAR_PRICE, 0) AS KWANWOE_AMOUNT_09
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-10'), 1, 0) AS KWANNAE_GUNSU_10
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-10'), TRANSFER_CAR_PRICE, 0) AS KWANNAE_AMOUNT_10
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-10'), 1, 0) AS KWANWOE_GUNSU_10
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-10'), TRANSFER_CAR_PRICE, 0) AS KWANWOE_AMOUNT_10
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-11'), 1, 0) AS KWANNAE_GUNSU_11
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-11'), TRANSFER_CAR_PRICE, 0) AS KWANNAE_AMOUNT_11
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-11'), 1, 0) AS KWANWOE_GUNSU_11
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-11'), TRANSFER_CAR_PRICE, 0) AS KWANWOE_AMOUNT_11
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-12'), 1, 0) AS KWANNAE_GUNSU_12
+	, IF(ADDR_PART = 'TCM1000001' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-12'), TRANSFER_CAR_PRICE, 0) AS KWANNAE_AMOUNT_12
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-12'), 1, 0) AS KWANWOE_GUNSU_12
+	, IF(ADDR_PART = 'TCM1000003' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-12'), TRANSFER_CAR_PRICE, 0) AS KWANWOE_AMOUNT_12
+	, TRANSFER_CAR_COMPANY
+	FROM FUNERAL FUNE
+	LEFT JOIN BASIC_M TRANSFER
+	ON TRANSFER.BASIC_CD = '506'
+	AND TRANSFER.CODE = FUNE.TRANSFER_CAR_COMPANY
+	WHERE LEFT(BALIN_DATE, 7) BETWEEN $P{FROM} AND $P{TO} 
+)A
+WHERE TRANSFER_CAR_COMPANY = 001 OR TRANSFER_CAR_COMPANY = 002
+OR TRANSFER_CAR_COMPANY = 003 OR TRANSFER_CAR_COMPANY = 005
+GROUP BY TRANSFER_CAR_COMPANY
+ORDER BY BALIN_DATE, TRANSFER_CAR_COMPANY]]>
+	</queryString>
+	<field name="TRANSFER_NAME" class="java.lang.String"/>
+	<field name="KWANNAE_GUNSU_01" class="java.lang.Long"/>
+	<field name="KWANNAE_AMOUNT_01" class="java.math.BigDecimal"/>
+	<field name="KWANWOE_GUNSU_01" class="java.lang.Long"/>
+	<field name="KWANWOE_AMOUNT_01" class="java.math.BigDecimal"/>
+	<field name="KWANNAE_GUNSU_02" class="java.lang.Long"/>
+	<field name="KWANNAE_AMOUNT_02" class="java.math.BigDecimal"/>
+	<field name="KWANWOE_GUNSU_02" class="java.lang.Long"/>
+	<field name="KWANWOE_AMOUNT_02" class="java.math.BigDecimal"/>
+	<field name="KWANNAE_GUNSU_03" class="java.lang.Long"/>
+	<field name="KWANNAE_AMOUNT_03" class="java.math.BigDecimal"/>
+	<field name="KWANWOE_GUNSU_03" class="java.lang.Long"/>
+	<field name="KWANWOE_AMOUNT_03" class="java.math.BigDecimal"/>
+	<field name="KWANNAE_GUNSU_04" class="java.lang.Long"/>
+	<field name="KWANNAE_AMOUNT_04" class="java.math.BigDecimal"/>
+	<field name="KWANWOE_GUNSU_04" class="java.lang.Long"/>
+	<field name="KWANWOE_AMOUNT_04" class="java.math.BigDecimal"/>
+	<field name="KWANNAE_GUNSU_05" class="java.lang.Long"/>
+	<field name="KWANNAE_AMOUNT_05" class="java.math.BigDecimal"/>
+	<field name="KWANWOE_GUNSU_05" class="java.lang.Long"/>
+	<field name="KWANWOE_AMOUNT_05" class="java.math.BigDecimal"/>
+	<field name="KWANNAE_GUNSU_06" class="java.lang.Long"/>
+	<field name="KWANNAE_AMOUNT_06" class="java.math.BigDecimal"/>
+	<field name="KWANWOE_GUNSU_06" class="java.lang.Long"/>
+	<field name="KWANWOE_AMOUNT_06" class="java.math.BigDecimal"/>
+	<field name="KWANNAE_GUNSU_07" class="java.lang.Long"/>
+	<field name="KWANNAE_AMOUNT_07" class="java.math.BigDecimal"/>
+	<field name="KWANWOE_GUNSU_07" class="java.lang.Long"/>
+	<field name="KWANWOE_AMOUNT_07" class="java.math.BigDecimal"/>
+	<field name="KWANNAE_GUNSU_08" class="java.lang.Long"/>
+	<field name="KWANNAE_AMOUNT_08" class="java.math.BigDecimal"/>
+	<field name="KWANWOE_GUNSU_08" class="java.lang.Long"/>
+	<field name="KWANWOE_AMOUNT_08" class="java.math.BigDecimal"/>
+	<field name="KWANNAE_GUNSU_09" class="java.lang.Long"/>
+	<field name="KWANNAE_AMOUNT_09" class="java.math.BigDecimal"/>
+	<field name="KWANWOE_GUNSU_09" class="java.lang.Long"/>
+	<field name="KWANWOE_AMOUNT_09" class="java.math.BigDecimal"/>
+	<field name="KWANNAE_GUNSU_10" class="java.lang.Long"/>
+	<field name="KWANNAE_AMOUNT_10" class="java.math.BigDecimal"/>
+	<field name="KWANWOE_GUNSU_10" class="java.lang.Long"/>
+	<field name="KWANWOE_AMOUNT_10" class="java.math.BigDecimal"/>
+	<field name="KWANNAE_GUNSU_11" class="java.lang.Long"/>
+	<field name="KWANNAE_AMOUNT_11" class="java.math.BigDecimal"/>
+	<field name="KWANWOE_GUNSU_11" class="java.lang.Long"/>
+	<field name="KWANWOE_AMOUNT_11" class="java.math.BigDecimal"/>
+	<field name="KWANNAE_GUNSU_12" class="java.lang.Long"/>
+	<field name="KWANNAE_AMOUNT_12" class="java.math.BigDecimal"/>
+	<field name="KWANWOE_GUNSU_12" class="java.lang.Long"/>
+	<field name="KWANWOE_AMOUNT_12" class="java.math.BigDecimal"/>
+	<field name="DOC_NAME1" class="java.lang.String"/>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP" class="java.math.BigDecimal" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_01}.intValue()+$F{KWANNAE_GUNSU_02}.intValue()+$F{KWANNAE_GUNSU_03}.intValue()+$F{KWANNAE_GUNSU_04}.intValue()+$F{KWANNAE_GUNSU_05}.intValue()+$F{KWANNAE_GUNSU_06}.intValue()+$F{KWANNAE_GUNSU_07}.intValue()+$F{KWANNAE_GUNSU_08}.intValue()+$F{KWANNAE_GUNSU_09}.intValue()+$F{KWANNAE_GUNSU_10}.intValue()+$F{KWANNAE_GUNSU_11}.intValue()+$F{KWANNAE_GUNSU_12}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP" class="java.math.BigDecimal" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_01}.intValue()+$F{KWANWOE_GUNSU_02}.intValue()+$F{KWANWOE_GUNSU_03}.intValue()+$F{KWANWOE_GUNSU_04}.intValue()+$F{KWANWOE_GUNSU_05}.intValue()+$F{KWANWOE_GUNSU_06}.intValue()+$F{KWANWOE_GUNSU_07}.intValue()+$F{KWANWOE_GUNSU_08}.intValue()+$F{KWANWOE_GUNSU_09}.intValue()+$F{KWANWOE_GUNSU_10}.intValue()+$F{KWANWOE_GUNSU_11}.intValue()+$F{KWANWOE_GUNSU_12}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP" class="java.math.BigDecimal" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_01}.intValue()+$F{KWANNAE_AMOUNT_02}.intValue()+$F{KWANNAE_AMOUNT_03}.intValue()+$F{KWANNAE_AMOUNT_04}.intValue()+$F{KWANNAE_AMOUNT_05}.intValue()+$F{KWANNAE_AMOUNT_06}.intValue()+$F{KWANNAE_AMOUNT_07}.intValue()+$F{KWANNAE_AMOUNT_08}.intValue()+$F{KWANNAE_AMOUNT_09}.intValue()+$F{KWANNAE_AMOUNT_10}.intValue()+$F{KWANNAE_AMOUNT_11}.intValue()+$F{KWANNAE_AMOUNT_12}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP" class="java.math.BigDecimal" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_01}.intValue()+$F{KWANWOE_AMOUNT_02}.intValue()+$F{KWANWOE_AMOUNT_03}.intValue()+$F{KWANWOE_AMOUNT_04}.intValue()+$F{KWANWOE_AMOUNT_05}.intValue()+$F{KWANWOE_AMOUNT_06}.intValue()+$F{KWANWOE_AMOUNT_07}.intValue()+$F{KWANWOE_AMOUNT_08}.intValue()+$F{KWANWOE_AMOUNT_09}.intValue()+$F{KWANWOE_AMOUNT_10}.intValue()+$F{KWANWOE_AMOUNT_11}.intValue()+$F{KWANWOE_AMOUNT_12}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_01}.intValue()+$F{KWANWOE_AMOUNT_02}.intValue()+$F{KWANWOE_AMOUNT_03}.intValue()+$F{KWANWOE_AMOUNT_04}.intValue()+$F{KWANWOE_AMOUNT_05}.intValue()+$F{KWANWOE_AMOUNT_06}.intValue()+$F{KWANWOE_AMOUNT_07}.intValue()+$F{KWANWOE_AMOUNT_08}.intValue()+$F{KWANWOE_AMOUNT_09}.intValue()+$F{KWANWOE_AMOUNT_10}.intValue()+$F{KWANWOE_AMOUNT_11}.intValue()+$F{KWANWOE_AMOUNT_12}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_01}.intValue()+$F{KWANNAE_AMOUNT_02}.intValue()+$F{KWANNAE_AMOUNT_03}.intValue()+$F{KWANNAE_AMOUNT_04}.intValue()+$F{KWANNAE_AMOUNT_05}.intValue()+$F{KWANNAE_AMOUNT_06}.intValue()+$F{KWANNAE_AMOUNT_07}.intValue()+$F{KWANNAE_AMOUNT_08}.intValue()+$F{KWANNAE_AMOUNT_09}.intValue()+$F{KWANNAE_AMOUNT_10}.intValue()+$F{KWANNAE_AMOUNT_11}.intValue()+$F{KWANNAE_AMOUNT_12}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_01}.intValue()+$F{KWANWOE_GUNSU_02}.intValue()+$F{KWANWOE_GUNSU_03}.intValue()+$F{KWANWOE_GUNSU_04}.intValue()+$F{KWANWOE_GUNSU_05}.intValue()+$F{KWANWOE_GUNSU_06}.intValue()+$F{KWANWOE_GUNSU_07}.intValue()+$F{KWANWOE_GUNSU_08}.intValue()+$F{KWANWOE_GUNSU_09}.intValue()+$F{KWANWOE_GUNSU_10}.intValue()+$F{KWANWOE_GUNSU_11}.intValue()+$F{KWANWOE_GUNSU_12}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_01}.intValue()+$F{KWANNAE_GUNSU_02}.intValue()+$F{KWANNAE_GUNSU_03}.intValue()+$F{KWANNAE_GUNSU_04}.intValue()+$F{KWANNAE_GUNSU_05}.intValue()+$F{KWANNAE_GUNSU_06}.intValue()+$F{KWANNAE_GUNSU_07}.intValue()+$F{KWANNAE_GUNSU_08}.intValue()+$F{KWANNAE_GUNSU_09}.intValue()+$F{KWANNAE_GUNSU_10}.intValue()+$F{KWANNAE_GUNSU_11}.intValue()+$F{KWANNAE_GUNSU_12}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_01" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_01}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_01" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_01}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_01" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_01}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_01" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_01}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_02" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_02}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_02" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_02}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_02" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_02}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_02" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_02}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_03" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_03}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_03" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_03}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_03" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_03}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_03" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_03}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_04" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_04}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_04" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_04}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_04" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_04}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_04" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_04}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_05" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_05}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_05" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_05}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_05" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_05}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_05" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_05}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_06" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_06}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_06" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_06}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_06" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_06}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_06" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_06}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_07" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_07}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_07" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_07}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_07" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_07}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_07" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_07}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_08" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_08}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_08" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_08}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_08" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_08}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_08" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_08}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_09" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_09}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_09" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_09}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_09" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_09}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_09" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_09}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_10" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_10}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_10" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_10}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_10" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_10}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_10" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_10}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_11" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_11}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_11" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_11}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_11" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_11}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_11" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_11}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_GUNSU_HAP_12" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_GUNSU_12}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANNAE_AMOUNT_HAP_12" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANNAE_AMOUNT_12}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_GUNSU_HAP_12" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_GUNSU_12}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KWANWOE_AMOUNT_HAP_12" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KWANWOE_AMOUNT_12}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="55">
+			<textField>
+				<reportElement x="0" y="0" width="3460" height="55" uuid="5245a515-c64b-4449-8955-543489a2f488"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="25"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOC_NAME1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="80" height="60" backcolor="#CCCCCC" uuid="895dcb41-65fd-43de-a614-b56936fd91e9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[이송업체]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="80" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="6dc3d0ad-5dac-4970-8f05-44dd05c65208">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[1월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="340" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="fa18c9fb-ea06-4c17-951f-1094842da93c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[2월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="600" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="172601c9-9310-4aba-b97a-814485708d96"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[3월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="860" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="e6a8f3fe-9c7a-4a72-85c1-e492bf25a22b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[4월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1120" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="184f3aee-2978-4f05-af66-1d4a8085fc87"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[5월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1380" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="c89d2ab6-6ecb-4add-b016-23bb066f33d3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[6월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1640" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="3eb502ff-aab1-4e83-9642-7d222dae3425"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[7월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1900" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="46e7e61c-35c8-464c-94f1-340e6dcac84d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[8월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2160" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="3047c62c-ba97-4cf1-917e-c50ca45ee2d9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[9월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2420" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="e4b1d92a-fd3d-472e-bf27-8fb543bb30d5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[10월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2680" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="dbeba400-315c-480c-8039-572060d2b72b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[11월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2940" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="5025a37f-592b-4a10-9584-c224273e0acf"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[12월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3200" y="0" width="260" height="20" backcolor="#CCCCCC" uuid="68c0bdb3-d522-46ac-be50-b0e7c5527e14"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[합계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="80" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="f8bd3ac7-d970-4db9-a718-b0a8d1715848">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="210" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="b59362c0-7e7a-446e-8862-9ac923c66357"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="340" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="843a0dad-fa33-4d6f-b534-2149da0ac4cf"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="470" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="a1675197-0cff-48de-a887-8e02ca4715b1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="600" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="6f5e9ce5-5d8c-4d40-8636-de0cddde6e10"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="730" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="d8f3a08f-d1d5-4a1d-af82-776ba486f222">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="860" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="fb3196c6-fc44-4ab7-a77e-332d65c5814b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="990" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="2dfd4b96-71ea-4785-94eb-38b3be905fb4">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1120" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="06aed0e5-c547-4a8a-a6bf-ed7a5a488b81">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1250" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="c6da2b32-edff-4eea-af90-c82973b58050"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1380" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="5a38a2f7-d103-48d8-8838-4a65e8c0aa99">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1510" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="11bdc464-8f54-484f-a035-6f88c191ed17">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1640" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="556ef8e5-a6a0-4da7-9328-a0a707e13b37">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1770" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="4d09f8a4-c4e8-417e-950a-18bc055e45d8">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1900" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="dff13e2b-2250-4382-aabc-5132acda1199">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2030" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="814e0cf6-32fc-405d-8e60-0fc6dc7bbfa2">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2160" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="c177acd1-53dc-40db-9cc4-ac21d45c103a">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2290" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="755ebb52-2d31-4325-ae70-9bb1d7efaa45">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2420" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="32ac0f46-765a-4a6b-87a8-5b6de5f00305">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2550" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="b0ae304d-d0fb-4bb2-8f8e-a0066752234d">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2680" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="72e90d4a-1d77-4a3c-9787-5de23df88344">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2810" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="9519077b-b746-463d-a1c8-4ad531a136f6">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2940" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="07f1eb13-4df6-4626-9f41-360aac691670">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3070" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="75fb09f4-45e1-428b-b403-80fd812b051d">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3200" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="5ebf316f-0d3d-4e3b-b856-811b303b4552">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3330" y="20" width="130" height="20" backcolor="#CCCCCC" uuid="e39e286f-8df6-4b29-80a5-b6d35f40e46d">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="80" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="d5dad142-4e74-4d9d-a0d4-edcf3a62a17a">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="120" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="75f2d0c1-bbee-49ed-a39a-6576ec3e58a6">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="210" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="7269bf65-9c25-405b-9628-e6ce8c172aaa">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="250" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="614667e8-dd0e-47fa-8656-eb33d7e37b8e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="340" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="d9f7d84f-1d0c-4850-93d0-584bd485ddea">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="380" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="ee1e6d18-9e8b-4b06-b132-29c36ecdd96a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="470" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="cde01939-9f59-4741-b3fc-1af308637de5">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="510" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="879af9e2-f0cc-42fe-81bd-953a80d05490"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="600" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="92e186c2-6f7b-405b-a6f4-d7f58a7f742c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="640" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="09c2b134-d9d9-4b33-b3b4-a28c1ea1c949"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="730" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="74d9835d-be02-4624-97d1-b8d540779bfa">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="770" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="f8b8a52e-1ac7-4369-9991-e6df671a53a2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="860" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="8045eea4-ae0b-45f6-925b-1fbc2fc96153">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="900" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="cdfeb1e6-0fee-445e-892b-f1a84d596cb8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="990" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="aaa09a91-99c4-4b69-bd56-90a8b073e8e4">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1030" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="630f54c0-7706-4f1c-956b-14289aba4f7d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1120" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="6ef39236-12b1-45b7-83b6-761f64fc146e">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1160" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="be325e69-9a10-41c7-bec0-5584101c58a9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1250" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="fcd19235-6ae1-4f2f-b2af-1de3c2ad1ac6">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1290" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="5dce0966-4e10-4ee2-83f6-29ec11c80a59"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1380" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="4f2cd8e7-1ca8-4793-9e58-338648b42a71">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1420" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="59ec3a17-6a2f-4f6a-859d-42350af73125"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1510" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="47065506-2599-4179-a6a3-d6f49212ece1">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1550" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="b1388d41-c888-412c-bfbb-0a4775f59d76"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1640" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="b8bdab34-8b78-4ca5-a613-432459636dfc">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1680" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="39ee67f5-ef25-4d90-bdef-0155f20ec4e4"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1770" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="81f6c5a9-35ed-449f-a811-10f5c2229c95">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1810" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="33fb3746-f7cb-4614-9fc8-6671e8565020"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1900" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="d75a9790-7fdd-4f28-a4e2-5bb20760b3c4">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1940" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="885a7d96-23de-49ab-a49f-b7ae4cc21eb1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2030" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="62dbe599-5ebf-4785-aab8-c401815079e8">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2070" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="184ef9b4-7d5b-4e05-8784-41004f6c36a7"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2160" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="2d47222d-77bb-4fb8-b17f-8e888cae4227">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2200" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="90e5bf8d-661c-4965-8045-007b41cabf15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2290" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="b9375df3-5e57-4f7d-a24b-08d5c30ffd86">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2330" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="56789a46-09ff-4233-bac7-e17e468972f8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2420" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="95c6c3fa-1e8c-493a-9844-161a04309726">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2460" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="fee4a83a-c79c-4f2a-b153-6430858c9aac"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2550" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="21cd1a5f-ba06-43d8-a390-f2f9e7e6bcc8">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2590" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="5646580f-a7b2-42dd-9350-05088deeb89d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2680" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="92b0ac7d-12c1-45c4-a973-3f0be77fa118">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2720" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="dd7a9fd7-723e-45ed-894b-c068864d84ad"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2810" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="61dc51dd-b2d1-4f18-b18b-fb77f7b970da">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2850" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="0dfb747f-dedd-42c7-995e-55cfd26eecc5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2940" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="346119ea-ffa8-4baf-84d6-7431715349c5">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2980" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="ccc7690d-111e-4000-a8e2-a254f18d81a1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3070" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="920b2b93-3ffb-4383-9ddb-c9aceb82efe9">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3110" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="452dec59-145a-4378-8f94-8c9e834eab34"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3200" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="1e9f5f12-ad03-4bdd-8a1b-2bc5b6d77d1b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3240" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="7cd4535d-f6b4-49b7-aff2-38531bee02c0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3330" y="40" width="40" height="20" backcolor="#CCCCCC" uuid="36c88b93-e35b-4978-a5c6-0a2001986d7f">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[건수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3370" y="40" width="90" height="20" backcolor="#CCCCCC" uuid="07d9527d-9cd3-4838-aa55-a90947d42acd"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="80" height="30" uuid="a0c12355-5b9e-4745-a571-d1c6bd91ef9f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TRANSFER_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="40" height="30" uuid="f729e414-e601-4350-ab84-755b386567f7"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_GUNSU_01}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="120" y="0" width="90" height="30" uuid="9f62edf6-c20d-4dca-8bd5-c94b26ed0d71"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_AMOUNT_01}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="0" width="40" height="30" uuid="c20144d2-ccdb-4dc5-9ebe-840580c001c8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_GUNSU_01}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="250" y="0" width="90" height="30" uuid="2192edab-39b4-463d-ba93-1b563222a70f">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_AMOUNT_01}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="40" height="30" uuid="dc0bce90-c3a5-4e91-b55b-ebacd7610aba"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_GUNSU_02}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="380" y="0" width="90" height="30" uuid="67d45819-3daf-4772-8cc5-2f4620371869">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_AMOUNT_02}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="40" height="30" uuid="d66135d6-9d2f-4e7e-8b58-0a09188ed448"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_GUNSU_02}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="510" y="0" width="90" height="30" uuid="c92bfe14-64b3-4ec4-80ba-6a7f45e86c56">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_AMOUNT_02}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="0" width="40" height="30" uuid="6d5b10e5-d9de-4fca-9b5a-e7f5de57ff6c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_GUNSU_03}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="640" y="0" width="90" height="30" uuid="147b428c-6e17-4112-b6fa-ab596c3f19f8">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_AMOUNT_03}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="730" y="0" width="40" height="30" uuid="716fe861-7050-4b1c-ba48-9396f547524a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_GUNSU_03}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="770" y="0" width="90" height="30" uuid="7f26f063-a4a9-4eec-9e1f-ca34b03b3809">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_AMOUNT_03}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="860" y="0" width="40" height="30" uuid="e59f430d-9e6a-4ef2-b2fa-ffa6ceb8875c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_GUNSU_04}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="900" y="0" width="90" height="30" uuid="2681b7fc-d318-4ca6-a466-e09ebe6ab657">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_AMOUNT_04}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="990" y="0" width="40" height="30" uuid="70ee7114-1106-4bf1-b585-9362d5b7a033"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_GUNSU_04}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="1030" y="0" width="90" height="30" uuid="0dbeb67c-8cff-4e11-ab02-b2a74e5bfe7a">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_AMOUNT_04}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1120" y="0" width="40" height="30" uuid="22c0ee8c-f92c-4109-b542-8f6e50283f38"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_GUNSU_05}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="1160" y="0" width="90" height="30" uuid="e12e6c49-d4b8-4fec-81a1-39e730bca7d2">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_AMOUNT_05}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1250" y="0" width="40" height="30" uuid="0f87429e-7ff3-4568-a985-034f6e89e4fd"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_GUNSU_05}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="1290" y="0" width="90" height="30" uuid="66212958-23d1-4c58-ae68-9688a95131a4">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_AMOUNT_05}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1380" y="0" width="40" height="30" uuid="01d1be37-d1f8-4f0a-9963-121258050d63"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_GUNSU_06}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="1420" y="0" width="90" height="30" uuid="649440f6-1499-498d-8c64-17bc7e484d83">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_AMOUNT_06}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1510" y="0" width="40" height="30" uuid="48a5a452-df44-429a-abe5-32cf4d72a5ef"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_GUNSU_06}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="1550" y="0" width="90" height="30" uuid="44b2cd24-a7cf-415a-a3bd-f5c7f80ac0da">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_AMOUNT_06}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1640" y="0" width="40" height="30" uuid="d9a2aac0-27ab-4386-a335-aba45f12c967"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_GUNSU_07}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="1680" y="0" width="90" height="30" uuid="f95a4272-270f-4e4e-8b66-bd6a7c7039a1">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_AMOUNT_07}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1770" y="0" width="40" height="30" uuid="591af2cc-f319-4577-b110-208f5f09a57f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_GUNSU_07}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="1810" y="0" width="90" height="30" uuid="46d8ae47-575b-4ba7-82a9-6c8bcaf85ba3">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_AMOUNT_07}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1900" y="0" width="40" height="30" uuid="7a390882-7742-4b3f-81ff-cd4733666bff"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_GUNSU_08}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="1940" y="0" width="90" height="30" uuid="c7933feb-914d-4210-af96-2ae22607117f">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_AMOUNT_08}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2030" y="0" width="40" height="30" uuid="b7df234a-f34a-4642-917d-b723ba265f21"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_GUNSU_08}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="2070" y="0" width="90" height="30" uuid="e3cfdfd3-cbd4-47c7-9bce-aa6cf2c92b6f">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_AMOUNT_08}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2160" y="0" width="40" height="30" uuid="fcba69ce-fbd8-4583-adb7-9120d7810c1f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_GUNSU_09}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="2200" y="0" width="90" height="30" uuid="464ceaea-d900-4a63-869d-e2a85144cfd6">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_AMOUNT_09}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2290" y="0" width="40" height="30" uuid="5a3fcd17-37ae-416e-a214-119e7c513a5f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_GUNSU_09}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="2330" y="0" width="90" height="30" uuid="f5d0acbe-ea00-4e9f-b5a2-9ac0924318c3">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_AMOUNT_09}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2420" y="0" width="40" height="30" uuid="dd1f07b8-2279-4e2c-b794-058b56e60eff"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_GUNSU_10}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="2460" y="0" width="90" height="30" uuid="be6aa0d8-be3e-4bfc-aa02-82129fde87be">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_AMOUNT_10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2550" y="0" width="40" height="30" uuid="5797e0df-f16a-4c30-9cb4-b50faac8a6e9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_GUNSU_10}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="2590" y="0" width="90" height="30" uuid="a0525644-eaec-404e-a279-bce0ad96ff25">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_AMOUNT_10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2680" y="0" width="40" height="30" uuid="5aa19f09-c495-404e-932a-8fc9e443b237"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_GUNSU_11}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="2720" y="0" width="90" height="30" uuid="37ba3b4b-abde-4148-b92a-ef08324ad38a">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_AMOUNT_11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2810" y="0" width="40" height="30" uuid="fda842ce-2ac0-434e-bf62-545d790e9712"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_GUNSU_11}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="2850" y="0" width="90" height="30" uuid="b54fb922-f441-4d71-a305-ed3343f8d035">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_AMOUNT_11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2940" y="0" width="40" height="30" uuid="8024f250-1af5-4556-8266-4dbf9e1f2fde"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_GUNSU_12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="2980" y="0" width="90" height="30" uuid="a49c7157-9859-44f7-8764-34168a30568b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANNAE_AMOUNT_12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3070" y="0" width="40" height="30" uuid="52553d54-990c-4e4c-a74a-80c8f1ea07e6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_GUNSU_12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="3110" y="0" width="90" height="30" uuid="c3d4160a-3ef8-4b1e-8513-e6646d9aa379">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KWANWOE_AMOUNT_12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="3200" y="0" width="40" height="30" uuid="d81b7d63-7529-4cf7-88d6-3781da87c425"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="3240" y="0" width="90" height="30" uuid="3229a4ea-cff6-42b6-85bc-97ec41dd591c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3330" y="0" width="40" height="30" uuid="0123fdf9-5cc8-4e80-8bba-9ba1f4e7b3c9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement x="3370" y="0" width="90" height="30" uuid="91894680-41c3-4357-b9c1-20bbbd965f0c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="30">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="80" height="30" backcolor="#FFD0CF" uuid="476c3c17-df2b-4167-9f04-4a198fd6763d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA["[ 합 계 ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="80" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="a3124fc2-10b7-40c7-be79-53a83506b04c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_01}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="120" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="ac3b0825-8cc4-4cbf-9595-0207fe5dba32"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_01}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="210" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="c7058c09-4cac-47dc-8554-ec5c8c3917d8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_01}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="250" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="b0ca1d4c-95a7-49e4-81ea-692946be0fb0">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_01}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="340" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="da3c328f-a3b6-408a-b5ff-81dc42f24a35"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_02}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="380" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="277626cb-04d7-4e21-b373-039f65a9ad70">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_02}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="470" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="6f15e2f4-70de-4e7a-88ac-e4ca6469ec43"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_02}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="510" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="f2d3748e-d69a-437d-94bd-91a2459732b4">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_02}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="600" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="9672e474-0cb0-4415-b771-db01c8a4673b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_03}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="640" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="3d5701e2-3c8c-4d5a-bbf5-7c7dfb2028d9">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_03}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="730" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="253a9be5-dd92-44a8-b8bf-8c6f759b9d8c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_03}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="770" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="4f908379-8903-4129-9a84-49eae70ed52c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_03}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="860" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="fb354859-01c3-4634-b11a-1549df808e43"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_04}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="900" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="d35dc70f-dda3-4ba6-9c7b-1ed9b7ce56ef">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_04}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="990" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="ccd4879c-bcd6-4853-a797-13db115ba760"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_04}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="1030" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="c8b9d8e6-bac4-422f-95a9-a6e1d092769b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_04}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1120" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="612f9920-f9da-4547-83e3-d5264ba71294"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_05}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="1160" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="024d4d8a-e4f8-4de0-9dd4-f8e52518130f">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_05}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1250" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="0f31b90f-b4f4-4bb4-93c6-0c332e310051"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_05}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="1290" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="07ed0c15-f568-475a-b721-6e77f4817e89">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_05}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1380" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="ae22d2b2-31fc-4c9f-b551-016f2ec16fa3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_06}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="1420" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="05f72660-cf6d-4bf3-9183-6e9c07399d2a">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_06}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1510" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="780c286c-e30c-4040-896d-222e95e01893"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_06}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="1550" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="242f9b4a-fd17-482d-98e3-9b754acd0f72">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_06}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1640" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="71e507af-ffab-47bd-ab17-9cbed063a8b3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_07}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="1680" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="861db4fa-1de4-4b50-a836-9711782a8755">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_07}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1770" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="1ac390e8-d5c6-4f69-8606-f9bc8467dc1f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_07}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="1810" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="01852e6a-a9b9-40ea-b856-b749a9d05183">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_07}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1900" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="035a90ba-6d3c-45db-a940-a1fdd05f229c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_08}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="1940" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="edf5268a-7ebe-4273-a001-ddc5e63bf979">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_08}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="2030" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="e7e291bd-bd38-4d57-9f35-eb0c940f6ed4"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_08}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="2070" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="43b27d75-1b83-4715-84a5-6ac06138b6d3">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_08}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="2160" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="c9893734-016e-4b51-83e8-7dfdbab82fbb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_09}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="2200" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="cf9eb821-f443-47de-94c8-6b800ffea5ef">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_09}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="2290" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="7497bf05-fe08-4ba4-b8d5-3ea46515dc34"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_09}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="2330" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="6a735624-16ed-40d5-a317-459d599d39d6">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_09}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="2420" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="5b32ae43-6e30-4fd7-854b-5625190a2de5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_10}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="2460" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="b311f949-7be6-40cc-a23c-2bb10c811ac0">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="2550" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="6290d42f-a3af-497b-b9d4-b592d8694841"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_10}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="2590" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="78637543-cdfe-4877-8a03-df2cc124bf80">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="2680" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="9738f104-ef30-4fcb-b298-125c060af8cb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_11}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="2720" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="df546206-27e3-4e95-aec6-5842479cef3e">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="2810" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="a1ae036f-fa09-4d9c-8a5b-a99cc63c2aff"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_11}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="2850" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="ca9faec5-b5f5-4131-b3bc-6c1b29e02edc">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="2940" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="c237477c-7b57-42b6-b60a-7490a28b05c5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="2980" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="1d7d6480-0791-4cc1-a750-5b160398f84c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="3070" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="d122e0e2-9996-404a-b533-93614bfd54e1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="3110" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="32eea52c-2bc8-440b-8856-8ae63cd58c99">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="3200" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="0a06d5af-56a3-41f3-a1f1-d181e119c688"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_GUNSU_HAP_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="3240" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="e3ede7c5-907c-4886-a389-0294057744c6">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANNAE_AMOUNT_HAP_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="3330" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="b6d7c6d2-1290-4d7b-8c4f-9670b34e88ca"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_GUNSU_HAP_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0">
+				<reportElement mode="Opaque" x="3370" y="0" width="90" height="30" backcolor="#FFD0CF" uuid="313c1f5c-267b-4c6a-9bb0-c97fb5f6a97b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KWANWOE_AMOUNT_HAP_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

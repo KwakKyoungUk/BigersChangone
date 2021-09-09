@@ -1,0 +1,20 @@
+
+
+@font-face {
+    font-family: 'NS_b';
+    src: url('../font/NanumSquareB.eot') format('embedded-opentype'),  url('../font/NanumSquareB.woff') format('woff'), url('../font/NanumSquareB.ttf')  format('truetype'), url('../font/NanumSquareB.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NS_eb';
+    src: url('../font/NanumSquareEB.eot') format('embedded-opentype'),  url('../font/NanumSquareEB.woff') format('woff'), url('../font/NanumSquareEB.ttf')  format('truetype'), url('../font/NanumSquareEB.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NanumMyeongjo';
+    src: url('../font/NanumMyeongjo.eot') format('embedded-opentype'),  url('../font/NanumMyeongjo.woff') format('woff'), url('../font/NanumMyeongjo.ttf')  format('truetype'), url('../font/NanumMyeongjo.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

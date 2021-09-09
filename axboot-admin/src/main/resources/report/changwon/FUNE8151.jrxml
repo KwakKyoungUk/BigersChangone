@@ -1,0 +1,2063 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FUNE8151" pageWidth="595" pageHeight="842" columnWidth="545" leftMargin="25" rightMargin="25" topMargin="40" bottomMargin="40" uuid="b3e37d88-cd61-472b-a297-720b30b134bf">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://192.168.0.52:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/suwon/fune/FUNE8151"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/suwon/fune/FUNE8151_files/main_jrxml"/>
+	<subDataset name="Dataset1" uuid="a685bb48-ab65-426a-94e4-51d65da2b03a">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jupiter"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="anchiFrom" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{anchiFrom}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="anchiTo" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{anchiTo}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT SUM(KWANNAE_TRANSFER_GUNSU_001) AS KWANNAE_TRANSFER_GUNSU_001
+, SUM(KWANNAE_TRANSFER_PRICE_001) AS KWANNAE_TRANSFER_PRICE_001
+, SUM(KWANWOE_TRANSFER_GUNSU_001) AS KWANWOE_TRANSFER_GUNSU_001
+, SUM(KWANWOE_TRANSFER_PRICE_001) AS KWANWOE_TRANSFER_PRICE_001
+, SUM(KWANNAE_TRANSFER_GUNSU_002) AS KWANNAE_TRANSFER_GUNSU_002
+, SUM(KWANNAE_TRANSFER_PRICE_002) AS KWANNAE_TRANSFER_PRICE_002
+, SUM(KWANWOE_TRANSFER_GUNSU_002) AS KWANWOE_TRANSFER_GUNSU_002
+, SUM(KWANWOE_TRANSFER_PRICE_002) AS KWANWOE_TRANSFER_PRICE_002
+, SUM(KWANNAE_TRANSFER_GUNSU_003) AS KWANNAE_TRANSFER_GUNSU_003
+, SUM(KWANNAE_TRANSFER_PRICE_003) AS KWANNAE_TRANSFER_PRICE_003
+, SUM(KWANWOE_TRANSFER_GUNSU_003) AS KWANWOE_TRANSFER_GUNSU_003
+, SUM(KWANWOE_TRANSFER_PRICE_003) AS KWANWOE_TRANSFER_PRICE_003
+, SUM(KWANNAE_TRANSFER_GUNSU_004) AS KWANNAE_TRANSFER_GUNSU_004
+, SUM(KWANNAE_TRANSFER_PRICE_004) AS KWANNAE_TRANSFER_PRICE_004
+, SUM(KWANWOE_TRANSFER_GUNSU_004) AS KWANWOE_TRANSFER_GUNSU_004
+, SUM(KWANWOE_TRANSFER_PRICE_004) AS KWANWOE_TRANSFER_PRICE_004
+
+FROM(
+	SELECT ANCHI_DATE
+	, COUNT(CASE WHEN KWANNAE_TRANSFER_PRICE_001 > 0 THEN 1 END) AS KWANNAE_TRANSFER_GUNSU_001
+	, SUM(KWANNAE_TRANSFER_PRICE_001) AS KWANNAE_TRANSFER_PRICE_001
+	, COUNT(CASE WHEN KWANWOE_TRANSFER_PRICE_001 > 0 THEN 1 END) AS KWANWOE_TRANSFER_GUNSU_001
+	, SUM(KWANWOE_TRANSFER_PRICE_001) AS KWANWOE_TRANSFER_PRICE_001
+	, COUNT(CASE WHEN KWANNAE_TRANSFER_PRICE_002 > 0 THEN 1 END) AS KWANNAE_TRANSFER_GUNSU_002
+	, SUM(KWANNAE_TRANSFER_PRICE_002) AS KWANNAE_TRANSFER_PRICE_002
+	, COUNT(CASE WHEN KWANWOE_TRANSFER_PRICE_002 > 0 THEN 1 END) AS KWANWOE_TRANSFER_GUNSU_002
+	, SUM(KWANWOE_TRANSFER_PRICE_002) AS KWANWOE_TRANSFER_PRICE_002
+	, COUNT(CASE WHEN KWANNAE_TRANSFER_PRICE_003 > 0 THEN 1 END) AS KWANNAE_TRANSFER_GUNSU_003
+	, SUM(KWANNAE_TRANSFER_PRICE_003) AS KWANNAE_TRANSFER_PRICE_003
+	, COUNT(CASE WHEN KWANWOE_TRANSFER_PRICE_003 > 0 THEN 1 END) AS KWANWOE_TRANSFER_GUNSU_003
+	, SUM(KWANWOE_TRANSFER_PRICE_003) AS KWANWOE_TRANSFER_PRICE_003
+	, COUNT(CASE WHEN KWANNAE_TRANSFER_PRICE_004 > 0 THEN 1 END) AS KWANNAE_TRANSFER_GUNSU_004
+	, SUM(KWANNAE_TRANSFER_PRICE_004) AS KWANNAE_TRANSFER_PRICE_004
+	, COUNT(CASE WHEN KWANWOE_TRANSFER_PRICE_004 > 0 THEN 1 END) AS KWANWOE_TRANSFER_GUNSU_004
+	, SUM(KWANWOE_TRANSFER_PRICE_004) AS KWANWOE_TRANSFER_PRICE_004
+	FROM(
+		SELECT DATE_FORMAT(ANCHI_DATE, '%Y-%m-%d') AS ANCHI_DATE
+		, ADDR_PART
+		, IF(FUNE.ADDR_PART = 'TCM1000001' AND TRANSFER_CAR_COMPANY = '001', TRANSFER_CAR_PRICE, 0) AS KWANNAE_TRANSFER_PRICE_001
+		, IF(FUNE.ADDR_PART = 'TCM1000003' AND TRANSFER_CAR_COMPANY = '001', TRANSFER_CAR_PRICE, 0) AS KWANWOE_TRANSFER_PRICE_001
+		, IF(FUNE.ADDR_PART = 'TCM1000001' AND TRANSFER_CAR_COMPANY = '002', TRANSFER_CAR_PRICE, 0) AS KWANNAE_TRANSFER_PRICE_002
+		, IF(FUNE.ADDR_PART = 'TCM1000003' AND TRANSFER_CAR_COMPANY = '002', TRANSFER_CAR_PRICE, 0) AS KWANWOE_TRANSFER_PRICE_002
+		, IF(FUNE.ADDR_PART = 'TCM1000001' AND TRANSFER_CAR_COMPANY = '003', TRANSFER_CAR_PRICE, 0) AS KWANNAE_TRANSFER_PRICE_003
+		, IF(FUNE.ADDR_PART = 'TCM1000003' AND TRANSFER_CAR_COMPANY = '003', TRANSFER_CAR_PRICE, 0) AS KWANWOE_TRANSFER_PRICE_003
+		, IF(FUNE.ADDR_PART = 'TCM1000001' AND TRANSFER_CAR_COMPANY = '004', TRANSFER_CAR_PRICE, 0) AS KWANNAE_TRANSFER_PRICE_004
+		, IF(FUNE.ADDR_PART = 'TCM1000003' AND TRANSFER_CAR_COMPANY = '004', TRANSFER_CAR_PRICE, 0) AS KWANWOE_TRANSFER_PRICE_004
+		FROM FUNERAL FUNE
+		WHERE DATE_FORMAT(ANCHI_DATE, '%Y-%m-%d') BETWEEN $P{anchiFrom} AND $P{anchiTo} 
+	)A
+	WHERE KWANNAE_TRANSFER_PRICE_001 > 0 OR KWANWOE_TRANSFER_PRICE_001 > 0 OR KWANNAE_TRANSFER_PRICE_002 > 0 OR KWANWOE_TRANSFER_PRICE_002 > 0
+	OR KWANNAE_TRANSFER_PRICE_003 > 0 OR KWANWOE_TRANSFER_PRICE_003 > 0 OR KWANNAE_TRANSFER_PRICE_004 > 0 OR KWANWOE_TRANSFER_PRICE_004 > 0
+	GROUP BY ANCHI_DATE
+)B]]>
+		</queryString>
+		<field name="KWANNAE_TRANSFER_GUNSU_001" class="java.math.BigDecimal"/>
+		<field name="KWANNAE_TRANSFER_PRICE_001" class="java.math.BigDecimal"/>
+		<field name="KWANWOE_TRANSFER_GUNSU_001" class="java.math.BigDecimal"/>
+		<field name="KWANWOE_TRANSFER_PRICE_001" class="java.math.BigDecimal"/>
+		<field name="KWANNAE_TRANSFER_GUNSU_002" class="java.math.BigDecimal"/>
+		<field name="KWANNAE_TRANSFER_PRICE_002" class="java.math.BigDecimal"/>
+		<field name="KWANWOE_TRANSFER_GUNSU_002" class="java.math.BigDecimal"/>
+		<field name="KWANWOE_TRANSFER_PRICE_002" class="java.math.BigDecimal"/>
+		<field name="KWANNAE_TRANSFER_GUNSU_003" class="java.math.BigDecimal"/>
+		<field name="KWANNAE_TRANSFER_PRICE_003" class="java.math.BigDecimal"/>
+		<field name="KWANWOE_TRANSFER_GUNSU_003" class="java.math.BigDecimal"/>
+		<field name="KWANWOE_TRANSFER_PRICE_003" class="java.math.BigDecimal"/>
+		<field name="KWANNAE_TRANSFER_GUNSU_004" class="java.math.BigDecimal"/>
+		<field name="KWANNAE_TRANSFER_PRICE_004" class="java.math.BigDecimal"/>
+		<field name="KWANWOE_TRANSFER_GUNSU_004" class="java.math.BigDecimal"/>
+		<field name="KWANWOE_TRANSFER_PRICE_004" class="java.math.BigDecimal"/>
+		<variable name="KWANNAE_GUNSU_HAP" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{KWANNAE_TRANSFER_GUNSU_002}.intValue()+$F{KWANNAE_TRANSFER_GUNSU_001}.intValue()+$F{KWANNAE_TRANSFER_GUNSU_003}.intValue()+$F{KWANNAE_TRANSFER_GUNSU_004}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="KWANWOE_GUNSU_HAP" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{KWANWOE_TRANSFER_GUNSU_001}.intValue()+$F{KWANWOE_TRANSFER_GUNSU_002}.intValue()+$F{KWANWOE_TRANSFER_GUNSU_003}.intValue()+$F{KWANWOE_TRANSFER_GUNSU_004}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="KWANNAE_PRICE_HAP" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{KWANNAE_TRANSFER_PRICE_002}.intValue()+$F{KWANNAE_TRANSFER_PRICE_001}.intValue()+$F{KWANNAE_TRANSFER_PRICE_003}.intValue()+$F{KWANNAE_TRANSFER_PRICE_004}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="KWANWOE_PRICE_HAP" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{KWANWOE_TRANSFER_PRICE_001}.intValue()+$F{KWANWOE_TRANSFER_PRICE_002}.intValue()+$F{KWANWOE_TRANSFER_PRICE_003}.intValue()+$F{KWANWOE_TRANSFER_PRICE_004}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="TRANSFER_GUNSU_HAP_001" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{KWANNAE_TRANSFER_GUNSU_001}.intValue()+$F{KWANWOE_TRANSFER_GUNSU_001}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="TRANSFER_PRICE_HAP_001" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{KWANNAE_TRANSFER_PRICE_001}.intValue()+$F{KWANWOE_TRANSFER_PRICE_001}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="TRANSFER_GUNSU_HAP_002" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{KWANNAE_TRANSFER_GUNSU_002}.intValue()+$F{KWANWOE_TRANSFER_GUNSU_002}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="TRANSFER_PRICE_HAP_002" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{KWANNAE_TRANSFER_PRICE_002}.intValue()+$F{KWANWOE_TRANSFER_PRICE_002}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="TRANSFER_GUNSU_HAP_003" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{KWANNAE_TRANSFER_GUNSU_003}.intValue()+$F{KWANWOE_TRANSFER_GUNSU_003}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="TRANSFER_PRICE_HAP_003" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{KWANNAE_TRANSFER_PRICE_003}.intValue()+$F{KWANWOE_TRANSFER_PRICE_003}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="TRANSFER_GUNSU_HAP_004" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{KWANNAE_TRANSFER_GUNSU_004}.intValue()+$F{KWANWOE_TRANSFER_GUNSU_004}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="TRANSFER_PRICE_HAP_004" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{KWANNAE_TRANSFER_PRICE_004}.intValue()+$F{KWANWOE_TRANSFER_PRICE_004}.intValue()]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="Dataset2" uuid="54b1ce1b-c39e-4392-aff7-4b489173392b">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="balinFrom" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{balinFrom}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="balinTo" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{balinTo}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT SUM(FUNERAL_CAR_GUNSU_001) AS FUNERAL_CAR_GUNSU_001
+, SUM(FUNERAL_CAR_PRICE_001) AS FUNERAL_CAR_PRICE_001
+, SUM(CADILLAC_COMPANY_GUNSU_001) AS CADILLAC_COMPANY_GUNSU_001
+, SUM(CADILLAC_COMPANY_PRICE_001) AS CADILLAC_COMPANY_PRICE_001
+, SUM(FUNERAL_CAR_GUNSU_002) AS FUNERAL_CAR_GUNSU_002
+, SUM(FUNERAL_CAR_PRICE_002) AS FUNERAL_CAR_PRICE_002
+, SUM(CADILLAC_COMPANY_GUNSU_002) AS CADILLAC_COMPANY_GUNSU_002
+, SUM(CADILLAC_COMPANY_PRICE_002) AS CADILLAC_COMPANY_PRICE_002
+, SUM(FUNERAL_CAR_GUNSU_003) AS FUNERAL_CAR_GUNSU_003
+, SUM(FUNERAL_CAR_PRICE_003) AS FUNERAL_CAR_PRICE_003
+, SUM(CADILLAC_COMPANY_GUNSU_003) AS CADILLAC_COMPANY_GUNSU_003
+, SUM(CADILLAC_COMPANY_PRICE_003) AS CADILLAC_COMPANY_PRICE_003
+, SUM(FUNERAL_CAR_GUNSU_004) AS FUNERAL_CAR_GUNSU_004
+, SUM(FUNERAL_CAR_PRICE_004) AS FUNERAL_CAR_PRICE_004
+, SUM(CADILLAC_COMPANY_GUNSU_004) AS CADILLAC_COMPANY_GUNSU_004
+, SUM(CADILLAC_COMPANY_PRICE_004) AS CADILLAC_COMPANY_PRICE_004
+, SUM(FUNERAL_CAR_GUNSU_005) AS FUNERAL_CAR_GUNSU_005
+, SUM(FUNERAL_CAR_PRICE_005) AS FUNERAL_CAR_PRICE_005
+, SUM(CADILLAC_COMPANY_GUNSU_005) AS CADILLAC_COMPANY_GUNSU_005
+, SUM(CADILLAC_COMPANY_PRICE_005) AS CADILLAC_COMPANY_PRICE_005
+, SUM(FUNERAL_CAR_GUNSU_006) AS FUNERAL_CAR_GUNSU_006
+, SUM(FUNERAL_CAR_PRICE_006) AS FUNERAL_CAR_PRICE_006
+, SUM(CADILLAC_COMPANY_GUNSU_006) AS CADILLAC_COMPANY_GUNSU_006
+, SUM(CADILLAC_COMPANY_PRICE_006) AS CADILLAC_COMPANY_PRICE_006
+, GROUP_CONCAT(TRANSFER_CAR_REMARK SEPARATOR ' ') AS TRANSFER_CAR_REMARK
+
+FROM(
+	SELECT BALIN_DATE
+	, COUNT(CASE WHEN FUNERAL_CAR_PRICE_001 > 0 THEN 1 END) AS FUNERAL_CAR_GUNSU_001
+	, SUM(FUNERAL_CAR_PRICE_001) AS FUNERAL_CAR_PRICE_001
+	, COUNT(CASE WHEN CADILLAC_COMPANY_PRICE_001 > 0 THEN 1 END) AS CADILLAC_COMPANY_GUNSU_001
+	, SUM(CADILLAC_COMPANY_PRICE_001) AS CADILLAC_COMPANY_PRICE_001
+	, COUNT(CASE WHEN FUNERAL_CAR_PRICE_002 > 0 THEN 1 END) AS FUNERAL_CAR_GUNSU_002
+	, SUM(FUNERAL_CAR_PRICE_002) AS FUNERAL_CAR_PRICE_002
+	, COUNT(CASE WHEN CADILLAC_COMPANY_PRICE_002 > 0 THEN 1 END) AS CADILLAC_COMPANY_GUNSU_002
+	, SUM(CADILLAC_COMPANY_PRICE_002) AS CADILLAC_COMPANY_PRICE_002
+	, COUNT(CASE WHEN FUNERAL_CAR_PRICE_003 > 0 THEN 1 END) AS FUNERAL_CAR_GUNSU_003
+	, SUM(FUNERAL_CAR_PRICE_003) AS FUNERAL_CAR_PRICE_003
+	, COUNT(CASE WHEN CADILLAC_COMPANY_PRICE_003 > 0 THEN 1 END) AS CADILLAC_COMPANY_GUNSU_003
+	, SUM(CADILLAC_COMPANY_PRICE_003) AS CADILLAC_COMPANY_PRICE_003
+	, COUNT(CASE WHEN FUNERAL_CAR_PRICE_004 > 0 THEN 1 END) AS FUNERAL_CAR_GUNSU_004
+	, SUM(FUNERAL_CAR_PRICE_004) AS FUNERAL_CAR_PRICE_004
+	, COUNT(CASE WHEN CADILLAC_COMPANY_PRICE_004 > 0 THEN 1 END) AS CADILLAC_COMPANY_GUNSU_004
+	, SUM(CADILLAC_COMPANY_PRICE_004) AS CADILLAC_COMPANY_PRICE_004
+	, COUNT(CASE WHEN FUNERAL_CAR_PRICE_005 > 0 THEN 1 END) AS FUNERAL_CAR_GUNSU_005
+	, SUM(FUNERAL_CAR_PRICE_005) AS FUNERAL_CAR_PRICE_005
+	, COUNT(CASE WHEN CADILLAC_COMPANY_PRICE_005 > 0 THEN 1 END) AS CADILLAC_COMPANY_GUNSU_005
+	, SUM(CADILLAC_COMPANY_PRICE_005) AS CADILLAC_COMPANY_PRICE_005
+	, COUNT(CASE WHEN FUNERAL_CAR_PRICE_006 > 0 THEN 1 END) AS FUNERAL_CAR_GUNSU_006
+	, SUM(FUNERAL_CAR_PRICE_006) AS FUNERAL_CAR_PRICE_006
+	, COUNT(CASE WHEN CADILLAC_COMPANY_PRICE_006 > 0 THEN 1 END) AS CADILLAC_COMPANY_GUNSU_006
+	, SUM(CADILLAC_COMPANY_PRICE_006) AS CADILLAC_COMPANY_PRICE_006
+	, TRANSFER_CAR_REMARK
+	FROM(
+		SELECT DATE_FORMAT(BALIN_DATE, '%Y-%m-%d') AS BALIN_DATE
+		, ADDR_PART
+		, IF(FUNERAL_CAR_COMPANY = '001', FUNERAL_CAR_PRICE, 0) AS FUNERAL_CAR_PRICE_001
+		, IF(CADILLAC_COMPANY = '001', CADILLAC_PRICE, 0) AS CADILLAC_COMPANY_PRICE_001
+		, IF(FUNERAL_CAR_COMPANY = '002', FUNERAL_CAR_PRICE, 0) AS FUNERAL_CAR_PRICE_002
+		, IF(CADILLAC_COMPANY = '002', CADILLAC_PRICE, 0) AS CADILLAC_COMPANY_PRICE_002
+		, IF(FUNERAL_CAR_COMPANY = '003', FUNERAL_CAR_PRICE, 0) AS FUNERAL_CAR_PRICE_003
+		, IF(CADILLAC_COMPANY = '003', CADILLAC_PRICE, 0) AS CADILLAC_COMPANY_PRICE_003
+		, IF(FUNERAL_CAR_COMPANY = '004', FUNERAL_CAR_PRICE, 0) AS FUNERAL_CAR_PRICE_004
+		, IF(CADILLAC_COMPANY = '004', CADILLAC_PRICE, 0) AS CADILLAC_COMPANY_PRICE_004
+		, IF(FUNERAL_CAR_COMPANY = '005', FUNERAL_CAR_PRICE, 0) AS FUNERAL_CAR_PRICE_005
+		, IF(CADILLAC_COMPANY = '005', CADILLAC_PRICE, 0) AS CADILLAC_COMPANY_PRICE_005
+		, IF(FUNERAL_CAR_COMPANY = '006', FUNERAL_CAR_PRICE, 0) AS FUNERAL_CAR_PRICE_006
+		, IF(CADILLAC_COMPANY = '006', CADILLAC_PRICE, 0) AS CADILLAC_COMPANY_PRICE_006
+		, TRANSFER_CAR_REMARK
+		FROM FUNERAL FUNE
+		WHERE DATE_FORMAT(BALIN_DATE, '%Y-%m-%d') BETWEEN $P{balinFrom} AND $P{balinTo} 
+	)A
+	GROUP BY BALIN_DATE	
+)B]]>
+		</queryString>
+		<field name="FUNERAL_CAR_GUNSU_001" class="java.math.BigDecimal"/>
+		<field name="FUNERAL_CAR_PRICE_001" class="java.math.BigDecimal"/>
+		<field name="CADILLAC_COMPANY_GUNSU_001" class="java.math.BigDecimal"/>
+		<field name="CADILLAC_COMPANY_PRICE_001" class="java.math.BigDecimal"/>
+		<field name="FUNERAL_CAR_GUNSU_002" class="java.math.BigDecimal"/>
+		<field name="FUNERAL_CAR_PRICE_002" class="java.math.BigDecimal"/>
+		<field name="CADILLAC_COMPANY_GUNSU_002" class="java.math.BigDecimal"/>
+		<field name="CADILLAC_COMPANY_PRICE_002" class="java.math.BigDecimal"/>
+		<field name="FUNERAL_CAR_GUNSU_003" class="java.math.BigDecimal"/>
+		<field name="FUNERAL_CAR_PRICE_003" class="java.math.BigDecimal"/>
+		<field name="CADILLAC_COMPANY_GUNSU_003" class="java.math.BigDecimal"/>
+		<field name="CADILLAC_COMPANY_PRICE_003" class="java.math.BigDecimal"/>
+		<field name="FUNERAL_CAR_GUNSU_004" class="java.math.BigDecimal"/>
+		<field name="FUNERAL_CAR_PRICE_004" class="java.math.BigDecimal"/>
+		<field name="CADILLAC_COMPANY_GUNSU_004" class="java.math.BigDecimal"/>
+		<field name="CADILLAC_COMPANY_PRICE_004" class="java.math.BigDecimal"/>
+		<field name="FUNERAL_CAR_GUNSU_005" class="java.math.BigDecimal"/>
+		<field name="FUNERAL_CAR_PRICE_005" class="java.math.BigDecimal"/>
+		<field name="CADILLAC_COMPANY_GUNSU_005" class="java.math.BigDecimal"/>
+		<field name="CADILLAC_COMPANY_PRICE_005" class="java.math.BigDecimal"/>
+		<field name="FUNERAL_CAR_GUNSU_006" class="java.math.BigDecimal"/>
+		<field name="FUNERAL_CAR_PRICE_006" class="java.math.BigDecimal"/>
+		<field name="CADILLAC_COMPANY_GUNSU_006" class="java.math.BigDecimal"/>
+		<field name="CADILLAC_COMPANY_PRICE_006" class="java.math.BigDecimal"/>
+		<field name="TRANSFER_CAR_REMARK" class="java.lang.String"/>
+		<variable name="FUNERAL_GUNSU_HAP" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_001}.intValue()+$F{FUNERAL_CAR_GUNSU_002}.intValue()+$F{FUNERAL_CAR_GUNSU_003}.intValue()+$F{FUNERAL_CAR_GUNSU_004}.intValue()+$F{FUNERAL_CAR_GUNSU_005}.intValue()+$F{FUNERAL_CAR_GUNSU_006}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="FUNERAL_PRICE_HAP" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_PRICE_001}.intValue()+$F{FUNERAL_CAR_PRICE_002}.intValue()+$F{FUNERAL_CAR_PRICE_003}.intValue()+$F{FUNERAL_CAR_PRICE_004}.intValue()+$F{FUNERAL_CAR_PRICE_005}.intValue()+$F{FUNERAL_CAR_PRICE_006}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="CADILLAC_GUNSU_HAP" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{CADILLAC_COMPANY_GUNSU_001}.intValue()+$F{CADILLAC_COMPANY_GUNSU_002}.intValue()+$F{CADILLAC_COMPANY_GUNSU_003}.intValue()+$F{CADILLAC_COMPANY_GUNSU_004}.intValue()+$F{CADILLAC_COMPANY_GUNSU_005}.intValue()+$F{CADILLAC_COMPANY_GUNSU_006}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="CADILLAC_PRICE_HAP" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{CADILLAC_COMPANY_PRICE_001}.intValue()+$F{CADILLAC_COMPANY_PRICE_002}.intValue()+$F{CADILLAC_COMPANY_PRICE_003}.intValue()+$F{CADILLAC_COMPANY_PRICE_004}.intValue()+$F{CADILLAC_COMPANY_PRICE_005}.intValue()+$F{CADILLAC_COMPANY_PRICE_006}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="GUNSU_HAP_001" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_001}.intValue()+$F{CADILLAC_COMPANY_GUNSU_001}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="GUNSU_HAP_002" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_002}.intValue()+$F{CADILLAC_COMPANY_GUNSU_002}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="GUNSU_HAP_003" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_003}.intValue()+$F{CADILLAC_COMPANY_GUNSU_003}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="GUNSU_HAP_004" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_004}.intValue()+$F{CADILLAC_COMPANY_GUNSU_004}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="GUNSU_HAP_005" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_005}.intValue()+$F{CADILLAC_COMPANY_GUNSU_005}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="GUNSU_HAP_006" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_006}.intValue()+$F{CADILLAC_COMPANY_GUNSU_006}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="PRICE_HAP_001" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_PRICE_001}.intValue()+$F{CADILLAC_COMPANY_PRICE_001}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="PRICE_HAP_002" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_PRICE_002}.intValue()+$F{CADILLAC_COMPANY_PRICE_002}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="PRICE_HAP_003" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_PRICE_003}.intValue()+$F{CADILLAC_COMPANY_PRICE_003}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="PRICE_HAP_004" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_PRICE_004}.intValue()+$F{CADILLAC_COMPANY_PRICE_004}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="PRICE_HAP_005" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_PRICE_005}.intValue()+$F{CADILLAC_COMPANY_PRICE_005}.intValue()]]></variableExpression>
+		</variable>
+		<variable name="PRICE_HAP_006" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUNERAL_CAR_PRICE_006}.intValue()+$F{CADILLAC_COMPANY_PRICE_006}.intValue()]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="printName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{printName}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="anchiFrom" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{anchiFrom}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="anchiTo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{anchiTo}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="balinFrom" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{balinFrom}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="balinTo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{balinTo}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DOC_NAME1
+, FIELD1
+,(SELECT USER_NM FROM USER_M WHERE USER_CD = $P{printName}) AS printUser
+FROM DOCFORM WHERE DOC_CODE = 'FUNE8151']]>
+	</queryString>
+	<field name="DOC_NAME1" class="java.lang.String"/>
+	<field name="FIELD1" class="java.lang.String"/>
+	<field name="printUser" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50">
+			<textField>
+				<reportElement x="80" y="0" width="400" height="50" uuid="d3e3d556-ad9d-49e2-9381-815fcfac467e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOC_NAME1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="590" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="40" width="545" height="220" uuid="192870e4-214e-4dc3-a862-457d2dfdcd2c"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset1" uuid="ab92cb3c-2986-4558-b2ed-9b670776b9bd">
+						<datasetParameter name="anchiFrom">
+							<datasetParameterExpression><![CDATA[$P{anchiFrom}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="anchiTo">
+							<datasetParameterExpression><![CDATA[$P{anchiTo}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="220" width="545">
+						<staticText>
+							<reportElement x="0" y="0" width="50" height="20" uuid="8e280957-9628-48e6-a5be-a4aac6ac0e62"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[안치일자 : ]]></text>
+						</staticText>
+						<textField pattern="yyyy-MM-dd">
+							<reportElement x="50" y="0" width="60" height="20" uuid="6ff49c94-9eca-4c01-98a1-637ff3c3ef7a"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$P{anchiFrom}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="110" y="0" width="10" height="20" uuid="487fbeb3-5737-49e7-95cb-d72c5c3117ad"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[~]]></text>
+						</staticText>
+						<textField pattern="yyyy-MM-dd">
+							<reportElement x="120" y="0" width="110" height="20" uuid="5e71463f-5212-49ef-a46d-5d20497059e0"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$P{anchiTo}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="20" width="170" height="50" uuid="950de324-39bc-4896-84c8-d75c27137855"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[구   분]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="170" y="20" width="100" height="20" uuid="39a937ec-dbad-4dcb-9149-79df76113abd"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[합   계]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="270" y="20" width="100" height="20" uuid="a05c8265-de17-4351-b51f-ae659689ae49"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[관   내]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="370" y="20" width="100" height="20" uuid="a0b4dd07-f0f5-431f-a00e-7f68f492672d"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[관   외]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="170" y="40" width="40" height="30" uuid="0b7d0430-6bb9-4d35-b724-dab91201165f"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[건 수]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="210" y="40" width="60" height="30" uuid="c4451adb-4ece-4803-b597-73fe9ff45048"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[금 액]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="270" y="40" width="40" height="30" uuid="63f19832-0630-4c3b-a913-96c7090c25ed"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[건 수]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="310" y="40" width="60" height="30" uuid="ce8cdcf3-db42-4582-b287-ce4d0cef3522"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[금 액]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="370" y="40" width="40" height="30" uuid="b7d31b11-d78e-4309-b57b-a15ffb47e3ad"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[건 수]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="410" y="40" width="60" height="30" uuid="8ac79a52-cad0-4adc-bd2e-0a433acd9c93"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[금 액]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="470" y="20" width="75" height="50" uuid="aa29023b-e72d-4d79-81bd-b8a1d1d5abc7"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[비고]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="0" y="70" width="170" height="30" uuid="dff0ae11-e275-4d5e-a039-73766dda7e06"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[합   계]]></text>
+						</staticText>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="170" y="70" width="40" height="30" uuid="b0cc2974-105b-4f29-901e-8117ef8d2938"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{KWANNAE_GUNSU_HAP}.intValue()+$V{KWANWOE_GUNSU_HAP}.intValue()]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="210" y="70" width="60" height="30" uuid="24ebd0d0-4a3e-4113-aba0-1195e3611a60"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{KWANNAE_PRICE_HAP}.intValue()+$V{KWANWOE_PRICE_HAP}.intValue()]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="270" y="70" width="40" height="30" uuid="2f7b819c-e85f-4263-a17c-9361dce36740"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{KWANNAE_GUNSU_HAP}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="310" y="70" width="60" height="30" uuid="bad057e7-7262-4b42-b315-32d8e1098ade"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{KWANNAE_PRICE_HAP}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="370" y="70" width="40" height="30" uuid="f7e6f3b6-bc91-4532-90db-7a48d0ecbb42"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{KWANWOE_GUNSU_HAP}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="410" y="70" width="60" height="30" uuid="26c09c8f-41dd-4caa-a66d-301fda0488be"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{KWANWOE_PRICE_HAP}]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement x="470" y="70" width="75" height="30" uuid="fd7d4c8b-3d6b-49ac-876a-d42c7f7c7488"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="100" width="50" height="120" uuid="3f5004e2-237a-46ae-8919-ea667e8486ef"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="12"/>
+							</textElement>
+							<text><![CDATA[이
+송
+차
+량]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="50" y="100" width="120" height="30" uuid="f09ebbb6-b956-438b-9b45-62aa0d67315e"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[경   수]]></text>
+						</staticText>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="170" y="100" width="40" height="30" uuid="c00dcb9d-8710-4b01-89df-5de47d8a6935"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TRANSFER_GUNSU_HAP_001}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="210" y="100" width="60" height="30" uuid="eddd8e21-7d6b-443d-8ea4-509f27b3d048"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TRANSFER_PRICE_HAP_001}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="270" y="100" width="40" height="30" uuid="46b2219f-88af-4f56-8d28-8db0c08841ab"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANNAE_TRANSFER_GUNSU_001}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="310" y="100" width="60" height="30" uuid="6663c95f-8a4c-48ff-8b75-7ee7de55d5de"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANNAE_TRANSFER_PRICE_001}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="370" y="100" width="40" height="30" uuid="48f55eac-3e72-438a-91af-6c5478a729d7"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANWOE_TRANSFER_GUNSU_001}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="410" y="100" width="60" height="30" uuid="40ade7a2-d511-4102-8ec7-4eb6acd870ac"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANWOE_TRANSFER_PRICE_001}]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement x="470" y="100" width="75" height="30" uuid="b41b1d5b-ca55-49c5-bead-67c3b3e33313"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+						</textField>
+						<staticText>
+							<reportElement x="50" y="130" width="120" height="30" uuid="2a7228be-19a1-4641-9e61-54c5652e4048"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[하   늘]]></text>
+						</staticText>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="170" y="130" width="40" height="30" uuid="5dad8b5d-0bfd-4a5e-bd1a-998dc5964956"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TRANSFER_GUNSU_HAP_002}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="210" y="130" width="60" height="30" uuid="0bf83c70-eac6-477c-88c1-b2f182d3fb82"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TRANSFER_PRICE_HAP_002}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="270" y="130" width="40" height="30" uuid="a1dfffe4-726d-479c-8946-ab2929ea0fb5"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANNAE_TRANSFER_GUNSU_002}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="310" y="130" width="60" height="30" uuid="330d0082-e178-42ef-aa53-9b48568a22bc"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANNAE_TRANSFER_PRICE_002}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="370" y="130" width="40" height="30" uuid="b7bc3848-3308-421d-abda-95fdaa23eff5"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANWOE_TRANSFER_GUNSU_002}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="410" y="130" width="60" height="30" uuid="505ad5b3-6566-44ad-956e-b190b4faebd1"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANWOE_TRANSFER_PRICE_002}]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement x="470" y="130" width="75" height="30" uuid="9891dd99-c8ad-4247-b1a0-a1553c67e3df"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+						</textField>
+						<staticText>
+							<reportElement x="50" y="160" width="120" height="30" uuid="84739cce-1a35-40fa-be7e-b19b8576d99c"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[수   원]]></text>
+						</staticText>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="170" y="160" width="40" height="30" uuid="4b6bf9df-8f7b-4913-9594-80758a08a200"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TRANSFER_GUNSU_HAP_003}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="210" y="160" width="60" height="30" uuid="deb9292a-cdf1-4ee7-b016-3be312181327"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TRANSFER_PRICE_HAP_003}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="270" y="160" width="40" height="30" uuid="9188b63b-c729-41ae-8682-dbd3750094bf"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANNAE_TRANSFER_GUNSU_003}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="310" y="160" width="60" height="30" uuid="fa36031b-525b-49ce-9f3e-190228bf90cd"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANNAE_TRANSFER_PRICE_003}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="370" y="160" width="40" height="30" uuid="e7f83e24-37cf-4b04-ac27-df2838812cda"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANWOE_TRANSFER_GUNSU_003}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="410" y="160" width="60" height="30" uuid="8a1bb43e-b0fc-4080-8e8a-efa0b9ee19d0"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANWOE_TRANSFER_PRICE_003}]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement x="470" y="160" width="75" height="30" uuid="6e95a56b-385b-440c-94d1-da212c5cfa0a"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+						</textField>
+						<staticText>
+							<reportElement x="50" y="190" width="120" height="30" uuid="bc57b65b-4598-4b10-976d-56e8f97fb219"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[뉴스타]]></text>
+						</staticText>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="170" y="190" width="40" height="30" uuid="0d76e88e-bde4-4110-a167-ed0293dc8bc3"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TRANSFER_GUNSU_HAP_004}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="210" y="190" width="60" height="30" uuid="71abfa20-0e45-458f-b70f-7d033d38ca2a"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{TRANSFER_PRICE_HAP_004}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="270" y="190" width="40" height="30" uuid="abf4196c-4741-44a1-9ed1-f103570090a1"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANNAE_TRANSFER_GUNSU_004}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="310" y="190" width="60" height="30" uuid="da3c6905-4c2a-4d17-a370-f69912401507"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANNAE_TRANSFER_PRICE_004}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="370" y="190" width="40" height="30" uuid="cf90ff78-972c-4b54-b8c2-671dae2d754b"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANWOE_TRANSFER_GUNSU_004}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="410" y="190" width="60" height="30" uuid="cc5451fd-4cc3-40e8-9863-181a75f8b8d2"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{KWANWOE_TRANSFER_PRICE_004}]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement x="470" y="190" width="75" height="30" uuid="d77c4e53-870a-497e-8395-ef5563efd051"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="0" y="310" width="545" height="280" uuid="86326ef7-d66a-49e8-9d0d-98e866afff72"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset2" uuid="9647d184-2dc1-48da-8cea-c042b484fa7a">
+						<datasetParameter name="balinFrom">
+							<datasetParameterExpression><![CDATA[$P{balinFrom}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="balinTo">
+							<datasetParameterExpression><![CDATA[$P{balinTo}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="280" width="545">
+						<staticText>
+							<reportElement x="170" y="40" width="40" height="30" uuid="a6051bc5-fdc8-4b0c-a5d1-f05d1512c7b1"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[건 수]]></text>
+						</staticText>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="370" y="130" width="40" height="30" uuid="03edb503-61a9-4286-ad04-fc70cd1b346d"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_002}]]></textFieldExpression>
+						</textField>
+						<textField pattern="yyyy-MM-dd">
+							<reportElement x="50" y="0" width="60" height="20" uuid="e9d05487-ca9b-4a94-8545-40afeca943ea"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$P{balinFrom}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="310" y="100" width="60" height="30" uuid="f9053455-82f3-4560-bf59-00f9d801615e"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY_PRICE_001}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="410" y="100" width="60" height="30" uuid="93564706-f6e0-40d4-9c7b-107f2178ff2b"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{FUNERAL_CAR_PRICE_001}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="370" y="160" width="40" height="30" uuid="54e3e92e-5c8c-4558-8fe9-4f6327344d30"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_003}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="210" y="220" width="60" height="30" uuid="7e48e1ca-75ef-4ab9-acef-108acfff1970"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PRICE_HAP_005}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="310" y="160" width="60" height="30" uuid="5147f73b-f0da-4ce1-80fc-78b23242c535"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY_PRICE_003}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="210" y="130" width="60" height="30" uuid="e1370b8e-01c9-4a9a-acc1-96721adb57ee"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PRICE_HAP_002}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="410" y="220" width="60" height="30" uuid="c0aebd6f-09ed-4344-baee-4b747edcfb66"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{FUNERAL_CAR_PRICE_005}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="210" y="190" width="60" height="30" uuid="4abb55e9-1a6f-4d3c-93fa-e1d5b58d4f8e"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PRICE_HAP_004}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="370" y="20" width="100" height="20" uuid="6f348ef5-7ce2-4767-a0b2-a318baad35c4"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[장 의 버 스]]></text>
+						</staticText>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="210" y="100" width="60" height="30" uuid="ac06feee-3954-485e-80d5-04d14d7ba30d"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PRICE_HAP_001}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="370" y="220" width="40" height="30" uuid="78fee560-f1ce-4129-90fa-91ca17b766af"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_005}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="50" y="130" width="120" height="30" uuid="f8300a79-81a9-42d3-a66f-75a555681823"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[낙   원]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="270" y="40" width="40" height="30" uuid="2f6ae596-b962-4925-9807-ec4ec35f5559"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[건 수]]></text>
+						</staticText>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="270" y="70" width="40" height="30" uuid="61c40cb3-b878-4fbb-b3e0-8a0710d8e87e"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{CADILLAC_GUNSU_HAP}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="310" y="250" width="60" height="30" uuid="8b66c159-93dd-496b-945e-ea1fe25b82eb"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY_PRICE_006}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="310" y="130" width="60" height="30" uuid="a366d7cc-15b1-40f2-bca6-fcfb8a698937"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY_PRICE_002}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="0" width="50" height="20" uuid="5f0c7a95-498b-4e31-9224-8a1409fae34b"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[발인일자 : ]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="170" y="20" width="100" height="20" uuid="de4f8df9-a563-4bf3-9414-c876e8fb8423"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[합   계]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="410" y="40" width="60" height="30" uuid="20873a0c-ef54-4b27-85c8-d05dc63d17cd"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[금 액]]></text>
+						</staticText>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="170" y="130" width="40" height="30" uuid="78e8094f-1f5f-4d7a-ad6c-8e28ce4f0464"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{GUNSU_HAP_002}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="50" y="220" width="120" height="30" uuid="fc43f743-86aa-475d-95bf-208124131766"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[인   덕]]></text>
+						</staticText>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="170" y="70" width="40" height="30" uuid="69b5f840-e873-4b7c-b2c5-b006ee4ae07f"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{FUNERAL_GUNSU_HAP}.intValue()+$V{CADILLAC_GUNSU_HAP}.intValue()]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="50" y="100" width="120" height="30" uuid="af8ba4c2-d174-48e1-bd8e-feabb3ffbbd7"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[일   송]]></text>
+						</staticText>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="370" y="250" width="40" height="30" uuid="a1db2414-7964-4e5d-985e-86967312ff32"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_006}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="170" y="190" width="40" height="30" uuid="bc377407-33e7-404f-958d-7cc01cd4906a"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{GUNSU_HAP_004}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="170" y="250" width="40" height="30" uuid="ddc7414e-35c4-4236-a2b3-6a1dd7f99046"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{GUNSU_HAP_006}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="370" y="100" width="40" height="30" uuid="0434b63d-9850-4388-9770-ac9f823bed59"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_001}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="210" y="160" width="60" height="30" uuid="c5d82130-8011-441b-8750-1bce2bf8028a"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PRICE_HAP_003}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="210" y="70" width="60" height="30" uuid="71f3f640-ab77-4fb2-a570-6e33ca146b17"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{FUNERAL_PRICE_HAP}.intValue()+$V{CADILLAC_PRICE_HAP}.intValue()]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="50" y="190" width="120" height="30" uuid="6a528c0f-6224-43a2-9b02-6324c93b16aa"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[경   수]]></text>
+						</staticText>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="410" y="160" width="60" height="30" uuid="59e91e31-ee72-4c2b-8840-767bff4ee2f7"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{FUNERAL_CAR_PRICE_003}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="270" y="20" width="100" height="20" uuid="238b1a64-171a-40a9-b041-214bb56c0589"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[캐 딜 락]]></text>
+						</staticText>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="410" y="130" width="60" height="30" uuid="c312a7f0-1777-45e9-8966-24c8deedebd0"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{FUNERAL_CAR_PRICE_002}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="270" y="160" width="40" height="30" uuid="f3d484c1-ad95-4c86-a485-c2977976767b"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY_GUNSU_003}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="210" y="40" width="60" height="30" uuid="cf1b3b69-bcd4-4ffa-84da-5f617900192c"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[금 액]]></text>
+						</staticText>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="310" y="220" width="60" height="30" uuid="b089b2ab-3673-4d26-a89e-ea30ac946ce2"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY_PRICE_005}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="410" y="250" width="60" height="30" uuid="aff8f2ac-c718-4ea9-a9ca-1a25950c9c7e"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{FUNERAL_CAR_PRICE_006}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="270" y="220" width="40" height="30" uuid="5cfc1b14-2094-423e-b977-02dc12f9f946"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY_GUNSU_005}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="50" y="160" width="120" height="30" uuid="4b8fb31e-0673-451c-81d5-2f8ca329baef"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[천   지]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="370" y="40" width="40" height="30" uuid="61683ea3-f369-45a2-ae0d-8393b09013c8"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[건 수]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="50" y="250" width="120" height="30" uuid="1331761e-4984-4159-8671-3e26d10c10cd"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[뉴스타]]></text>
+						</staticText>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="170" y="220" width="40" height="30" uuid="63db6fa9-6737-4056-8421-67aa08193086"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{GUNSU_HAP_005}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="270" y="250" width="40" height="30" uuid="36a15a08-2f0f-4627-8c36-9daa373aecfa"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY_GUNSU_006}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="170" y="160" width="40" height="30" uuid="beda0b3c-72d7-4ed1-a943-3ef77b9e503d"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{GUNSU_HAP_003}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="370" y="70" width="40" height="30" uuid="4692dd6f-e9d3-4082-9bb2-08068163f950"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{FUNERAL_GUNSU_HAP}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="310" y="70" width="60" height="30" uuid="af4d5339-6ee5-44e8-a265-3782cb3c46f6"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{CADILLAC_PRICE_HAP}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="210" y="250" width="60" height="30" uuid="c4426802-d0d7-4ee4-9f79-91349ec4237a"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PRICE_HAP_006}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="410" y="70" width="60" height="30" uuid="c6b49845-7f38-402c-b3bd-21b2ab075457"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{FUNERAL_PRICE_HAP}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="370" y="190" width="40" height="30" uuid="c2ed49d2-f2bb-4e2c-86ee-f31567738e9b"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{FUNERAL_CAR_GUNSU_004}]]></textFieldExpression>
+						</textField>
+						<textField pattern="yyyy-MM-dd">
+							<reportElement x="120" y="0" width="110" height="20" uuid="a596de3a-1135-4a42-80d1-0dd3237d73d4"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$P{balinTo}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="270" y="130" width="40" height="30" uuid="7fcc63ea-6bab-4719-8f4a-f6fc20cde234"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY_GUNSU_002}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="310" y="190" width="60" height="30" uuid="ca00c075-9fd4-461f-8943-5634647b15bb"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY_PRICE_004}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="110" y="0" width="10" height="20" uuid="690cbc77-bbb4-4557-aca7-ac802db33972"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[~]]></text>
+						</staticText>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="170" y="100" width="40" height="30" uuid="eb8f9cb7-a435-4fdf-941c-d0b0be5bac2c"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{GUNSU_HAP_001}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="270" y="100" width="40" height="30" uuid="4499df55-a2fe-4e2e-8877-d087bad3067b"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY_GUNSU_001}]]></textFieldExpression>
+						</textField>
+						<textField pattern="0" isBlankWhenNull="true">
+							<reportElement x="270" y="190" width="40" height="30" uuid="27564d52-c1f3-4e87-8e62-30e4b0a9f9a5"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY_GUNSU_004}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0" isBlankWhenNull="true">
+							<reportElement x="410" y="190" width="60" height="30" uuid="2c437e50-880d-4349-8e6e-ffa0c8c94c79"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{FUNERAL_CAR_PRICE_004}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="310" y="40" width="60" height="30" uuid="87e387f6-7ca6-47a1-9ad9-c2849b15a669"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[금 액]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="0" y="20" width="170" height="50" uuid="780ec1d3-0fbc-437d-9104-db3783f926cc"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[구   분]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="0" y="70" width="170" height="30" uuid="7dd7ba6d-f34a-44b1-a2d9-ba8a1597d58d"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[합   계]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="0" y="100" width="50" height="180" uuid="a6feefa6-b76f-469f-91f5-1555b86319b2"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="12"/>
+							</textElement>
+							<text><![CDATA[장
+의
+차
+량]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="470" y="20" width="75" height="50" uuid="69f7fda5-e790-4764-bd5a-bd5df9c2cb76"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[비고]]></text>
+						</staticText>
+						<textField isBlankWhenNull="true">
+							<reportElement x="470" y="70" width="75" height="30" uuid="9c88d6f9-77a1-45bd-ba47-7b3e4fa6a442"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement x="470" y="100" width="75" height="30" uuid="bf5075a8-517d-4826-b53b-801727b570e3"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement x="470" y="130" width="75" height="30" uuid="05366d20-4b58-4522-a2a7-5a00115154c7"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement x="470" y="160" width="75" height="30" uuid="7e6d2f7b-83ac-4079-bdb9-1eef1a3c4380"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement x="470" y="190" width="75" height="30" uuid="231e5afc-7125-47d2-a537-bad895c1cc4b"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement x="470" y="220" width="75" height="30" uuid="df0a6405-b486-4902-9302-5d432a4d0653"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement x="470" y="250" width="75" height="30" uuid="0f57e110-9af8-492b-8634-b34eaa170129"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="545" height="20" uuid="0de44846-498a-4e37-82b9-d4ae55d4f396">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="10" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FIELD1}+" "+ DATEFORMAT( new Date(),"yyyy/MM/dd HH:mm:ss")+" 출력자 : " +$F{printUser}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

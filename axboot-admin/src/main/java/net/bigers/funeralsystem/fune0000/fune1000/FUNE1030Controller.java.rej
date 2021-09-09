@@ -1,0 +1,9 @@
+diff a/changwon/axboot-admin/src/main/java/net/bigers/funeralsystem/fune0000/fune1000/FUNE1030Controller.java b/changwon/axboot-admin/src/main/java/net/bigers/funeralsystem/fune0000/fune1000/FUNE1030Controller.java	(rejected hunks)
+@@ -100,6 +100,7 @@
+ 		return this.dcRateService.findByJobGubun(jobGubun).stream().map(dcRate->OptionVTO.of(dcRate.getDcCode(), dcRate.getDcName())).collect(Collectors.toList());
+ 	}
+ 
++	@ApiOperation(value = "고객등록", notes = "저장] 고객등록({map.funeral.customerNo}) 고인 - {map.funeral.thedead.deadName}")
+ 	@RequestMapping(value="/FUNE1030/funeral" , method= {RequestMethod.PUT, RequestMethod.POST}, produces=APPLICATION_JSON )
+ 	public MapResponse saveFuneral(@RequestBody Funeral funeral) throws Exception{
+ 		return MapResponse.of(MapUtils.getMap(MapItem.of("funeral", this.funeralService.saveFuneral(funeral))));

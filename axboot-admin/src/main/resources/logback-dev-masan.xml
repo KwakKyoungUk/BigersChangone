@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+    <logger name="org.springframework.boot.actuate.endpoint" additivity="false" >
+        <level value="ERROR" /><!--DEBUG -->
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="org.springframework.web" additivity="false" >
+        <level value="ERROR" /><!--DEBUG -->
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="org.hibernate.type" additivity="false" >
+        <level value="ERROR" /> <!--TRACE -->
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="com.mangofactory.swagger" additivity="false" >
+        <level value="ERROR" /> <!--TRACE -->
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="net.bigers.funeralsystem.websocket" additivity="false" >
+        <level value="DEBUG" /> <!--DEBUG -->
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="net.bigers.funeralsystem" additivity="false" >
+        <level value="DEBUG" /> <!--DEBUG -->
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <logger name="net.bigers.bspk.domain" additivity="false" >
+        <level value="INFO" /> <!--DEBUG -->
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <logger name="org.hibernate.transaction" additivity="false" >
+        <level value="DEBUG" /> <!--DEBUG -->
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <root level="ERROR">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</included>

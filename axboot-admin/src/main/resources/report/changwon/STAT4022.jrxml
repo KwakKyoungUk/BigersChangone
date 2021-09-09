@@ -1,0 +1,1668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="STAT4022" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="20" uuid="61de130e-07c1-443b-9b83-679be10629d8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="migtest"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.jasperserver.url" value="http://192.168.0.52:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/suwon/stat/STAT4022"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/suwon/stat/STAT4022_files/main_jrxml"/>
+	<subDataset name="Dataset1" uuid="30c34f96-a8ca-4863-a3ea-fffd46d2b137">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="migtest"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="openYear" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{openYear}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="baseDate" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{baseDate}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+'소계' MONTH
+,target
+,EXT
+,RET
+,target-EXT-RET AS NONE
+FROM
+
+(
+
+SELECT CONCAT(MONTH(e.end_date),'월') AS MONTH,
+SUM(CASE MONTH(e.end_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target
+
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwannae
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwanwoe
+,SUM(CASE MONTH(ext_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwannae
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwanwoe
+,IFNULL(SUM(IF(ext.ext_date IS NULL,CASE MONTH(ret_date)  WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret
+,IFNULL(SUM(IF(ext.ext_date IS NULL, CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret_gwannae
+,
+IFNULL(
+	SUM(
+	IF(ext.ext_date IS NULL, 
+		CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+		WHEN 2 THEN 1
+		WHEN 3 THEN 1
+		WHEN 4 THEN 1
+		WHEN 5 THEN 1
+		WHEN 6 THEN 1
+		WHEN 7 THEN 1
+		WHEN 8 THEN 1
+		WHEN 9 THEN 1
+		WHEN 10 THEN 1
+		WHEN 11 THEN 1
+		WHEN 12 THEN 1  END
+		, 0)
+	)
+,0) AS ret_gwanwoe
+
+
+FROM enshrine e
+JOIN ensdead ed
+ON e.ens_date = ed.ens_date
+AND e.ens_seq = ed.ens_seq
+LEFT JOIN ensext ext
+ON e.ens_date = ext.ens_date
+AND e.ens_seq = ext.ens_seq
+AND ext.ext_date <=    $P{baseDate} 
+LEFT JOIN ensret ret
+ON e.ens_date = ret.ens_date
+AND e.ens_seq = ret.ens_seq
+AND ret.ret_date <= $P{baseDate} 
+WHERE e.end_date BETWEEN   CONCAT(LEFT(  $P{openYear} ,4),'-01-01') AND CONCAT(LEFT($P{openYear}   ,4),'-6-31')
+
+AND ens_type != 'TFM1000004'
+
+) A
+
+
+
+UNION ALL
+
+SELECT
+MONTH
+,target
+,EXT
+,RET
+,target-EXT-RET AS NONE
+FROM
+
+(
+
+SELECT CONCAT(MONTH(e.end_date),'월') AS MONTH,
+SUM(CASE MONTH(e.end_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target
+
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwannae
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwanwoe
+,SUM(CASE MONTH(ext_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwannae
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwanwoe
+,IFNULL(SUM(IF(ext.ext_date IS NULL,CASE MONTH(ret_date)  WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret
+,IFNULL(SUM(IF(ext.ext_date IS NULL, CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret_gwannae
+,
+IFNULL(
+	SUM(
+	IF(ext.ext_date IS NULL, 
+		CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+		WHEN 2 THEN 1
+		WHEN 3 THEN 1
+		WHEN 4 THEN 1
+		WHEN 5 THEN 1
+		WHEN 6 THEN 1
+		WHEN 7 THEN 1
+		WHEN 8 THEN 1
+		WHEN 9 THEN 1
+		WHEN 10 THEN 1
+		WHEN 11 THEN 1
+		WHEN 12 THEN 1  END
+		, 0)
+	)
+,0) AS ret_gwanwoe
+
+
+FROM enshrine e
+JOIN ensdead ed
+ON e.ens_date = ed.ens_date
+AND e.ens_seq = ed.ens_seq
+LEFT JOIN ensext ext
+ON e.ens_date = ext.ens_date
+AND e.ens_seq = ext.ens_seq
+AND ext.ext_date <=    $P{baseDate}  
+LEFT JOIN ensret ret
+ON e.ens_date = ret.ens_date
+AND e.ens_seq = ret.ens_seq
+AND ret.ret_date <= $P{baseDate} 
+WHERE e.end_date BETWEEN   CONCAT(LEFT(  $P{openYear}   ,4),'-01-01') AND CONCAT(LEFT($P{openYear}   ,4),'-6-31')
+
+AND ens_type != 'TFM1000004'
+GROUP BY MONTH(e.end_date)
+
+) A
+
+UNION ALL 
+
+
+SELECT
+'소계' MONTH
+,target
+,EXT
+,RET
+,target-EXT-RET AS NONE
+FROM
+
+(
+
+SELECT CONCAT(MONTH(e.end_date),'월') AS MONTH,
+SUM(CASE MONTH(e.end_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target
+
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwannae
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwanwoe
+,SUM(CASE MONTH(ext_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwannae
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwanwoe
+,IFNULL(SUM(IF(ext.ext_date IS NULL,CASE MONTH(ret_date)  WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret
+,IFNULL(SUM(IF(ext.ext_date IS NULL, CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret_gwannae
+,
+IFNULL(
+	SUM(
+	IF(ext.ext_date IS NULL, 
+		CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+		WHEN 2 THEN 1
+		WHEN 3 THEN 1
+		WHEN 4 THEN 1
+		WHEN 5 THEN 1
+		WHEN 6 THEN 1
+		WHEN 7 THEN 1
+		WHEN 8 THEN 1
+		WHEN 9 THEN 1
+		WHEN 10 THEN 1
+		WHEN 11 THEN 1
+		WHEN 12 THEN 1  END
+		, 0)
+	)
+,0) AS ret_gwanwoe
+
+
+FROM enshrine e
+JOIN ensdead ed
+ON e.ens_date = ed.ens_date
+AND e.ens_seq = ed.ens_seq
+LEFT JOIN ensext ext
+ON e.ens_date = ext.ens_date
+AND e.ens_seq = ext.ens_seq
+AND ext.ext_date <=  $P{baseDate}  
+LEFT JOIN ensret ret
+ON e.ens_date = ret.ens_date
+AND e.ens_seq = ret.ens_seq
+AND ret.ret_date <= $P{baseDate} 
+WHERE e.end_date BETWEEN   CONCAT(LEFT(  $P{openYear} ,4),'-07-01') AND CONCAT(LEFT($P{openYear}   ,4),'-12-31')
+
+AND ens_type != 'TFM1000004'
+
+) A
+
+
+
+UNION ALL
+
+SELECT
+MONTH
+,target
+,EXT
+,RET
+,target-EXT-RET AS NONE
+FROM
+
+(
+
+SELECT CONCAT(MONTH(e.end_date),'월') AS MONTH,
+SUM(CASE MONTH(e.end_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target
+
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwannae
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwanwoe
+,SUM(CASE MONTH(ext_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwannae
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwanwoe
+,IFNULL(SUM(IF(ext.ext_date IS NULL,CASE MONTH(ret_date)  WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret
+,IFNULL(SUM(IF(ext.ext_date IS NULL, CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret_gwannae
+,
+IFNULL(
+	SUM(
+	IF(ext.ext_date IS NULL, 
+		CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+		WHEN 2 THEN 1
+		WHEN 3 THEN 1
+		WHEN 4 THEN 1
+		WHEN 5 THEN 1
+		WHEN 6 THEN 1
+		WHEN 7 THEN 1
+		WHEN 8 THEN 1
+		WHEN 9 THEN 1
+		WHEN 10 THEN 1
+		WHEN 11 THEN 1
+		WHEN 12 THEN 1  END
+		, 0)
+	)
+,0) AS ret_gwanwoe
+
+
+FROM enshrine e
+JOIN ensdead ed
+ON e.ens_date = ed.ens_date
+AND e.ens_seq = ed.ens_seq
+LEFT JOIN ensext ext
+ON e.ens_date = ext.ens_date
+AND e.ens_seq = ext.ens_seq
+AND ext.ext_date <=    $P{baseDate}  
+LEFT JOIN ensret ret
+ON e.ens_date = ret.ens_date
+AND e.ens_seq = ret.ens_seq
+AND ret.ret_date <= $P{baseDate} 
+WHERE e.end_date BETWEEN   CONCAT(LEFT(   $P{openYear}    ,4),'-07-01') AND CONCAT(LEFT($P{openYear}   ,4),'-12-31')
+
+AND ens_type != 'TFM1000004'
+GROUP BY MONTH(e.end_date)
+
+) A]]>
+		</queryString>
+		<field name="MONTH" class="java.lang.String"/>
+		<field name="target" class="java.lang.Long"/>
+		<field name="EXT" class="java.lang.Long"/>
+		<field name="RET" class="java.lang.Long"/>
+		<field name="NONE" class="java.lang.Long"/>
+	</subDataset>
+	<subDataset name="Dataset2" uuid="70a59730-3d94-4483-92ac-3bddb513a995">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="migtest"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="openYear" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{openYear}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="baseDate" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{baseDate}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+target
+,TRUNCATE(EXT/TARGET*100,1)+TRUNCATE(RET/TARGET*100,1) TOT_PER
+,EXT
+,TRUNCATE(EXT/TARGET*100,1)EXT_PER
+,RET
+,TRUNCATE(RET/TARGET*100,1) RET_PER
+,100-(TRUNCATE(EXT/TARGET*100,1)+TRUNCATE(RET/TARGET*100,1)) NONE_PER
+FROM
+
+(
+
+SELECT CONCAT(MONTH(e.end_date),'월') as month,
+SUM(CASE MONTH(e.end_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target
+
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwannae
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwanwoe
+,SUM(CASE MONTH(ext_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwannae
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwanwoe
+,IFNULL(SUM(IF(ext.ext_date IS NULL,CASE MONTH(ret_date)  WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret
+,IFNULL(SUM(IF(ext.ext_date IS NULL, CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret_gwannae
+,
+IFNULL(
+	SUM(
+	IF(ext.ext_date IS NULL, 
+		CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+		WHEN 2 THEN 1
+		WHEN 3 THEN 1
+		WHEN 4 THEN 1
+		WHEN 5 THEN 1
+		WHEN 6 THEN 1
+		WHEN 7 THEN 1
+		WHEN 8 THEN 1
+		WHEN 9 THEN 1
+		WHEN 10 THEN 1
+		WHEN 11 THEN 1
+		WHEN 12 THEN 1  END
+		, 0)
+	)
+,0) AS ret_gwanwoe
+
+
+FROM enshrine e
+JOIN ensdead ed
+ON e.ens_date = ed.ens_date
+AND e.ens_seq = ed.ens_seq
+LEFT JOIN ensext ext
+ON e.ens_date = ext.ens_date
+AND e.ens_seq = ext.ens_seq
+AND ext.ext_date <=    $P{baseDate} 
+LEFT JOIN ensret ret
+ON e.ens_date = ret.ens_date
+AND e.ens_seq = ret.ens_seq
+AND ret.ret_date <=  $P{baseDate}    
+WHERE e.end_date BETWEEN   CONCAT(LEFT(  $P{openYear}   ,4),'-01-01') AND CONCAT(LEFT($P{openYear}   ,4),'-12-31')
+
+AND ens_type != 'TFM1000004'
+
+) A]]>
+		</queryString>
+		<field name="target" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="target"/>
+		</field>
+		<field name="EXT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="EXT"/>
+		</field>
+		<field name="RET" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="RET"/>
+		</field>
+		<field name="NONE_PER" class="java.lang.Double">
+			<property name="com.jaspersoft.studio.field.label" value="NONE"/>
+		</field>
+		<field name="TOT_PER" class="java.lang.Double"/>
+		<field name="EXT_PER" class="java.lang.Double"/>
+		<field name="RET_PER" class="java.lang.Double"/>
+	</subDataset>
+	<subDataset name="Dataset3" uuid="0e39a58a-8f32-475d-84cb-6dc48fe21c8e">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="migtest"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="openYear" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{openYear}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="baseDate" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{baseDate}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+'소계' MONTH
+,target
+,EXT
+,RET
+,target-EXT-RET AS NONE
+FROM
+
+(
+
+SELECT CONCAT(MONTH(e.end_date),'월') AS MONTH,
+SUM(CASE MONTH(e.end_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target
+
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwannae
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwanwoe
+,SUM(CASE MONTH(ext_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwannae
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwanwoe
+,IFNULL(SUM(IF(ext.ext_date IS NULL,CASE MONTH(ret_date)  WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret
+,IFNULL(SUM(IF(ext.ext_date IS NULL, CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret_gwannae
+,
+IFNULL(
+	SUM(
+	IF(ext.ext_date IS NULL, 
+		CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+		WHEN 2 THEN 1
+		WHEN 3 THEN 1
+		WHEN 4 THEN 1
+		WHEN 5 THEN 1
+		WHEN 6 THEN 1
+		WHEN 7 THEN 1
+		WHEN 8 THEN 1
+		WHEN 9 THEN 1
+		WHEN 10 THEN 1
+		WHEN 11 THEN 1
+		WHEN 12 THEN 1  END
+		, 0)
+	)
+,0) AS ret_gwanwoe
+
+
+FROM enshrine e
+JOIN ensdead ed
+ON e.ens_date = ed.ens_date
+AND e.ens_seq = ed.ens_seq
+LEFT JOIN ensext ext
+ON e.ens_date = ext.ens_date
+AND e.ens_seq = ext.ens_seq
+AND ext.ext_date <=  $P{baseDate} 
+LEFT JOIN ensret ret
+ON e.ens_date = ret.ens_date
+AND e.ens_seq = ret.ens_seq
+AND ret.ret_date <= $P{baseDate}   
+WHERE e.end_date BETWEEN   CONCAT(LEFT(  $P{openYear} ,4),'-07-01') AND CONCAT(LEFT($P{openYear}   ,4),'-12-31')
+
+AND ens_type != 'TFM1000004'
+
+) A
+
+
+
+UNION ALL
+
+SELECT
+MONTH
+,target
+,EXT
+,RET
+,target-EXT-RET AS NONE
+FROM
+
+(
+
+SELECT CONCAT(MONTH(e.end_date),'월') AS MONTH,
+SUM(CASE MONTH(e.end_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target
+
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwannae
+,SUM(CASE MONTH(e.end_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS target_gwanwoe
+,SUM(CASE MONTH(ext_date) WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwannae
+,SUM(CASE MONTH(ext_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END) AS ext_gwanwoe
+,IFNULL(SUM(IF(ext.ext_date IS NULL,CASE MONTH(ret_date)  WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret
+,IFNULL(SUM(IF(ext.ext_date IS NULL, CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000001' WHEN 1 THEN 1
+WHEN 2 THEN 1
+WHEN 3 THEN 1
+WHEN 4 THEN 1
+WHEN 5 THEN 1
+WHEN 6 THEN 1
+WHEN 7 THEN 1
+WHEN 8 THEN 1
+WHEN 9 THEN 1
+WHEN 10 THEN 1
+WHEN 11 THEN 1
+WHEN 12 THEN 1  END, 0)),0) AS ret_gwannae
+,
+IFNULL(
+	SUM(
+	IF(ext.ext_date IS NULL, 
+		CASE MONTH(ret_date) AND ed.addr_part = 'TCM1000003' WHEN 1 THEN 1
+		WHEN 2 THEN 1
+		WHEN 3 THEN 1
+		WHEN 4 THEN 1
+		WHEN 5 THEN 1
+		WHEN 6 THEN 1
+		WHEN 7 THEN 1
+		WHEN 8 THEN 1
+		WHEN 9 THEN 1
+		WHEN 10 THEN 1
+		WHEN 11 THEN 1
+		WHEN 12 THEN 1  END
+		, 0)
+	)
+,0) AS ret_gwanwoe
+
+
+FROM enshrine e
+JOIN ensdead ed
+ON e.ens_date = ed.ens_date
+AND e.ens_seq = ed.ens_seq
+LEFT JOIN ensext ext
+ON e.ens_date = ext.ens_date
+AND e.ens_seq = ext.ens_seq
+AND ext.ext_date <=    $P{baseDate} 
+LEFT JOIN ensret ret
+ON e.ens_date = ret.ens_date
+AND e.ens_seq = ret.ens_seq
+AND ret.ret_date <= $P{baseDate}   
+WHERE e.end_date BETWEEN   CONCAT(LEFT(  $P{openYear}   ,4),'-07-01') AND CONCAT(LEFT($P{openYear}   ,4),'-12-31')
+
+AND ens_type != 'TFM1000004'
+GROUP BY MONTH(e.end_date)
+) A]]>
+		</queryString>
+		<field name="MONTH" class="java.lang.String"/>
+		<field name="target" class="java.lang.Long"/>
+		<field name="EXT" class="java.lang.Long"/>
+		<field name="RET" class="java.lang.Long"/>
+		<field name="NONE" class="java.lang.Long"/>
+	</subDataset>
+	<parameter name="openYear" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{openYear}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="baseDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{baseDate}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="printName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{printName}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DOC_NAME1
+, DOC_NAME2
+, REP_NAME
+, LINE1
+, LINE2
+, TEL_NO
+, FIELD1
+,(SELECT USER_NM FROM USER_M WHERE USER_CD = $P{printName}) AS printUser
+FROM DOCFORM, FACILITYINFO
+WHERE DOC_CODE = "STAT4022"]]>
+	</queryString>
+	<field name="DOC_NAME1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DOC_NAME1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="DOC_NAME2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DOC_NAME2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="REP_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="REP_NAME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="facilityinfo"/>
+	</field>
+	<field name="LINE1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LINE1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="LINE2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LINE2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="TEL_NO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="TEL_NO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="facilityinfo"/>
+	</field>
+	<field name="FIELD1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="FIELD1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="printUser" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="printUser"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<textField pattern="$F{DOC_NAME1}+yyyy년 MM월">
+				<reportElement x="0" y="0" width="555" height="60" uuid="a13a05e3-10e0-4aa8-b7f0-0f077d284186">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font fontName="font" size="25"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{openYear}+"년 "+$F{DOC_NAME1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<textField pattern="yyyy.MM.dd">
+				<reportElement x="456" y="0" width="64" height="20" uuid="9b656def-0871-41f3-81fc-8d7b5a51b641"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{baseDate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy.MM.dd">
+				<reportElement x="376" y="0" width="80" height="20" uuid="3e56c931-1b1f-49c8-976c-08dcd411ff1c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(단위  : 건 / "]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy.MM.dd">
+				<reportElement x="520" y="0" width="34" height="20" uuid="e631f219-b6b9-4963-b72b-e3b1b22eff1d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" 기준)"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="65" height="40" backcolor="#CFCFCF" uuid="952dc88c-4c68-4e2a-a2b2-2b7df3aaed39"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[구분]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="65" y="0" width="80" height="40" backcolor="#CFCFCF" uuid="91f7bf8f-2d57-48a8-8dda-99cfb301d6e1"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[대상]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="145" y="0" width="270" height="20" backcolor="#CFCFCF" uuid="e314486a-2fdc-4111-866b-57f8e92f759e"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[조치]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="485" y="0" width="70" height="40" backcolor="#CFCFCF" uuid="3003d089-5fb5-4900-8737-bcf178be05cc">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[비고]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="415" y="0" width="70" height="40" backcolor="#CFCFCF" uuid="702da4fd-e863-46d5-89f4-595465451cc2">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미조치]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="145" y="20" width="90" height="20" backcolor="#CFCFCF" uuid="e120c427-1b8d-4011-b3b5-48ecca084847">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[소계	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="235" y="20" width="90" height="20" backcolor="#CFCFCF" uuid="37f369b0-d26f-4d56-9499-be9f29ccd7a2">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[연장]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="325" y="20" width="90" height="20" backcolor="#CFCFCF" uuid="ffa3ac44-96c0-442d-8972-504540129b67">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[반환]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="113" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="555" height="30" uuid="0043acc6-c93d-4186-8059-10ea8b368dd8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset2" uuid="b78148b3-63a5-4fb6-b9e0-8d64a5ddbbf9">
+						<datasetParameter name="baseDate">
+							<datasetParameterExpression><![CDATA[$P{baseDate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="openYear">
+							<datasetParameterExpression><![CDATA[$P{openYear}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="555">
+						<textField pattern="#,##0.##">
+							<reportElement mode="Transparent" x="415" y="15" width="70" height="15" backcolor="#CFCFCF" uuid="48d4a826-49c2-4775-a305-048b4053d852">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA["("+$F{NONE_PER}+"%)"]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement mode="Transparent" x="0" y="0" width="65" height="30" backcolor="#CFCFCF" uuid="6e9c8837-ffce-49a2-b17b-af4adb185506"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA["합계"]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0">
+							<reportElement mode="Transparent" x="415" y="0" width="70" height="15" backcolor="#CFCFCF" uuid="12a8b06b-95f6-47e4-805b-78f9b2e42477">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{target}-$F{EXT}-$F{RET}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0">
+							<reportElement mode="Transparent" x="65" y="0" width="80" height="30" backcolor="#CFCFCF" uuid="0ff9df81-c628-4e93-a61f-c58e6a397dca"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{target}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement mode="Transparent" x="485" y="0" width="70" height="30" backcolor="#CFCFCF" uuid="eaaca832-b7e8-46ec-9826-a7bd3d2aa530">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[]]></text>
+						</staticText>
+						<textField pattern="#,##0">
+							<reportElement mode="Transparent" x="325" y="0" width="90" height="15" backcolor="#CFCFCF" uuid="438d3ba4-1bea-4778-abe6-e4cf6f37a2e1">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{RET}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0.##">
+							<reportElement mode="Transparent" x="325" y="15" width="90" height="15" backcolor="#CFCFCF" uuid="f76821a5-7938-46d7-ade1-c11688225ff5">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA["("+$F{RET_PER}+"%)"]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0.##">
+							<reportElement mode="Transparent" x="235" y="15" width="90" height="15" backcolor="#CFCFCF" uuid="ca669720-617f-4c7d-a5a8-174ee30d90ad">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA["("+$F{EXT_PER}+"%)"]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0">
+							<reportElement mode="Transparent" x="235" y="0" width="90" height="15" backcolor="#CFCFCF" uuid="3e8ece22-29e5-4094-b4c5-b4ed3f37c942">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{EXT}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement mode="Transparent" x="145" y="15" width="90" height="15" backcolor="#CFCFCF" uuid="ad981a61-0428-4af9-97ff-490cb446ecda">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA["("+$F{TOT_PER}+"%)"]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0">
+							<reportElement mode="Transparent" x="145" y="0" width="90" height="15" backcolor="#CFCFCF" uuid="ff46d864-86c6-4916-8a48-efdc82481b51">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{EXT}+$F{RET}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="0" y="30" width="555" height="30" uuid="1ea5134c-43e7-4aaa-95b0-e01ef4202c62">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset1" uuid="7c7d697b-ae37-44ea-b361-8437c414180f">
+						<datasetParameter name="baseDate">
+							<datasetParameterExpression><![CDATA[$P{baseDate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="openYear">
+							<datasetParameterExpression><![CDATA[$P{openYear}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="555">
+						<textField>
+							<reportElement mode="Transparent" x="0" y="0" width="65" height="30" backcolor="#CFCFCF" uuid="e54952c4-b6fb-4801-a5c1-5df35f530848"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{MONTH}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0">
+							<reportElement mode="Transparent" x="415" y="0" width="70" height="30" backcolor="#CFCFCF" uuid="29b0d0d2-f83d-4fd3-90fd-d7cf1cbffc06">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{NONE}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0">
+							<reportElement mode="Transparent" x="65" y="0" width="80" height="30" backcolor="#CFCFCF" uuid="aac6d34d-d4ec-4ecc-a740-454d010d5e8d"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{target}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement mode="Transparent" x="485" y="0" width="70" height="30" backcolor="#CFCFCF" uuid="c025a5c6-2ade-45b7-9ae1-9616b0492dff">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<text><![CDATA[]]></text>
+						</staticText>
+						<textField pattern="#,##0">
+							<reportElement mode="Transparent" x="325" y="0" width="90" height="30" backcolor="#CFCFCF" uuid="9ef17c47-46b5-4b3f-86b4-7f6d4c9577e6">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{RET}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0">
+							<reportElement mode="Transparent" x="235" y="0" width="90" height="30" backcolor="#CFCFCF" uuid="32da9525-ff5a-4d28-9e61-b29e84670997">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{EXT}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0">
+							<reportElement mode="Transparent" x="145" y="0" width="90" height="30" backcolor="#CFCFCF" uuid="ba70bc9d-3fc9-4db1-9542-c367b4fdfc0a">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{EXT}+$F{RET}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="554" height="20" uuid="65f9e0a3-d791-43d0-9f5a-e6feb008cd90">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FIELD1}+" "+ DATEFORMAT( new Date(),"yyyy/MM/dd HH:mm:ss")+" 출력자 : " +$P{printName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

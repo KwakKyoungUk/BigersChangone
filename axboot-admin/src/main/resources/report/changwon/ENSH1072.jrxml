@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ENSH1072" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bd143407-e2a7-4d0c-a79d-8a35c3dc7d92">
+	<property name="com.jaspersoft.studio.unit.background.image.height" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="local_suwon"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://localhost:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/suwon/ensh/ENSH1072"/>
+	<property name="background.image.path" value="C:\Users\admin\Desktop\집합\사용기간만료.PNG"/>
+	<property name="background.image.x" value="10"/>
+	<property name="background.image.y" value="10"/>
+	<property name="com.jaspersoft.studio.unit.background.image.widht" value="pixel"/>
+	<property name="background.image.widht" value="595"/>
+	<property name="background.image.height" value="842"/>
+	<property name="background.image.keep_ratio" value="true"/>
+	<parameter name="ensDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{ensDate}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ensSeq" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{ensSeq}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="deadId" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{deadId}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="extEndDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{extEndDate}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT CONCAT(IFNULL(APPL.APPL_ADDR1,''),' ',IFNULL(APPL.APPL_ADDR2,'') ) AS APPL_ADDR1
+, APPL_NAME
+, APPL_POST
+, DEAD_NAME
+, SUBSTRING(ENS_NO,6, 3) AS ENS_NO1
+, RIGHT(ENS_NO,4) AS ENS_NO2
+, YEAR(END_DATE) AS END_DATE_YEAR
+, MONTH(END_DATE) AS END_DATE_MONTH
+, DAY(END_DATE) AS END_DATE_DAY
+, YEAR($P{extEndDate}) AS EXTEND_YEAR
+, MONTH($P{extEndDate}) AS EXTEND_MONTH
+, DAY($P{extEndDate}) AS EXTEND_DAY
+FROM ENSHRINE ENSH
+JOIN ENSDEAD ED
+ON ENSH.ENS_DATE = ED.ENS_DATE
+AND ENSH.ENS_SEQ = ED.ENS_SEQ
+JOIN APPLICANT APPL
+ON ENSH.APPL_ID = APPL.APPL_ID
+JOIN THEDEAD DEAD
+ON ED.DEAD_ID = DEAD.DEAD_ID
+WHERE ENSH.ENS_DATE =  $P{ensDate} 
+AND ENSH.ENS_SEQ =  $P{ensSeq} 
+AND ED.DEAD_ID = $P{deadId}]]>
+	</queryString>
+	<field name="APPL_ADDR1" class="java.lang.String"/>
+	<field name="APPL_NAME" class="java.lang.String"/>
+	<field name="APPL_POST" class="java.lang.String"/>
+	<field name="DEAD_NAME" class="java.lang.String"/>
+	<field name="ENS_NO1" class="java.lang.String"/>
+	<field name="ENS_NO2" class="java.lang.String"/>
+	<field name="END_DATE_YEAR" class="java.lang.Long"/>
+	<field name="END_DATE_MONTH" class="java.lang.Long"/>
+	<field name="END_DATE_DAY" class="java.lang.Long"/>
+	<field name="EXTEND_YEAR" class="java.lang.Long"/>
+	<field name="EXTEND_MONTH" class="java.lang.Long"/>
+	<field name="EXTEND_DAY" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="745" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="74" y="270" width="50" height="20" uuid="4138cf1e-3e97-46ae-9c8c-af56dbb8f6d1">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DEAD_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="217" y="270" width="30" height="20" uuid="b1467056-6998-42a9-afa6-d737b4e782f4">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ENS_NO1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="270" y="270" width="40" height="20" uuid="1e6bcf93-7348-4e3a-a008-1125c85195d1">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ENS_NO2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="240" y="129" width="280" height="43" uuid="1b73b632-d685-4810-bbfb-726684ca989e">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APPL_ADDR1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="227" y="173" width="249" height="20" uuid="e961ae9c-ab99-45d3-93ef-bbaecd59871c">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APPL_NAME}+" 귀하"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="227" y="193" width="259" height="20" uuid="22f5cc60-a20f-4443-807d-1a7309509ac1">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12"/>
+					<paragraph lineSpacingSize="3.0" spacingBefore="0" spacingAfter="0" tabStopWidth="50"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APPL_POST}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="53" y="289" width="40" height="20" uuid="d6bd4fd7-61d3-4c41-bc8c-df1f8e252548">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{END_DATE_YEAR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="289" width="20" height="20" uuid="6a222957-9785-46ff-b0a3-5d077836838c">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{END_DATE_MONTH}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="150" y="289" width="20" height="20" uuid="713e3103-d10c-4360-adf6-5e5066754062">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{END_DATE_DAY}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="266" y="289" width="40" height="20" uuid="2232662f-b120-4b86-b5d7-04646d1c6cf0">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EXTEND_YEAR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="319" y="289" width="20" height="20" uuid="e5529212-2071-4391-8656-f476f19b704c">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EXTEND_MONTH}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="355" y="289" width="20" height="20" uuid="4ab9fe59-1638-46ef-892e-573d41d456e5">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EXTEND_DAY}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

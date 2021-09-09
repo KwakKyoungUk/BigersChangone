@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FUNE1010_12" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="30" bottomMargin="20" uuid="3723578e-2fcf-448a-b757-5137f510a369">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://124.198.5.244:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/changwon/fune/FUNE1010_12"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/changwon/fune/FUNE1010_12_files/main_jrxml"/>
+	<subDataset name="dataset1" uuid="26313d47-4453-4be1-b9c9-84267f68e68a">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jupiter"/>
+		<parameter name="customerNo" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT 
+ appl.APPL_NAME APPL_NAME
+, left(DG_DECRYPT('funeralsystem','APPLICANT','APPL_JUMIN',APPL.APPL_JUMIN),6) APPL_JUMIN
+, IF(LENGTH(APPL.MOBILENO1) > 0 , CONCAT(DG_DECRYPT('funeralsystem','APPLICANT','MOBILENO1',APPL.MOBILENO1)
+				,'-',DG_DECRYPT('funeralsystem','APPLICANT','MOBILENO2',APPL.MOBILENO2)
+				,'-',DG_DECRYPT('funeralsystem','APPLICANT','MOBILENO3',APPL.MOBILENO3))
+				,CONCAT(DG_DECRYPT('funeralsystem','APPLICANT','TELNO1',APPL.TELNO1)
+				,'-',DG_DECRYPT('funeralsystem','APPLICANT','TELNO2',APPL.TELNO2)
+				,'-',DG_DECRYPT('funeralsystem','APPLICANT','TELNO3',APPL.TELNO3))) AS  APPL_TELNO
+, FAC_NAME
+FROM funeral fune
+JOIN thedead dead
+ON  fune.DEAD_ID=dead.DEAD_ID
+JOIN applicant appl
+ON fune.APPL_ID=appl.APPL_ID
+,FACILITYINFO
+WHERE fune.CUSTOMER_NO = $P{customerNo}]]>
+		</queryString>
+		<field name="CREM_DATE" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.label" value="CREM_DATE"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="hwa_cremation"/>
+		</field>
+		<field name="CREM_SEQ" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="CREM_SEQ"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="hwa_cremation"/>
+		</field>
+		<field name="DOC_NO" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="DOC_NO"/>
+		</field>
+		<field name="DEAD_NAME" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="DEAD_NAME"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="thedead"/>
+		</field>
+		<field name="DEAD_JUMIN" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="DEAD_JUMIN"/>
+		</field>
+		<field name="DEAD_ADDR" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="DEAD_ADDR"/>
+		</field>
+		<field name="DEAD_DATE" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.label" value="DEAD_DATE"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="thedead"/>
+		</field>
+		<field name="DEAD_PLACE" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="DEAD_PLACE"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="basic_m"/>
+		</field>
+		<field name="DEAD_REASON" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="DEAD_REASON"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="basic_m"/>
+		</field>
+		<field name="COMPANY" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="COMPANY"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="thedead"/>
+		</field>
+		<field name="APPL_NAME" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="APPL_NAME"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="applicant"/>
+		</field>
+		<field name="APPL_NAME2" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="APPL_NAME2"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="applicant"/>
+		</field>
+		<field name="APPL_ADDR" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="APPL_ADDR"/>
+		</field>
+		<field name="APPL_ADDR2" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="APPL_ADDR2"/>
+		</field>
+		<field name="APPL_JUMIN" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="APPL_JUMIN"/>
+		</field>
+		<field name="APPL_JUMIN2" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="APPL_JUMIN2"/>
+		</field>
+		<field name="APPL_TELNO" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="APPL_TELNO"/>
+		</field>
+		<field name="APPL_TELNO2" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="APPL_TELNO2"/>
+		</field>
+		<field name="APPL_RELATION" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="APPL_RELATION"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="basic_m"/>
+		</field>
+		<field name="UGOL" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="UGOL"/>
+		</field>
+		<field name="BUNGOL" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="BUNGOL"/>
+		</field>
+		<field name="RENTALFEE" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="RENTALFEE"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="hwa_cremation"/>
+		</field>
+		<field name="CHARGE" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="CHARGE"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="hwa_cremation"/>
+		</field>
+		<field name="COLUMN_24" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.label" value="CREM_DATE"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="hwa_cremation"/>
+		</field>
+		<field name="FAC_NAME" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="FAC_NAME"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="facilityinfo"/>
+		</field>
+	</subDataset>
+	<parameter name="CUSTOMER_NO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{CUSTOMER_NO}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DOC_NAME1
+, DOC_NAME2
+, REP_NAME
+, LINE1
+, LINE2
+, LINE3
+, PAPER1
+, PAPER2
+, TEL_NO
+, PUBLISHER
+, FIELD1
+FROM DOCFORM, FACILITYINFO
+WHERE DOC_CODE = "FUNE1010_12"]]>
+	</queryString>
+	<field name="DOC_NAME1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DOC_NAME1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="DOC_NAME2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DOC_NAME2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="REP_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="REP_NAME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="facilityinfo"/>
+	</field>
+	<field name="LINE1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LINE1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="LINE2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LINE2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="LINE3" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LINE2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="TEL_NO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="TEL_NO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="facilityinfo"/>
+	</field>
+	<field name="FIELD1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="FIELD1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="PAPER1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PAPER1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="PAPER2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PAPER2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="PUBLISHER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PUBLISHER"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="printUser" class="java.lang.String"/>
+	<group name="up"/>
+	<group name="down"/>
+	<background>
+		<band height="45" splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="768" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="35" width="533" height="733" uuid="0c95ae6e-9dcb-4808-a36f-8a230ce7f3b5">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="0" y="98" width="533" height="670" uuid="4581ff81-3e92-4b10-af62-54607995caad">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="net.sf.jasperreports.export.headertoolbar.table.name" value="DEAD_INFO"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1" uuid="5fd44610-0d79-4afe-bf7a-673c0172f7b9">
+						<datasetParameter name="customerNo">
+							<datasetParameterExpression><![CDATA[$P{CUSTOMER_NO}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="670" width="533">
+						<staticText>
+							<reportElement x="260" y="562" width="65" height="20" uuid="75dce4be-de14-4015-b6bf-e6d18421d128">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font" size="13" isBold="false"/>
+							</textElement>
+							<text><![CDATA[성      명 : ]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="330" y="562" width="190" height="20" uuid="8ab7b54b-1787-49a9-9bb2-349830ee3270"/>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{APPL_NAME}+"      ( 서명 또는 인 )"]]></textFieldExpression>
+						</textField>
+						<textField pattern="yyyy년  M월  dd일" isBlankWhenNull="true">
+							<reportElement key="textField-35" x="330" y="522" width="203" height="31" uuid="e85aac37-c189-4c64-b3f7-8549bccdf65e">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="12"/>
+							</textElement>
+							<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="40" y="562" width="90" height="20" uuid="8d6a6cff-07a4-42ec-9eca-941e4e883ae9"/>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font" size="13" isBold="false"/>
+							</textElement>
+							<text><![CDATA[대상자   본인]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="260" y="592" width="65" height="20" uuid="b3a7a1ed-fbbf-4522-96ca-310724552286">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font" size="13" isBold="false"/>
+							</textElement>
+							<text><![CDATA[생년월일 : ]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="260" y="622" width="65" height="20" uuid="925da648-fec9-447e-a0ac-55433b43f2c8">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font" size="13" isBold="false"/>
+							</textElement>
+							<text><![CDATA[전화번호 : ]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="330" y="592" width="190" height="20" uuid="95bd235d-033a-455d-ad09-ecc2a5051bd9"/>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{APPL_JUMIN}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="330" y="622" width="190" height="20" uuid="1b632910-e4e1-4cee-a4e6-f7bb8e3cab78"/>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{APPL_TELNO}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<textField>
+				<reportElement x="0" y="35" width="533" height="60" uuid="03646ea2-6894-404f-ab63-79d7b81ab6dd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="26"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOC_NAME1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="95" width="533" height="120" uuid="0d629319-1e13-47d9-8d39-96a898e7dda1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LINE1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="268" y="220" width="60" height="20" backcolor="#B3DDFF" uuid="a8888008-0a9a-4f02-bfc5-0923b1747bcc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[연번]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="68" y="220" width="200" height="20" backcolor="#B3DDFF" uuid="edda0424-d925-4fda-9114-eff5a77e17f6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[행정정보명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="328" y="220" width="200" height="20" backcolor="#B3DDFF" uuid="ada5f1e6-0da7-4c86-8ff9-e720572204b4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[행정정보명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="8" y="220" width="60" height="20" backcolor="#B3DDFF" uuid="a63bdd33-4763-4270-ad39-ace597741fbc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[연번]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="240" width="60" height="20" uuid="663461fc-9af5-463e-a8cb-d47bab627adf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="240" width="60" height="20" uuid="4f78e922-829b-4f8c-81a5-757f60d9a374">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="240" width="200" height="20" uuid="753f888b-e5b7-40d7-ac21-99114ffc8f96">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<text><![CDATA[국민기초생활수급자증명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="240" width="200" height="20" uuid="9d632f26-e594-4fa2-960c-7a88df86d95d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<text><![CDATA[국가유공자(유족)/5·18민주유공자(유족)확인서]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="260" width="60" height="20" uuid="f681ddaf-ae4b-4358-9570-fb62061b0be7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="260" width="60" height="20" uuid="44ff7144-a0d2-4cd3-9b56-be708e6fc6d2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="260" width="200" height="20" uuid="5e1e969a-eba7-416c-a043-1a66350bf750">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<text><![CDATA[주민등록표 등·초본]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="260" width="200" height="20" uuid="10f84f07-8e35-4c4f-b0a9-c2de3d0d9651">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<text><![CDATA[외국인등록사실증명]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="294" width="533" height="120" uuid="883e01b1-5e4e-4bb6-b289-07040e4101a9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="font"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LINE2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="494" width="533" height="120" uuid="e395b2da-26b8-4a3d-8bc0-e4fa07a90595">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="font"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LINE3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

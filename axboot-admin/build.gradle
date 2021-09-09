@@ -1,0 +1,23 @@
+apply plugin: "war"
+apply plugin: "spring-boot"
+
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+    }
+}
+
+dependencies {
+    compile project(':ax-core')
+
+    compile "javax.servlet:jstl:1.2"
+    compile "javax.el:javax.el-api:3.0.0"
+
+    provided "javax.servlet.jsp:jsp-api:2.1"
+
+}

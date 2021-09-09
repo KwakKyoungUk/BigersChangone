@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ce08fe1c-1543-4460-8613-7f03b200082b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jupiter"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[select * from
+(select 'aaa' as Name, 'aa@yahoo.com' as email, 20150401 as PledgeType, 20.00 as amount
+union select 'bbb', 'bb@yahoo.com' ,20150402, 30.00
+union select 'ccc', 'cc@gmai.com' ,20150401, 35.00
+union select 'ddd', 'dd@gmai.com' ,20150402, 40.00) tbl
+order by PledgeType]]>
+	</queryString>
+	<field name="Name" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="PledgeType" class="java.lang.Long"/>
+	<field name="amount" class="java.math.BigDecimal"/>
+	<group name="PledgeType" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{PledgeType}]]></groupExpression>
+		<groupHeader>
+			<band height="61">
+				<staticText>
+					<reportElement x="0" y="41" width="185" height="20" uuid="87cd0d21-014d-4e6c-a54a-006165a38414"/>
+					<text><![CDATA[Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="185" y="41" width="185" height="20" uuid="bd0fc2f5-4963-4c9d-a9be-3659be06e436"/>
+					<text><![CDATA[email]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="370" y="41" width="185" height="20" uuid="5d5d7ce1-5353-4f83-91b4-57725b0c922b"/>
+					<text><![CDATA[amount]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement isPrintRepeatedValues="false" x="0" y="0" width="555" height="20" uuid="775a5093-5fc2-4603-a6fd-7d574aa8beb2"/>
+					<textFieldExpression><![CDATA["Total for group " + $F{PledgeType}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="185" height="20" uuid="5b325da6-7c56-4357-8808-911dad16ec53"/>
+				<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="20" uuid="0bc06b28-7b8c-4af9-997a-714d1599def1"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="185" height="20" uuid="e5504bb9-c3c0-4135-94c6-7ea935f97cb6"/>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

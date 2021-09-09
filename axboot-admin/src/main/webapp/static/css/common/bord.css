@@ -1,0 +1,44 @@
+#lb-message {
+	font-size: 60px;
+	font-weight: bolder;
+	color: white;
+}
+
+#dataTable {
+	font-weight: bolder;
+}
+
+.status_color_1 {
+	color: #feff4c;
+}
+.status_color_2 {
+	color: #83effe;
+}
+.status_color_3 {
+	color: #ffb371;
+}
+.status_color_4 {
+	color: #36e0c6;
+}
+.status_color_9 {
+	color: #84ed77;
+}
+
+.currentTime{
+	color: yellow;
+}
+.chasu {
+	color: white;
+}
+.dead_name {
+	color: #ffffff;
+}
+.burn_no{
+	color: #ffffff;
+}
+.wait_room{
+	color: #1af3fe;
+}
+.running_time{
+	color: #ffffff;
+}

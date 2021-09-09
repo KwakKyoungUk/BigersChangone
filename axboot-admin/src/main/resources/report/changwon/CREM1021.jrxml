@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CREM1021" pageWidth="1242" pageHeight="595" orientation="Landscape" columnWidth="622" leftMargin="10" rightMargin="610" topMargin="20" bottomMargin="20" uuid="44e478e3-c04f-4e64-9419-a464660be107">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://105.1.72.37:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/suwon/crem/CREM1021"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/suwon/crem/CREM1021_files/main_jrxml"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="bookDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{bookDate}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT A.BOOK_DATE
+, A.BOOK_CHASU
+, A.BOOK_CHASU_SEQ
+, TIME_FORMAT(STRTIME, '%H:%i') AS STRTIME
+, TIME_FORMAT(ENDTIME, '%H:%i') AS ENDTIME
+, BOOK_DEAD_NAME
+-- , CONCAT(LEFT(DG_DECRYPT('funeralsystem', 'thedead', 'DEAD_JUMIN', DEAD.DEAD_JUMIN),8), '******') AS BOOK_DEAD_JUMIN
+, CONCAT(LEFT(DG_DECRYPT('funeralsystem', 'hwa_booking', 'BOOK_DEAD_JUMIN', BOOK_DEAD_JUMIN),8), '******') AS BOOK_DEAD_JUMIN
+, BOOK_DEAD_DATE
+, A.COMPANY
+, BOOK_APPL_NAME
+-- , CONCAT(LEFT(DG_DECRYPT('funeralsystem', 'applicant', 'APPL_JUMIN', APPL.APPL_JUMIN),8),'******') AS BOOK_APPL_JUMIN
+, CONCAT(LEFT(DG_DECRYPT('funeralsystem', 'hwa_booking', 'BOOK_APPL_JUMIN', BOOK_APPL_JUMIN),8), '******') AS BOOK_APPL_JUMIN
+, IFNULL(BOOK_RELATION_NM, '') AS BOOK_RELATION_NM
+, CONCAT(DG_DECRYPT('funeralsystem', 'hwa_booking', 'BOOK_MOBILENO1', BOOK_MOBILENO1),'-',
+  DG_DECRYPT('funeralsystem', 'hwa_booking', 'BOOK_MOBILENO2', BOOK_MOBILENO2),'-',
+  DG_DECRYPT('funeralsystem', 'hwa_booking', 'BOOK_MOBILENO3', BOOK_MOBILENO3)) AS BOOK_MOBILENO
+, CONCAT(DG_DECRYPT('funeralsystem', 'hwa_booking', 'BOOK_TELNO1', BOOK_TELNO1),'-',
+  DG_DECRYPT('funeralsystem', 'hwa_booking', 'BOOK_TELNO2', BOOK_TELNO2),'-',
+  DG_DECRYPT('funeralsystem', 'hwa_booking', 'BOOK_TELNO3', BOOK_TELNO3)) AS BOOK_TELNO
+, CONCAT(BOOK_DEAD_ADDR1, BOOK_DEAD_ADDR2) AS BOOK_DEAD_ADDR
+, CONCAT(BOOK_APPL_ADDR1, BOOK_APPL_ADDR2) AS BOOK_APPL_ADDR
+, APPL_RELATION.NAME AS APPL_RELATION
+, (SELECT DOC_NAME1 FROM DOCFORM WHERE DOC_CODE = 'CREM1021') AS DOC_NAME1
+FROM HWA_BOOKING A
+JOIN ROGRPCHASU B
+ON B.CHASU_SEQ = A.BOOK_CHASU_SEQ
+LEFT JOIN HWA_CREMATION C
+ON A.BOOK_DATE = C.BOOK_DATE
+AND A.BOOK_CHASU = C.BOOK_CHASU
+LEFT JOIN THEDEAD DEAD
+ON A.DEAD_ID = DEAD.DEAD_ID
+LEFT JOIN APPLICANT APPL
+ON C.APPL_ID = APPL.APPL_ID
+LEFT JOIN BASIC_M APPL_RELATION
+ON APPL_RELATION.BASIC_CD = 'TCM08'
+AND C.APPL_RELATION = APPL_RELATION.CODE
+
+WHERE A.BOOK_DATE = DATE_FORMAT($P{bookDate}, '%Y%m%d')]]>
+	</queryString>
+	<field name="BOOK_DATE" class="java.lang.String"/>
+	<field name="BOOK_CHASU" class="java.lang.String"/>
+	<field name="BOOK_CHASU_SEQ" class="java.lang.String"/>
+	<field name="STRTIME" class="java.lang.String"/>
+	<field name="ENDTIME" class="java.lang.String"/>
+	<field name="BOOK_DEAD_NAME" class="java.lang.String"/>
+	<field name="BOOK_DEAD_JUMIN" class="java.lang.String"/>
+	<field name="BOOK_DEAD_DATE" class="java.lang.String"/>
+	<field name="COMPANY" class="java.lang.String"/>
+	<field name="BOOK_APPL_NAME" class="java.lang.String"/>
+	<field name="BOOK_APPL_JUMIN" class="java.lang.String"/>
+	<field name="BOOK_RELATION_NM" class="java.lang.String"/>
+	<field name="BOOK_MOBILENO" class="java.lang.String"/>
+	<field name="BOOK_TELNO" class="java.lang.String"/>
+	<field name="BOOK_DEAD_ADDR" class="java.lang.String"/>
+	<field name="BOOK_APPL_ADDR" class="java.lang.String"/>
+	<field name="APPL_RELATION" class="java.lang.String"/>
+	<field name="DOC_NAME1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60">
+			<textField>
+				<reportElement x="0" y="0" width="1220" height="60" uuid="3c951dae-950b-4e29-afb2-c7b77cc874df"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="25"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOC_NAME1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="30" height="20" backcolor="#D4D4D4" uuid="8f4fe7ce-d3f6-4062-9475-d222a6673620"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[차수]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="30" y="0" width="70" height="20" backcolor="#D4D4D4" uuid="e465a071-8503-43ef-b0f9-0f0cd6170551"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[시간]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="100" y="0" width="30" height="20" backcolor="#D4D4D4" uuid="1b26ff17-40fe-4dbe-b439-76752529159a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[호기]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="130" y="0" width="50" height="20" backcolor="#D4D4D4" uuid="8fa7d280-8951-4554-b84a-bf69c0492900"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[고인명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="0" width="110" height="20" backcolor="#D4D4D4" uuid="c05095f5-daf3-40d0-81f8-6b8b47587f8a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[주민번호]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="290" y="0" width="70" height="20" backcolor="#D4D4D4" uuid="311239dc-8e76-4edc-8a07-85791549853b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사망일자]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="581" y="0" width="59" height="20" backcolor="#D4D4D4" uuid="2c0f3089-6699-4f4d-a431-f5c7efa8b580"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[발인지]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="640" y="0" width="50" height="20" backcolor="#D4D4D4" uuid="5d760d47-284e-4a4e-8ff0-07a82d1163e7"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[신청자명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="690" y="0" width="109" height="20" backcolor="#D4D4D4" uuid="0ed72cd3-323c-4363-9b69-ef121a1ab173">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[신청자주민번호]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1020" y="0" width="79" height="20" backcolor="#D4D4D4" uuid="0e05bbe1-53c7-4e9d-98c1-1e3abb792bec"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사망자와의 관계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1099" y="0" width="62" height="20" backcolor="#D4D4D4" uuid="c4424573-a0a3-4e87-ac95-6f9f7a001386"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[휴대전화]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1161" y="0" width="61" height="20" backcolor="#D4D4D4" uuid="06ed3306-26b7-43cf-9373-31f1b9731fb8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[전화번호]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="360" y="0" width="220" height="20" backcolor="#D4D4D4" uuid="f326898b-be8e-4f73-98ad-5d09ff3bcb9f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사망자 주소]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="800" y="0" width="220" height="20" backcolor="#D4D4D4" uuid="ce92fb61-5989-4351-bb5f-98ab5302b8c0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[신청자 주소]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="30" height="19" uuid="03082310-c600-4dec-882f-07ca5394e5fb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOK_CHASU}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="30" y="0" width="70" height="19" uuid="45efc667-8332-4227-a92b-10dd0d20e411"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{STRTIME}+" ~ "+$F{ENDTIME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="0" width="30" height="19" uuid="631eba90-6495-406a-a92d-88e27d74e5bd"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOK_CHASU_SEQ}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="0" width="50" height="19" uuid="7b03dbd1-5115-4490-98b7-7e5c52e7c6a1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOK_DEAD_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="180" y="0" width="110" height="19" uuid="bfbcc2db-9b68-405e-a8db-ba0b0a9bd51a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOK_DEAD_JUMIN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="0" width="70" height="19" uuid="60047e79-baca-422d-bb7d-55f2871ce501"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOK_DEAD_DATE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="581" y="0" width="59" height="19" uuid="a0332c23-d85a-48c5-9c4e-efd433d8aef6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COMPANY}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="640" y="0" width="50" height="19" uuid="50ccbecb-cfe7-400f-969c-e5e51c3b781c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOK_APPL_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="690" y="0" width="109" height="19" uuid="03804f0b-81a0-47e6-b992-4615291aad91"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOK_APPL_JUMIN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1020" y="0" width="79" height="19" uuid="5ed46fca-3f54-47d5-9fc5-2e44c06f7ba6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOK_RELATION_NM}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1099" y="0" width="62" height="19" uuid="e5d1259b-b53c-4e60-9192-8b7805cbe158"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOK_MOBILENO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1161" y="0" width="61" height="19" uuid="75c89d77-af86-4eef-a900-e61f32ae7bc0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOK_TELNO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="0" width="220" height="19" uuid="abab34b0-7046-42c8-b65d-5911bcd1daa1">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="8"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOK_DEAD_ADDR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="800" y="0" width="220" height="19" uuid="cefbdd4a-1c98-47c7-b60a-6482597fdf85">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="8"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOK_APPL_ADDR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

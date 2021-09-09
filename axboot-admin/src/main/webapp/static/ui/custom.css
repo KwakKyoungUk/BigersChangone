@@ -1,0 +1,763 @@
+.nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ime-false {
+  ime-mode: inactive;
+}
+.ime-true {
+  ime-mode: active;
+}
+.ime-off {
+  ime-mode: disabled;
+}
+.AXGridTable {
+  margin: 5px 0px;
+}
+.AXGridTable:last-child {
+  margin-bottom: 0px;
+}
+.AXGridTable thead td,
+.AXGridTable thead th {
+  background: #e7e7e7;
+}
+.AXGridTable td {
+  font-size: 11px;
+  padding: 3px 5px;
+  line-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.AXFormTable td {
+  padding: 5px;
+  line-height: 20px;
+}
+.AXInputLabel {
+  margin: 3px auto;
+}
+.AXInputLabel span {
+  line-height: 1.5em;
+  margin: 5px;
+}
+.AXButton {
+  box-sizing: border-box;
+  height: 23px;
+  line-height: 23px;
+}
+.AXButton i.axi {
+  box-sizing: border-box;
+  height: 23px;
+  line-height: 23px;
+}
+.AXTree_none {
+  border: 1px solid #959595;
+}
+.AXTree_none .AXTreeScrollBody {
+  border: 0px none;
+}
+.AXInput {
+  line-height: 15px;
+}
+.AXSearch .searchGroup .searchItem.secondItem .itemTable span.th {
+  border: 0px none;
+  box-sizing: border-box;
+  background: #e7e7e7;
+  color: #333;
+}
+.AXSearch .searchGroup .searchItem .itemTable span.th {
+  border: 0px none;
+  box-sizing: border-box;
+  background: #e7e7e7;
+  color: #333;
+}
+.AXGrid input[type=checkbox] {
+  vertical-align: middle;
+}
+.sbar {
+  border-top: 1px solid #959595;
+  border-bottom: 1px solid #959595;
+  padding: 0px 0px;
+  position: relative;
+}
+.sbar:not(:first-child) {
+  border-top: 0px none;
+}
+.sbar SPAN.sitem {
+  display: inline-block;
+  margin: 0px 0px 0px 0px;
+  color: #1d363c;
+  background: #fff;
+  min-height: 20px;
+  line-height: 20px;
+  padding: 0px 7px 0px 0px;
+  box-sizing: border-box;
+  min-width: 80px;
+  text-align: left;
+  white-space: nowrap;
+}
+.sbar SPAN.sitem SPAN.slabel {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0px 3px 0px 0px;
+  color: #333;
+  background: #e7e7e7;
+  min-height: 23px;
+  line-height: 23px;
+  padding: 6px 5px;
+  box-sizing: border-box;
+  min-width: 80px;
+  text-align: center;
+}
+.sbar SPAN.sitem select {
+  display: inline-block;
+  line-height: 23px;
+  box-sizing: border-box;
+}
+.sbar SPAN.sitem.W10 {
+  min-width: 10px;
+}
+.sbar SPAN.sitem.W20 {
+  min-width: 20px;
+}
+.sbar SPAN.sitem.W30 {
+  min-width: 30px;
+}
+.sbar SPAN.sitem.W40 {
+  min-width: 40px;
+}
+.sbar SPAN.sitem.W50 {
+  min-width: 50px;
+}
+.sbar SPAN.sitem.W60 {
+  min-width: 60px;
+}
+.sbar SPAN.sitem.W70 {
+  min-width: 70px;
+}
+.sbar SPAN.sitem.W80 {
+  min-width: 80px;
+}
+.sbar SPAN.sitem.W90 {
+  min-width: 90px;
+}
+.sbar SPAN.sitem.W100 {
+  min-width: 100px;
+}
+.sbar SPAN.sitem.W110 {
+  min-width: 110px;
+}
+.sbar SPAN.sitem.W120 {
+  min-width: 120px;
+}
+.sbar SPAN.sitem.W130 {
+  min-width: 130px;
+}
+.sbar SPAN.sitem.W140 {
+  min-width: 140px;
+}
+.sbar SPAN.sitem.W150 {
+  min-width: 150px;
+}
+.sbar SPAN.sitem.W160 {
+  min-width: 160px;
+}
+.sbar SPAN.sitem.W170 {
+  min-width: 170px;
+}
+.sbar SPAN.sitem.W180 {
+  min-width: 180px;
+}
+.sbar SPAN.sitem.W190 {
+  min-width: 190px;
+}
+.sbar SPAN.sitem.W200 {
+  min-width: 200px;
+}
+.sbar SPAN.sitem.W210 {
+  min-width: 210px;
+}
+.sbar SPAN.sitem.W220 {
+  min-width: 220px;
+}
+.sbar SPAN.sitem.W230 {
+  min-width: 230px;
+}
+.sbar SPAN.sitem.W240 {
+  min-width: 240px;
+}
+.sbar SPAN.sitem.W250 {
+  min-width: 250px;
+}
+.sbar SPAN.sitem.W260 {
+  min-width: 260px;
+}
+.sbar SPAN.sitem.W270 {
+  min-width: 270px;
+}
+.sbar SPAN.sitem.W280 {
+  min-width: 280px;
+}
+.sbar SPAN.sitem.W290 {
+  min-width: 290px;
+}
+.sbar SPAN.sitem.W300 {
+  min-width: 300px;
+}
+.sbar SPAN.sitem.W310 {
+  min-width: 310px;
+}
+.sbar SPAN.sitem.W320 {
+  min-width: 320px;
+}
+.sbar SPAN.sitem.W330 {
+  min-width: 330px;
+}
+.sbar SPAN.sitem.W340 {
+  min-width: 340px;
+}
+.sbar SPAN.sitem.W350 {
+  min-width: 350px;
+}
+.sbar SPAN.sitem.W360 {
+  min-width: 360px;
+}
+.sbar SPAN.sitem.W370 {
+  min-width: 370px;
+}
+.sbar SPAN.sitem.W380 {
+  min-width: 380px;
+}
+.sbar SPAN.sitem.W390 {
+  min-width: 390px;
+}
+.sbar SPAN.sitem.W400 {
+  min-width: 400px;
+}
+.sbar SPAN.sitem.W410 {
+  min-width: 410px;
+}
+.sbar SPAN.sitem.W420 {
+  min-width: 420px;
+}
+.sbar SPAN.sitem.W430 {
+  min-width: 430px;
+}
+.sbar SPAN.sitem.W440 {
+  min-width: 440px;
+}
+.sbar SPAN.sitem.W450 {
+  min-width: 450px;
+}
+.sbar SPAN.sitem.W460 {
+  min-width: 460px;
+}
+.sbar SPAN.sitem.W470 {
+  min-width: 470px;
+}
+.sbar SPAN.sitem.W480 {
+  min-width: 480px;
+}
+.sbar SPAN.sitem.W490 {
+  min-width: 490px;
+}
+.sbar SPAN.sitem.W500 {
+  min-width: 500px;
+}
+.sbar SPAN.sitem.W510 {
+  min-width: 510px;
+}
+.sbar SPAN.sitem.W520 {
+  min-width: 520px;
+}
+.sbar SPAN.sitem.W530 {
+  min-width: 530px;
+}
+.sbar SPAN.sitem.W540 {
+  min-width: 540px;
+}
+.sbar SPAN.sitem.W550 {
+  min-width: 550px;
+}
+.sbar SPAN.sitem.W560 {
+  min-width: 560px;
+}
+.sbar SPAN.sitem.W570 {
+  min-width: 570px;
+}
+.sbar SPAN.sitem.W580 {
+  min-width: 580px;
+}
+.sbar SPAN.sitem.W590 {
+  min-width: 590px;
+}
+.sbar SPAN.sitem.W600 {
+  min-width: 600px;
+}
+.sbar SPAN.sitem.W610 {
+  min-width: 610px;
+}
+.sbar SPAN.sitem.W620 {
+  min-width: 620px;
+}
+.sbar SPAN.sitem.W630 {
+  min-width: 630px;
+}
+.sbar SPAN.sitem.W640 {
+  min-width: 640px;
+}
+.sbar SPAN.sitem.W650 {
+  min-width: 650px;
+}
+.sbar SPAN.sitem.W660 {
+  min-width: 660px;
+}
+.sbar SPAN.sitem.W670 {
+  min-width: 670px;
+}
+.sbar SPAN.sitem.W680 {
+  min-width: 680px;
+}
+.sbar SPAN.sitem.W690 {
+  min-width: 690px;
+}
+.sbar SPAN.sitem.W700 {
+  min-width: 700px;
+}
+.sbar SPAN.sitem.W710 {
+  min-width: 710px;
+}
+.sbar SPAN.sitem.W720 {
+  min-width: 720px;
+}
+.sbar SPAN.sitem.W730 {
+  min-width: 730px;
+}
+.sbar SPAN.sitem.W740 {
+  min-width: 740px;
+}
+.sbar SPAN.sitem.W750 {
+  min-width: 750px;
+}
+.sbar SPAN.sitem.W760 {
+  min-width: 760px;
+}
+.sbar SPAN.sitem.W770 {
+  min-width: 770px;
+}
+.sbar SPAN.sitem.W780 {
+  min-width: 780px;
+}
+.sbar SPAN.sitem.W790 {
+  min-width: 790px;
+}
+.sbar SPAN.sitem.W800 {
+  min-width: 800px;
+}
+.sbar SPAN.sitem.W810 {
+  min-width: 810px;
+}
+.sbar SPAN.sitem.W820 {
+  min-width: 820px;
+}
+.sbar SPAN.sitem.W830 {
+  min-width: 830px;
+}
+.sbar SPAN.sitem.W840 {
+  min-width: 840px;
+}
+.sbar SPAN.sitem.W850 {
+  min-width: 850px;
+}
+.sbar SPAN.sitem.W860 {
+  min-width: 860px;
+}
+.sbar SPAN.sitem.W870 {
+  min-width: 870px;
+}
+.sbar SPAN.sitem.W880 {
+  min-width: 880px;
+}
+.sbar SPAN.sitem.W890 {
+  min-width: 890px;
+}
+.sbar SPAN.sitem.W900 {
+  min-width: 900px;
+}
+.sbar SPAN.sitem.W910 {
+  min-width: 910px;
+}
+.sbar SPAN.sitem.W920 {
+  min-width: 920px;
+}
+.sbar SPAN.sitem.W930 {
+  min-width: 930px;
+}
+.sbar SPAN.sitem.W940 {
+  min-width: 940px;
+}
+.sbar SPAN.sitem.W950 {
+  min-width: 950px;
+}
+.sbar SPAN.sitem.W960 {
+  min-width: 960px;
+}
+.sbar SPAN.sitem.W970 {
+  min-width: 970px;
+}
+.sbar SPAN.sitem.W980 {
+  min-width: 980px;
+}
+.sbar SPAN.sitem.W990 {
+  min-width: 990px;
+}
+.sbar SPAN.sitem.W1000 {
+  min-width: 1000px;
+}
+.sbar .float-right {
+  margin-top: 5px;
+  margin-right: 5px;
+  float: right;
+}
+#AXPage .ax-body {
+  padding-bottom: 26px;
+}
+#AXPage .ax-body .ax-title .expand h1 {
+  margin-left: 0px;
+}
+#AXPage.login .ax-title {
+  width: 596px;
+  margin: auto;
+  height: 20px;
+  overflow: hidden;
+  padding: 20px;
+  padding-top: 50px;
+}
+#AXPage.login .ax-title h1 {
+  line-height: 30px;
+  float: none;
+  font-size: 20px;
+  font-weight: normal;
+  text-align: left;
+  margin: 0px;
+  padding: 0px;
+  color: #8c8184;
+}
+#AXPage.login .ax-title h1 i.axi {
+  font-size: 50px;
+}
+#AXPage.login .ax-title h1 small {
+  font-family: Verdana;
+  font-size: 10px;
+  color: #cececa;
+}
+#AXPage.login .ax-title .desc {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  float: none;
+  text-align: center;
+  margin: 0px 0px 0px 10px;
+  padding: 0px;
+  color: #888;
+}
+#AXPage.login .ax-box {
+  position: relative;
+  background: #fff;
+  border: 1px solid #c8c8c8;
+  padding: 40px;
+  width: 680px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #dfe2e2;
+}
+#AXPage.login .ax-box .login-visual {
+  float: left;
+  position: relative;
+  width: 300px;
+  height: 234px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 10px;
+  background: url("bigers/images/login-visual.png") no-repeat center;
+  margin: 0px 10px;
+}
+#AXPage.login .ax-box .login-vline {
+  float: left;
+  width: 1px;
+  height: 260px;
+  background: #dddddd;
+}
+#AXPage.login .ax-box .login-form {
+  margin-left: 50px;
+  width: 300px;
+  float: left;
+}
+#AXPage.login .ax-box .icn-stipe {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 5px;
+  width: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+#AXPage .ax-body .ax-box {
+  position: relative;
+}
+#AXPage .ax-body .ax-box .ax-box-wrap {
+  margin: 15px 15px;
+}
+#AXPage .icn-stipe {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 5px;
+  width: 100%;
+}
+#AXPage .icn-stipe.top {
+  top: 0px;
+}
+.page-modal {
+  padding-bottom: 5px;
+}
+.page-modal .icn-stipe {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 5px;
+  width: 100%;
+}
+.cx-common-btns {
+  position: absolute;
+  right: 10px;
+  top: -50px;
+}
+.cx-common-btns.on {
+  position: fixed;
+  right: 10px;
+  top: 60px;
+  padding: 0px 10px;
+  z-index: 1000;
+  border: 3px solid #d3292c;
+  background: #d3292c;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0px 0px 3px #888;
+}
+.cx-common-btns.on .AXButton.Red {
+  background: #fff;
+  color: #1d363c;
+  border: 1px solid #1d363c;
+}
+.cx-common-btns.on .AXButton.Red:hover {
+  background: #e8e8e8;
+  text-decoration: none;
+  color: #1d363c;
+}
+.tbl-layout {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 5px;
+}
+.tbl-layout:first-child {
+  margin-top: 0px;
+}
+.tbl-layout td.td-layout {
+  padding: 0px 15px;
+  vertical-align: top;
+  border-left: 1px dashed #d8e3e4;
+}
+.tbl-layout td.td-layout:first-child {
+  padding-left: 0px;
+  border-left: 0px none;
+}
+.tbl-layout td.td-layout:first-child:last-child {
+  padding-left: 15px;
+}
+.tbl-layout td.td-layout:last-child {
+  padding-right: 0px;
+}
+.ax-button-group {
+  min-height: 37px;
+  line-height: 37px;
+}
+.ax-button-group .chart-legend {
+  float: left;
+  margin: 5px;
+  line-height: 20px;
+}
+.ax-button-group .chart-legend ul {
+  margin: 0px;
+  padding: 0px;
+}
+.ax-button-group .chart-legend ul li {
+  position: relative;
+  padding: 0px 10px 0px 15px;
+  float: left;
+  list-style: none;
+}
+.ax-button-group .chart-legend ul li span {
+  position: absolute;
+  display: block;
+  left: 0px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.AXModalBox .windowbox {
+  border: 1px solid #4c4c4c;
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+}
+.AXModalBox .windowbox .closeBtn {
+  border: 1px solid #4c4c4c;
+  cursor: pointer;
+}
+.callout {
+  padding: 15px 15px;
+  margin: 5px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+.callout h4 {
+  color: #000;
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 15px;
+  line-height: 1.6em;
+}
+.callout p {
+  color: #333;
+  margin: 0 0 10px;
+}
+.callout p:last-child {
+  margin-bottom: 0;
+}
+.callout ul {
+  margin: 0px;
+  padding: 0px;
+  line-height: 1.6em;
+}
+.callout ol {
+  margin: 0px;
+  padding: 0px;
+}
+@-webkit-keyframes bounceOutUp {
+  0% {
+    -webkit-transform: translateX(-50px) rotate(-90deg);
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: translateX(-50px) rotate(-270deg);
+  }
+  40% {
+    opacity: 1;
+    -webkit-transform: translateX(50px) rotate(-270deg);
+  }
+  80% {
+    opacity: 1;
+    -webkit-transform: translateX(50px) rotate(-90deg);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(-50px) rotate(-90deg);
+  }
+}
+@-moz-keyframes bounceOutUp {
+  0% {
+    -moz-transform: translateX(-50px) rotate(-90deg);
+  }
+  20% {
+    opacity: 1;
+    -moz-transform: translateX(-50px) rotate(-270deg);
+  }
+  40% {
+    opacity: 1;
+    -moz-transform: translateX(50px) rotate(-270deg);
+  }
+  80% {
+    opacity: 1;
+    -moz-transform: translateX(50px) rotate(-90deg);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translateX(-50px) rotate(-90deg);
+  }
+}
+@keyframes bounceOutUp {
+  0% {
+    -webkit-transform: translateX(-50px) rotate(-90deg);
+    -moz-transform: translateX(-50px) rotate(-90deg);
+    -ms-transform: translateX(-50px) rotate(-90deg);
+    -o-transform: translateX(-50px) rotate(-90deg);
+    transform: translateX(-50px) rotate(-90deg);
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: translateX(-50px) rotate(-270deg);
+    -moz-transform: translateX(-50px) rotate(-270deg);
+    -ms-transform: translateX(-50px) rotate(-270deg);
+    -o-transform: translateX(-50px) rotate(-270deg);
+    transform: translateX(-50px) rotate(-270deg);
+  }
+  40% {
+    opacity: 1;
+    -webkit-transform: translateX(50px) rotate(-270deg);
+    -moz-transform: translateX(50px) rotate(-270deg);
+    -ms-transform: translateX(50px) rotate(-270deg);
+    -o-transform: translateX(50px) rotate(-270deg);
+    transform: translateX(50px) rotate(-270deg);
+  }
+  80% {
+    opacity: 1;
+    -webkit-transform: translateX(50px) rotate(-90deg);
+    -moz-transform: translateX(50px) rotate(-90deg);
+    -ms-transform: translateX(50px) rotate(-90deg);
+    -o-transform: translateX(50px) rotate(-90deg);
+    transform: translateX(50px) rotate(-90deg);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(-50px) rotate(-90deg);
+    -moz-transform: translateX(-50px) rotate(-90deg);
+    -ms-transform: translateX(-50px) rotate(-90deg);
+    -o-transform: translateX(-50px) rotate(-90deg);
+    transform: translateX(-50px) rotate(-90deg);
+  }
+}
+.bounceOutUp {
+  display: block;
+  -webkit-animation: bounceOutUp 2s ease-out;
+  -moz-animation: bounceOutUp 2s ease-out;
+  animation: bounceOutUp 2s ease-out;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+.AXNotificationTray {
+  top: auto;
+  bottom: 20px;
+}
+.AXNotification {
+  background: #fff;
+}
+.AXNotification .AXNotificationTable {
+  background: #fff;
+}
+.AXNotification .AXNotificationTable td {
+  background: #fff;
+  word-break: keep-all;
+  text-align: left;
+  font-size: 13px;
+}
+.AXNotification .AXButton.Red {
+  background: #4f9890;
+  color: #fff;
+  border: 1px solid #4f9890;
+}

@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="STAT1141" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21b199b3-0806-4eae-923f-0222b218b81a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://192.168.0.52:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/suwon/fune/FUNE1141"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/suwon/fune/FUNE1141_files/main_jrxml"/>
+	<subDataset name="list01" uuid="c210fee2-4d7e-43ea-b079-c34ab3ce9d51">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="FROM" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{FROM}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="TO" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{TO}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="addrPart" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{addrPart}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+DATE_FORMAT(f.balin_date,'%Y-%m-%d') AS BALIN_DATE
+,td.dead_name AS DEAD_NAME
+,b.binso_name AS BINSO_NAME
+,bm.name AS DEAD_SEX
+,td.dead_age AS DEAD_AGE
+,CONCAT(td.dead_addr1, td.dead_addr2) AS DEAD_ADDR
+,f.jangji AS JANGJI
+,IF(bs.type_code = 1, '추가', '최초') AS addGb
+-- *
+FROM funeral f
+JOIN thedead td
+ON f.dead_id = td.dead_id
+JOIN basic_m bm
+ON td.dead_sex = bm.code
+AND bm.BASIC_CD = 'TCM05'
+JOIN binso_assign bs
+ON f.customer_no = bs.customer_no
+AND bs.BINSO_CODE NOT LIKE '9%'
+JOIN binso b
+ON bs.binso_code = b.binso_code
+WHERE 1=1
+AND LEFT(f.balin_date,10) BETWEEN $P{FROM} AND $P{TO}
+AND CASE WHEN $P{addrPart} = '0' THEN td.dead_addr1 LIKE '경기도 수원시 %' -- 수원 addr_code 1076
+	 WHEN $P{addrPart} = '1' THEN td.dead_addr1 LIKE '경기도 화성시 %' -- 화성 1100
+	 WHEN $P{addrPart} = '2' THEN td.dead_addr1 LIKE '경기도 용인시 %' -- 용인 1093
+	 WHEN $P{addrPart} = '3' THEN LEFT(td.dead_addr1,3) = '경기도' AND td.dead_addr1 NOT LIKE '경기도 용인시 %' AND td.dead_addr1 NOT LIKE '경기도 수원시 %' AND td.dead_addr1 NOT LIKE '경기도 화성시 %' -- 경기도
+	 WHEN $P{addrPart} = '4' THEN LEFT(td.dead_addr1,3) <> '경기도' -- 그외
+    ELSE 1=1 END
+ORDER BY f.balin_date]]>
+		</queryString>
+		<field name="BALIN_DATE" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="BALIN_DATE"/>
+		</field>
+		<field name="DEAD_NAME" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="DEAD_NAME"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="thedead"/>
+		</field>
+		<field name="BINSO_NAME" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="BINSO_NAME"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="binso"/>
+		</field>
+		<field name="DEAD_SEX" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="DEAD_SEX"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="basic_m"/>
+		</field>
+		<field name="DEAD_AGE" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="DEAD_AGE"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="thedead"/>
+		</field>
+		<field name="DEAD_ADDR" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="DEAD_ADDR"/>
+		</field>
+		<field name="JANGJI" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="JANGJI"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="funeral"/>
+		</field>
+		<field name="addGb" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="addGb"/>
+		</field>
+		<variable name="listCnt" class="java.lang.Integer">
+			<variableExpression><![CDATA[$V{COLUMN_COUNT}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="sumlist" uuid="405e4ee2-5bd5-41f9-a18b-7b324a98cc1d">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="FROM02" class="java.lang.String"/>
+		<parameter name="TO02" class="java.lang.String"/>
+		<parameter name="addrPart02" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT
+SUM(IF(b.binso_type = '1','1','0')) AS spCnt -- 특실
+,SUM(IF(b.binso_type = '2','1','0')) AS semiSpCnt -- 준특실
+,SUM(IF(b.binso_type = '3','1','0')) AS nomalCnt -- 일반실
+,SUM(IF(b.binso_type = '8','1','0')) AS noBinsoCnt -- 무빈소
+,SUM(IF(b.binso_type = '1' AND bs.type_code = '1','1','0')) AS addSpCnt -- 특실추가빈소
+,SUM(IF(b.binso_type = '2' AND bs.type_code = '1','1','0')) AS addSemiSpCnt -- 준특실추가빈소
+,SUM(IF(b.binso_type = '3' AND bs.type_code = '1','1','0')) AS addNomalCnt -- 준특실추가빈소
+-- *
+FROM funeral f
+JOIN thedead td
+ON f.dead_id = td.dead_id
+JOIN basic_m bm
+ON td.dead_sex = bm.code
+AND bm.BASIC_CD = 'TCM05'
+JOIN binso_assign bs
+ON f.customer_no = bs.customer_no
+AND bs.BINSO_CODE NOT LIKE '9%'
+JOIN binso b
+ON bs.binso_code = b.binso_code
+WHERE 1=1
+AND LEFT(f.balin_date,10) BETWEEN $P{FROM02} AND $P{TO02}
+AND CASE WHEN $P{addrPart02} = '0' THEN td.dead_addr1 LIKE '경기도 수원시 %' -- 수원 addr_code 1076
+	 WHEN $P{addrPart02} = '1' THEN td.dead_addr1 LIKE '경기도 화성시 %' -- 화성 1100
+	 WHEN $P{addrPart02} = '2' THEN td.dead_addr1 LIKE '경기도 용인시 %' -- 용인 1093
+	 WHEN $P{addrPart02} = '3' THEN LEFT(td.dead_addr1,3) = '경기도' AND td.dead_addr1 NOT LIKE '경기도 용인시 %' AND td.dead_addr1 NOT LIKE '경기도 수원시 %' AND td.dead_addr1 NOT LIKE '경기도 화성시 %' -- 경기도
+	 WHEN $P{addrPart02} = '4' THEN LEFT(td.dead_addr1,3) <> '경기도' -- 그외
+    ELSE 1=1 END
+ORDER BY f.balin_date]]>
+		</queryString>
+		<field name="spCnt" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="spCnt"/>
+		</field>
+		<field name="semiSpCnt" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="semiSpCnt"/>
+		</field>
+		<field name="nomalCnt" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="nomalCnt"/>
+		</field>
+		<field name="noBinsoCnt" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="noBinsoCnt"/>
+		</field>
+		<field name="addSpCnt" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="addSpCnt"/>
+		</field>
+		<field name="addSemiSpCnt" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="addSemiSpCnt"/>
+		</field>
+		<field name="addNomalCnt" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="addNomalCnt"/>
+		</field>
+		<variable name="sumAllCnt" class="java.lang.Long">
+			<variableExpression><![CDATA[$F{spCnt}+$F{semiSpCnt}+$F{nomalCnt}+$F{noBinsoCnt}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="FROM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{FROM}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{TO}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="addrPart" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{addrPart}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="printName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{printName}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DOC_NAME1
+, LINE1
+, LINE2
+, REP_NAME
+, FIELD1
+,(SELECT USER_NM FROM USER_M WHERE USER_CD = $P{printName}) AS printUser
+FROM DOCFORM,FACILITYINFO
+WHERE DOC_CODE = 'FUNE1141']]>
+	</queryString>
+	<field name="DOC_NAME1" class="java.lang.String"/>
+	<field name="LINE1" class="java.lang.String"/>
+	<field name="LINE2" class="java.lang.String"/>
+	<field name="REP_NAME" class="java.lang.String"/>
+	<field name="FIELD1" class="java.lang.String"/>
+	<field name="printUser" class="java.lang.String"/>
+	<variable name="cnt" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="802" height="60" uuid="743efd82-3edf-44d5-a114-279851c693a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="25"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOC_NAME1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd" isBlankWhenNull="true">
+				<reportElement x="0" y="60" width="680" height="20" uuid="fa5c33e4-fab6-45df-873a-0b54f46018d1"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["기간 : "+$P{FROM}+" ~ "+$P{TO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<textField pattern="yyyy-MM-dd" isBlankWhenNull="true">
+				<reportElement x="680" y="0" width="122" height="20" uuid="9df65d3f-03a1-43ed-942b-cc90e1b21f02"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["페이지 : "+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="30" height="20" backcolor="#C7C7C7" uuid="927d72cf-76b0-42e7-9470-ff4bfe93afe9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[순번]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="30" y="0" width="70" height="20" backcolor="#C7C7C7" uuid="f63772fc-809e-4077-b46b-78962b33e888"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[발인일자]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="100" y="0" width="50" height="20" backcolor="#C7C7C7" uuid="18e8c644-cbb8-4b2b-bd9a-11f03c0ed04f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[고인명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="150" y="0" width="50" height="20" backcolor="#C7C7C7" uuid="23c58023-fe6d-467a-b3e6-f9e6ee79fe97"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[빈소명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="200" y="0" width="50" height="20" backcolor="#C7C7C7" uuid="93e4f2ab-9c1c-44b1-9116-7eb0657a4ed2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[성별]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="250" y="0" width="30" height="20" backcolor="#C7C7C7" uuid="62eddb80-3b4f-4474-801a-ee60f6244db5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[나이]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="0" width="378" height="20" backcolor="#C7C7C7" uuid="0ff59219-2c89-4d39-ada4-60d637e7b14e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[고인주소]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="658" y="0" width="92" height="20" backcolor="#C7C7C7" uuid="48b62d31-dc00-4285-91de-b0f674c2719e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[장례구분]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="750" y="0" width="52" height="20" backcolor="#C7C7C7" uuid="d3fa36f0-377b-461e-95e1-bde34ee6aa6f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11"/>
+				</textElement>
+				<text><![CDATA[추가빈소]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="802" height="20" uuid="0be3338c-3185-4ea8-b6d4-fc6f7fe6cd9e"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="list01" uuid="9628b9bc-e221-4583-aa43-af28e1e455fc">
+						<datasetParameter name="FROM">
+							<datasetParameterExpression><![CDATA[$P{FROM}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="TO">
+							<datasetParameterExpression><![CDATA[$P{TO}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="addrPart">
+							<datasetParameterExpression><![CDATA[$P{addrPart}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						<returnValue fromVariable="listCnt" toVariable="cnt"/>
+					</datasetRun>
+					<jr:listContents height="20" width="802">
+						<textField pattern="yyyy-MM-dd" isBlankWhenNull="true">
+							<reportElement x="30" y="0" width="70" height="20" uuid="2473def7-a107-4be0-b4cb-0ceee42776a3">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{BALIN_DATE}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement x="0" y="0" width="30" height="20" uuid="818be57d-468e-4555-82b4-3104dec91054">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement x="200" y="0" width="50" height="20" uuid="771395a8-d111-4218-9709-99fca7921bb1">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{DEAD_SEX}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement x="250" y="0" width="30" height="20" uuid="2e64e3ef-56b0-4952-91ab-b93da992ad1d"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{DEAD_AGE}]]></textFieldExpression>
+						</textField>
+						<textField pattern="yyyy-MM-dd" isBlankWhenNull="true">
+							<reportElement x="150" y="0" width="50" height="20" uuid="4be8094b-c2ff-4afe-9ea2-4aedaa580fec"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{BINSO_NAME}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement x="100" y="0" width="50" height="20" uuid="e24d6f2f-72ed-4581-8ba1-aaa1bb27a492"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{DEAD_NAME}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0.##" isBlankWhenNull="true">
+							<reportElement x="280" y="0" width="378" height="20" uuid="5d1fde0b-df9c-4d97-9e17-74c9f25b96e8"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+								<paragraph leftIndent="3" rightIndent="0"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{DEAD_ADDR}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement x="658" y="0" width="92" height="20" uuid="5cdf2e85-eb60-4736-a287-f7bebccf2bd9">
+								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+								<paragraph leftIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{JANGJI}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement x="750" y="0" width="52" height="20" uuid="ea0b74d6-8817-4a33-8ab2-296d68ddda45">
+								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+								<paragraph leftIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{addGb}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20">
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="0" width="801" height="20" uuid="d6109552-4322-4f71-8193-ea04232581ee">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FIELD1}+" "+ DATEFORMAT( new Date(),"yyyy/MM/dd HH:mm:ss")+" 출력자 : "+$F{printUser}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="25" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="5" width="802" height="20" uuid="3cc28c5e-7be8-43e5-a3c3-359cfec0c97f"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="sumlist" uuid="b1b79685-0af9-4da9-8b9b-8ea4ff66fc30">
+						<datasetParameter name="FROM02">
+							<datasetParameterExpression><![CDATA[$P{FROM}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="TO02">
+							<datasetParameterExpression><![CDATA[$P{TO}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="addrPart02">
+							<datasetParameterExpression><![CDATA[$P{addrPart}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="802">
+						<staticText>
+							<reportElement mode="Opaque" x="0" y="0" width="30" height="20" backcolor="#D9D9D9" uuid="a39a68d3-c4ac-452b-9b47-b5d965d821ed">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[총건수]]></text>
+						</staticText>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement mode="Opaque" x="30" y="0" width="50" height="20" backcolor="#D9D9D9" uuid="fffd981c-94d3-4111-a62a-88e240d8b996"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAllCnt}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement mode="Opaque" x="80" y="0" width="30" height="20" backcolor="#D9D9D9" uuid="8cf1013d-c83f-4931-9108-2047a23bbd9d">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[특실]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="160" y="0" width="30" height="20" backcolor="#D9D9D9" uuid="63ca52de-7f64-4214-9ec9-7975fad02d28">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[준특실]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="240" y="0" width="30" height="20" backcolor="#D9D9D9" uuid="ef5c73ae-0980-4cc3-a029-0cabfc824bb6">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[일반실]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="400" y="0" width="70" height="20" backcolor="#D9D9D9" uuid="2698f745-a8fa-4595-b54f-0c0027947163">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[추가빈소(특실)]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="527" y="0" width="80" height="20" backcolor="#D9D9D9" uuid="e0764181-00ab-4c92-902e-b3677662832c">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[추가빈소(준특실)]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="664" y="0" width="80" height="20" backcolor="#D9D9D9" uuid="22d48e6a-73e6-41ac-94c9-e9a375fbe432">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[추가빈소(일반실)]]></text>
+						</staticText>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement mode="Opaque" x="110" y="0" width="50" height="20" backcolor="#D9D9D9" uuid="65e60bec-5317-4dea-81e7-1778ec03fb47"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{spCnt}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement mode="Opaque" x="190" y="0" width="50" height="20" backcolor="#D9D9D9" uuid="a8ff42a3-3f6b-4464-bb36-8df47b58c4b7"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{semiSpCnt}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement mode="Opaque" x="270" y="0" width="50" height="20" backcolor="#D9D9D9" uuid="17dbb532-5541-420e-816e-29a3510ef525"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{nomalCnt}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement mode="Opaque" x="350" y="0" width="50" height="20" backcolor="#D9D9D9" uuid="42a6cf7f-5f6e-4a23-ad30-e14b384acda3"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{noBinsoCnt}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement mode="Opaque" x="320" y="0" width="30" height="20" backcolor="#D9D9D9" uuid="d248e316-b423-4ec6-9ca8-c8853e776e55">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[무빈소]]></text>
+						</staticText>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement mode="Opaque" x="470" y="0" width="57" height="20" backcolor="#D9D9D9" uuid="e448bdb6-b79c-4f91-b4a2-a7f79b682cf2"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{addSpCnt}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement mode="Opaque" x="607" y="0" width="57" height="20" backcolor="#D9D9D9" uuid="96049f47-2d5f-4e27-bc4f-c64d781ffa16"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{addSemiSpCnt}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement mode="Opaque" x="744" y="0" width="58" height="20" backcolor="#D9D9D9" uuid="d0cefb2f-8a53-4c8c-95dc-7c5412c67bea"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{addNomalCnt}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

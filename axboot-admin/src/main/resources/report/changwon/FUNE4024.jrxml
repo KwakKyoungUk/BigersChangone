@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FUNE4024" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="484b7c49-bfbc-4a3e-b83c-c820b7dbfe47">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://112.1.168.150:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/changwon/fune/FUNE4024"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="339"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="652"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/changwon/fune/FUNE4024_files/main_jrxml"/>
+	<subDataset name="Dataset1" uuid="5922bd10-327f-4f37-a835-210a131635cb">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<queryString>
+			<![CDATA[select DOC_NAME1
+from docform where doc_code = 'FUNE4024']]>
+		</queryString>
+		<field name="DOC_NAME1" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="DOC_NAME1"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+		</field>
+	</subDataset>
+	<subDataset name="Dataset2" uuid="6d45c258-99d0-41ba-95e5-5ba7eb93bff9">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<queryString language="SQL">
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="Dataset3" uuid="eb6c72b1-de46-4d78-8f13-212d6f1924ae">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<parameter name="partCode" class="java.lang.String"/>
+		<parameter name="itemCode" class="java.lang.String"/>
+		<parameter name="recipeCode" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT REMARK
+, ITEM_NAME
+, QTY
+, NEED
+, PRICE
+, ROUND(QTY/1000*PRICE,0) AS AMOUNT
+, SORT_NO
+FROM 
+(
+SELECT 
+         B.REMARK         
+       , C.ITEM_NAME
+       , B.QTY
+       , B.QTY * A.MENU_PLAN_QTY / 1000 AS NEED
+       , B.SORT_NO
+       ,(SELECT PRICE 
+            FROM ITEM_PRICE T
+          WHERE T.PART_CODE = C.PART_CODE
+              AND T.ITEM_CODE = C.ITEM_CODE
+           ORDER BY T.ST_DATE DESC
+            LIMIT 1 
+         ) AS PRICE          
+  FROM RECIPE A,
+  RECIPE_ITEM B, 
+  ITEM C
+ WHERE    A.PART_CODE = B.PART_CODE
+       AND A.ITEM_CODE = B.ITEM_CODE
+       AND A.RECIPE_CODE = B.RECIPE_CODE
+       AND B.PART_CODE = C.PART_CODE
+       AND B.MATE_CODE = C.ITEM_CODE
+       AND A.PART_CODE =  $P{partCode} 
+       AND A.ITEM_CODE =  $P{itemCode} 
+       AND A.RECIPE_CODE =  $P{recipeCode} 
+       
+) Y
+ORDER BY SORT_NO]]>
+		</queryString>
+		<field name="REMARK" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="REMARK"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="recipe_item"/>
+		</field>
+		<field name="ITEM_NAME" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="ITEM_NAME"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="item"/>
+		</field>
+		<field name="QTY" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.label" value="QTY"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="recipe_item"/>
+		</field>
+		<field name="NEED" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.label" value="NEED"/>
+		</field>
+		<field name="PRICE" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.label" value="PRICE"/>
+		</field>
+		<field name="AMOUNT" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.label" value="AMOUNT"/>
+		</field>
+		<variable name="v_amount_sum" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{AMOUNT}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="partCode" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{partCode}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="itemCode" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{itemCode}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="recipeCode" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{recipeCode}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="printName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{printName}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select CASE DAYOFWEEK(LEFT(RECIPE_CODE,8))
+                  WHEN '1' THEN '일요일'
+                  WHEN '2' THEN '월요일'                  
+                  WHEN '3' THEN '화요일'
+                  WHEN '4' THEN '수요일'                  
+                  WHEN '5' THEN '목요일'                  
+                  WHEN '6' THEN '금요일'
+                  WHEN '7' THEN '토요일' END AS WEEK_DAY
+            ,STR_TO_DATE(LEFT(RECIPE_CODE,8), '%Y%m%d')  AS KEEP_DAY
+			,STR_TO_DATE(REPLACE(DATE_ADD(LEFT(RECIPE_CODE,8), INTERVAL 6 DAY),'-',''), '%Y%m%d') AS DESTORY_DAY
+            ,fnc_get_basic_cd_name('091', RIGHT(RECIPE_CODE,2)) AS GUBUN
+            ,A.MENU_MAKE_QTY
+            ,A.MENU_PLAN_QTY
+         From recipe A
+        where   1=1
+        AND A.PART_CODE= $P{partCode} 
+        AND     A.ITEM_CODE= $P{itemCode} 
+        AND A.RECIPE_CODE= $P{recipeCode}]]>
+	</queryString>
+	<field name="WEEK_DAY" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="WEEK_DAY"/>
+	</field>
+	<field name="KEEP_DAY" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="KEEP_DAY"/>
+	</field>
+	<field name="DESTORY_DAY" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="DESTORY_DAY"/>
+	</field>
+	<field name="GUBUN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="GUBUN"/>
+	</field>
+	<field name="MENU_MAKE_QTY" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="MENU_MAKE_QTY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="recipe"/>
+	</field>
+	<field name="MENU_PLAN_QTY" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="MENU_PLAN_QTY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="recipe"/>
+	</field>
+	<variable name="v_am_sum" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="54">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<componentElement>
+				<reportElement stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="0" y="-2" width="554" height="42" uuid="1fd77ce0-79d9-469c-837e-d65c0b165a65"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset1" uuid="1f1a2fe9-fa6b-403c-8c72-686c946b5518">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="42" width="554">
+						<textField>
+							<reportElement x="0" y="0" width="554" height="42" uuid="291eb0f9-db7d-412c-b4bd-2f1aec72274b"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="29"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{DOC_NAME1}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="100" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement mode="Opaque" x="120" y="70" width="150" height="30" backcolor="#DEDEDE" uuid="b3d8ce9d-b316-488c-8386-d1f7f5d6c1d2"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<text><![CDATA[식품명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="15" uuid="5d0ea8cb-ea8e-4e76-b058-3b00d4d1373a">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[보존일 : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="70" width="120" height="30" backcolor="#DEDEDE" uuid="b6348b42-0c40-4c26-af7b-fbd1ff26577a"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<text><![CDATA[요리명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="270" y="70" width="100" height="15" backcolor="#DEDEDE" uuid="b0498f91-c604-42f8-a0cb-af6c206e553c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="9"/>
+				</textElement>
+				<text><![CDATA[중식]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="371" y="70" width="91" height="30" backcolor="#DEDEDE" uuid="8f839cb7-489d-45f6-82d5-15f38fd74dc2">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<text><![CDATA[단가(원)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="462" y="70" width="92" height="30" backcolor="#DEDEDE" uuid="76b1608f-dbc3-44e1-8846-a5fae60d38b0">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<text><![CDATA[금액]]></text>
+			</staticText>
+			<textField pattern="yyyy년MM월dd일" isBlankWhenNull="true">
+				<reportElement x="50" y="0" width="100" height="15" uuid="fd4a054e-92cb-4418-a56d-32aacf8623d9">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KEEP_DAY}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="150" y="0" width="50" height="15" uuid="a991da72-3d53-4556-bad3-dd43fc3ddd05">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{WEEK_DAY}.length()>0) ? ("(" + $F{WEEK_DAY} + ")"):("")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="370" y="0" width="50" height="15" uuid="c04389ac-c823-45a1-8dc9-3efb005973ea"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[폐기일 :]]></text>
+			</staticText>
+			<textField pattern="yyyy년MM월dd일" isBlankWhenNull="true">
+				<reportElement x="420" y="0" width="129" height="15" uuid="6a5db836-9b61-4f0b-9f63-cc517201cbc4">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESTORY_DAY}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="50" height="15" uuid="3f0a9181-b40f-4f75-94b0-7722a879ac41"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[식구분 : ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="50" y="15" width="70" height="15" uuid="a751c149-f6be-42be-8406-971dce8fc902"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GUBUN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="440" y="15" width="109" height="15" uuid="3f8a1406-9271-4a82-bf1c-1fec0189e42e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[창원시설공단]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="50" height="15" uuid="5d922a89-4bda-4282-b2ee-e30bc5917c8a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[영양사 : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="45" width="50" height="15" uuid="fdb5cf7e-6ce2-46e3-8ad0-25efa269c484"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[중식수 : ]]></text>
+			</staticText>
+			<textField pattern="#,##0.###" isBlankWhenNull="true">
+				<reportElement x="50" y="45" width="70" height="15" uuid="da7ceafe-7990-44b3-8648-8690f6af0aad">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MENU_PLAN_QTY}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="270" y="85" width="50" height="15" backcolor="#DEDEDE" uuid="f22a3924-4fc9-487b-b450-cb41fda4521e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<text><![CDATA[사용량(g)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="321" y="85" width="50" height="15" backcolor="#DEDEDE" uuid="7b53a1c7-e0e2-4e80-9e55-8c766dec6d69"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<text><![CDATA[필요량(kg)]]></text>
+			</staticText>
+			<textField pattern="#,##0.0" isBlankWhenNull="true">
+				<reportElement x="50" y="30" width="70" height="15" uuid="879a4ae1-8560-4269-b307-8d0a25c502f3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA["식당"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="554" height="15" uuid="5bff53c7-584d-4da7-aeb1-bdebfd0879e3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset3" uuid="befd5200-a3bc-403f-85ae-616a16b5783c">
+						<datasetParameter name="partCode">
+							<datasetParameterExpression><![CDATA[$P{partCode}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="itemCode">
+							<datasetParameterExpression><![CDATA[$P{itemCode}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="recipeCode">
+							<datasetParameterExpression><![CDATA[$P{recipeCode}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						<returnValue fromVariable="v_amount_sum" toVariable="v_am_sum" calculation="Sum"/>
+					</datasetRun>
+					<jr:listContents height="15" width="554">
+						<textField>
+							<reportElement x="0" y="0" width="120" height="15" uuid="e172b63c-4640-44d7-8e47-69c1eff362d9">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{REMARK}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="120" y="0" width="150" height="15" uuid="a838d982-3450-4aea-9905-4bc08a2f1f05">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{ITEM_NAME}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0.0" isBlankWhenNull="true">
+							<reportElement x="270" y="0" width="50" height="15" uuid="d39f7ac2-a386-4ce0-87e6-0b0a1a136ef3">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{QTY}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0.0" isBlankWhenNull="true">
+							<reportElement x="321" y="0" width="50" height="15" uuid="5f35cc91-ac73-4bad-bc6b-c0f027404dc0">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{NEED}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0" isBlankWhenNull="true">
+							<reportElement x="371" y="0" width="91" height="15" uuid="2f3de239-826a-4444-9566-3253cc080fcc">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{PRICE}]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement x="462" y="0" width="92" height="15" uuid="78d792f0-67ef-4e43-b823-bfe365c1f369">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{AMOUNT}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<summary>
+		<band height="15" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="0" y="0" width="270" height="15" backcolor="#FFFFFF" uuid="ba2be8d1-9f81-4d55-afd8-1122cfeebd46"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA["[ 합 계 ]"]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="270" y="0" width="192" height="15" backcolor="#FFFFFF" uuid="3a49210e-1be6-4b11-8906-a84afa2135cb">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_am_sum}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="462" y="0" width="92" height="15" backcolor="#FFFFFF" uuid="6ee46403-ae18-40f3-9592-c67a54b6faa0">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_am_sum}*100/5000+"%"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

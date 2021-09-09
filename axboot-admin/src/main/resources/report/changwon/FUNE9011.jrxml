@@ -1,0 +1,1372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FUNE9011" pageWidth="1162" pageHeight="595" orientation="Landscape" columnWidth="1122" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c3e4a5ab-81af-4240-a3ce-6158395246a2">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jupiter"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://105.1.72.37:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/suwon/fune/FUNE9011_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/suwon/fune/FUNE9011"/>
+	<parameter name="FROM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{FROM}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{TO}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT SANGJO_NAME
+, COUNT(CASE WHEN USED_SANGJO_CNT_01 > 0 THEN 1 END) AS USED_SANGJO_CNT_01
+, COUNT(CASE WHEN UNUSED_SANGJO_CNT_01 > 0 THEN 1 END) AS UNUSED_SANGJO_CNT_01
+, COUNT(CASE WHEN USED_SANGJO_CNT_02 > 0 THEN 1 END) AS USED_SANGJO_CNT_02
+, COUNT(CASE WHEN UNUSED_SANGJO_CNT_02 > 0 THEN 1 END) AS UNUSED_SANGJO_CNT_02
+, COUNT(CASE WHEN USED_SANGJO_CNT_03 > 0 THEN 1 END) AS USED_SANGJO_CNT_03
+, COUNT(CASE WHEN UNUSED_SANGJO_CNT_03 > 0 THEN 1 END) AS UNUSED_SANGJO_CNT_03
+, COUNT(CASE WHEN USED_SANGJO_CNT_04 > 0 THEN 1 END) AS USED_SANGJO_CNT_04
+, COUNT(CASE WHEN UNUSED_SANGJO_CNT_04 > 0 THEN 1 END) AS UNUSED_SANGJO_CNT_04
+, COUNT(CASE WHEN USED_SANGJO_CNT_05 > 0 THEN 1 END) AS USED_SANGJO_CNT_05
+, COUNT(CASE WHEN UNUSED_SANGJO_CNT_05 > 0 THEN 1 END) AS UNUSED_SANGJO_CNT_05
+, COUNT(CASE WHEN USED_SANGJO_CNT_06 > 0 THEN 1 END) AS USED_SANGJO_CNT_06
+, COUNT(CASE WHEN UNUSED_SANGJO_CNT_06 > 0 THEN 1 END) AS UNUSED_SANGJO_CNT_06
+, COUNT(CASE WHEN USED_SANGJO_CNT_07 > 0 THEN 1 END) AS USED_SANGJO_CNT_07
+, COUNT(CASE WHEN UNUSED_SANGJO_CNT_07 > 0 THEN 1 END) AS UNUSED_SANGJO_CNT_07
+, COUNT(CASE WHEN USED_SANGJO_CNT_08 > 0 THEN 1 END) AS USED_SANGJO_CNT_08
+, COUNT(CASE WHEN UNUSED_SANGJO_CNT_08 > 0 THEN 1 END) AS UNUSED_SANGJO_CNT_08
+, COUNT(CASE WHEN USED_SANGJO_CNT_09 > 0 THEN 1 END) AS USED_SANGJO_CNT_09
+, COUNT(CASE WHEN UNUSED_SANGJO_CNT_09 > 0 THEN 1 END) AS UNUSED_SANGJO_CNT_09
+, COUNT(CASE WHEN USED_SANGJO_CNT_10 > 0 THEN 1 END) AS USED_SANGJO_CNT_10
+, COUNT(CASE WHEN UNUSED_SANGJO_CNT_10 > 0 THEN 1 END) AS UNUSED_SANGJO_CNT_10
+, COUNT(CASE WHEN USED_SANGJO_CNT_11 > 0 THEN 1 END) AS USED_SANGJO_CNT_11
+, COUNT(CASE WHEN UNUSED_SANGJO_CNT_11 > 0 THEN 1 END) AS UNUSED_SANGJO_CNT_11
+, COUNT(CASE WHEN USED_SANGJO_CNT_12 > 0 THEN 1 END) AS USED_SANGJO_CNT_12
+, COUNT(CASE WHEN UNUSED_SANGJO_CNT_12 > 0 THEN 1 END) AS UNUSED_SANGJO_CNT_12
+, (SELECT DOC_NAME1 FROM DOCFORM WHERE DOC_CODE = 'FUNE9011') AS DOC_NAME1
+FROM(
+	SELECT LEFT(BALIN_DATE, 7) AS BALIN_DATE 
+	, USED_SANGJO_GUBUN.NAME AS USED_SANGJO_GUBUN
+	, SANGJO_GUBUN.NAME AS SANGJO_NAME
+	, IF(USED_SANGJO = '1' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-01'), 1, 0) AS USED_SANGJO_CNT_01
+	, IF(USED_SANGJO = '0' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-01'), 1, 0) AS UNUSED_SANGJO_CNT_01
+	, IF(USED_SANGJO = '1' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-02'), 1, 0) AS USED_SANGJO_CNT_02
+	, IF(USED_SANGJO = '0' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-02'), 1, 0) AS UNUSED_SANGJO_CNT_02
+	, IF(USED_SANGJO = '1' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-03'), 1, 0) AS USED_SANGJO_CNT_03
+	, IF(USED_SANGJO = '0' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-03'), 1, 0) AS UNUSED_SANGJO_CNT_03
+	, IF(USED_SANGJO = '1' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-04'), 1, 0) AS USED_SANGJO_CNT_04
+	, IF(USED_SANGJO = '0' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-04'), 1, 0) AS UNUSED_SANGJO_CNT_04
+	, IF(USED_SANGJO = '1' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-05'), 1, 0) AS USED_SANGJO_CNT_05
+	, IF(USED_SANGJO = '0' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-05'), 1, 0) AS UNUSED_SANGJO_CNT_05
+	, IF(USED_SANGJO = '1' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-06'), 1, 0) AS USED_SANGJO_CNT_06
+	, IF(USED_SANGJO = '0' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-06'), 1, 0) AS UNUSED_SANGJO_CNT_06
+	, IF(USED_SANGJO = '1' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-07'), 1, 0) AS USED_SANGJO_CNT_07
+	, IF(USED_SANGJO = '0' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-07'), 1, 0) AS UNUSED_SANGJO_CNT_07
+	, IF(USED_SANGJO = '1' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-08'), 1, 0) AS USED_SANGJO_CNT_08
+	, IF(USED_SANGJO = '0' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-08'), 1, 0) AS UNUSED_SANGJO_CNT_08
+	, IF(USED_SANGJO = '1' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-09'), 1, 0) AS USED_SANGJO_CNT_09
+	, IF(USED_SANGJO = '0' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-09'), 1, 0) AS UNUSED_SANGJO_CNT_09
+	, IF(USED_SANGJO = '1' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-10'), 1, 0) AS USED_SANGJO_CNT_10
+	, IF(USED_SANGJO = '0' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-10'), 1, 0) AS UNUSED_SANGJO_CNT_10
+	, IF(USED_SANGJO = '1' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-11'), 1, 0) AS USED_SANGJO_CNT_11
+	, IF(USED_SANGJO = '0' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-11'), 1, 0) AS UNUSED_SANGJO_CNT_11
+	, IF(USED_SANGJO = '1' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-12'), 1, 0) AS USED_SANGJO_CNT_12
+	, IF(USED_SANGJO = '0' AND LEFT(BALIN_DATE, 7) = CONCAT(LEFT($P{FROM},4),'-12'), 1, 0) AS UNUSED_SANGJO_CNT_12
+	, USED_SANGJO
+	, SANGJO
+	FROM FUNERAL FUNE
+	LEFT JOIN BASIC_M USED_SANGJO_GUBUN
+	ON USED_SANGJO_GUBUN.BASIC_CD = '503'
+	AND USED_SANGJO_GUBUN.CODE = FUNE.USED_SANGJO
+	LEFT JOIN BASIC_M SANGJO_GUBUN
+	ON SANGJO_GUBUN.BASIC_CD = '115'
+	AND SANGJO_GUBUN.CODE = FUNE.SANGJO
+	WHERE USED_SANGJO <> 002
+	AND LEFT(BALIN_DATE, 7) BETWEEN $P{FROM} AND $P{TO} 
+)A
+GROUP BY SANGJO
+ORDER BY BALIN_DATE, USED_SANGJO_GUBUN, SANGJO]]>
+	</queryString>
+	<field name="SANGJO_NAME" class="java.lang.String"/>
+	<field name="USED_SANGJO_CNT_01" class="java.lang.Long"/>
+	<field name="UNUSED_SANGJO_CNT_01" class="java.lang.Long"/>
+	<field name="USED_SANGJO_CNT_02" class="java.lang.Long"/>
+	<field name="UNUSED_SANGJO_CNT_02" class="java.lang.Long"/>
+	<field name="USED_SANGJO_CNT_03" class="java.lang.Long"/>
+	<field name="UNUSED_SANGJO_CNT_03" class="java.lang.Long"/>
+	<field name="USED_SANGJO_CNT_04" class="java.lang.Long"/>
+	<field name="UNUSED_SANGJO_CNT_04" class="java.lang.Long"/>
+	<field name="USED_SANGJO_CNT_05" class="java.lang.Long"/>
+	<field name="UNUSED_SANGJO_CNT_05" class="java.lang.Long"/>
+	<field name="USED_SANGJO_CNT_06" class="java.lang.Long"/>
+	<field name="UNUSED_SANGJO_CNT_06" class="java.lang.Long"/>
+	<field name="USED_SANGJO_CNT_07" class="java.lang.Long"/>
+	<field name="UNUSED_SANGJO_CNT_07" class="java.lang.Long"/>
+	<field name="USED_SANGJO_CNT_08" class="java.lang.Long"/>
+	<field name="UNUSED_SANGJO_CNT_08" class="java.lang.Long"/>
+	<field name="USED_SANGJO_CNT_09" class="java.lang.Long"/>
+	<field name="UNUSED_SANGJO_CNT_09" class="java.lang.Long"/>
+	<field name="USED_SANGJO_CNT_10" class="java.lang.Long"/>
+	<field name="UNUSED_SANGJO_CNT_10" class="java.lang.Long"/>
+	<field name="USED_SANGJO_CNT_11" class="java.lang.Long"/>
+	<field name="UNUSED_SANGJO_CNT_11" class="java.lang.Long"/>
+	<field name="USED_SANGJO_CNT_12" class="java.lang.Long"/>
+	<field name="UNUSED_SANGJO_CNT_12" class="java.lang.Long"/>
+	<field name="DOC_NAME1" class="java.lang.String"/>
+	<variable name="TOTAL_USED_HAP" class="java.math.BigDecimal" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_01}.intValue()+$F{USED_SANGJO_CNT_02}.intValue()+$F{USED_SANGJO_CNT_03}.intValue()+$F{USED_SANGJO_CNT_04}.intValue()+$F{USED_SANGJO_CNT_05}.intValue()+$F{USED_SANGJO_CNT_06}.intValue()+$F{USED_SANGJO_CNT_07}.intValue()+$F{USED_SANGJO_CNT_08}.intValue()+$F{USED_SANGJO_CNT_09}.intValue()+$F{USED_SANGJO_CNT_10}.intValue()+$F{USED_SANGJO_CNT_11}.intValue()+$F{USED_SANGJO_CNT_12}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP" class="java.math.BigDecimal" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_01}.intValue()+$F{UNUSED_SANGJO_CNT_02}.intValue()+$F{UNUSED_SANGJO_CNT_03}.intValue()+$F{UNUSED_SANGJO_CNT_04}.intValue()+$F{UNUSED_SANGJO_CNT_05}.intValue()+$F{UNUSED_SANGJO_CNT_06}.intValue()+$F{UNUSED_SANGJO_CNT_07}.intValue()+$F{UNUSED_SANGJO_CNT_08}.intValue()+$F{UNUSED_SANGJO_CNT_09}.intValue()+$F{UNUSED_SANGJO_CNT_10}.intValue()+$F{UNUSED_SANGJO_CNT_11}.intValue()+$F{UNUSED_SANGJO_CNT_12}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP_01" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_01}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP_02" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_02}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP_03" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_03}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP_04" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_04}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP_05" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_05}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP_06" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_06}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP_07" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_07}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP_08" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_08}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP_09" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_09}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP_10" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_10}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP_11" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_11}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP_12" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{USED_SANGJO_CNT_12}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP_01" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_01}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP_02" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_02}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP_03" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_03}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP_04" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_04}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP_05" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_05}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP_06" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_06}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP_07" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_07}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP_08" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_08}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP_09" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_09}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP_10" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_10}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP_11" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_11}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP_12" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNUSED_SANGJO_CNT_12}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_USED_HAP2" class="java.math.BigDecimal" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$V{TOTAL_USED_HAP_01}.intValue()+$V{TOTAL_USED_HAP_02}.intValue()+$V{TOTAL_USED_HAP_03}.intValue()+$V{TOTAL_USED_HAP_04}.intValue()+$V{TOTAL_USED_HAP_05}.intValue()+$V{TOTAL_USED_HAP_06}.intValue()+$V{TOTAL_USED_HAP_07}.intValue()+$V{TOTAL_USED_HAP_08}.intValue()+$V{TOTAL_USED_HAP_09}.intValue()+$V{TOTAL_USED_HAP_10}.intValue()+$V{TOTAL_USED_HAP_11}.intValue()+$V{TOTAL_USED_HAP_12}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_UNUSED_HAP2" class="java.math.BigDecimal" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$V{TOTAL_UNUSED_HAP_01}.intValue()+$V{TOTAL_UNUSED_HAP_02}.intValue()+$V{TOTAL_UNUSED_HAP_03}.intValue()+$V{TOTAL_UNUSED_HAP_04}.intValue()+$V{TOTAL_UNUSED_HAP_05}.intValue()+$V{TOTAL_UNUSED_HAP_06}.intValue()+$V{TOTAL_UNUSED_HAP_07}.intValue()+$V{TOTAL_UNUSED_HAP_08}.intValue()+$V{TOTAL_UNUSED_HAP_09}.intValue()+$V{TOTAL_UNUSED_HAP_10}.intValue()+$V{TOTAL_UNUSED_HAP_11}.intValue()+$V{TOTAL_UNUSED_HAP_12}.intValue()]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="55">
+			<textField>
+				<reportElement x="0" y="0" width="1120" height="55" uuid="cc26e325-e686-468c-b7bc-95d4894a00fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="25"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOC_NAME1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="80" height="40" backcolor="#CCCCCC" uuid="895dcb41-65fd-43de-a614-b56936fd91e9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[상조회명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="80" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="6dc3d0ad-5dac-4970-8f05-44dd05c65208"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[1월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="160" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="2fe78d76-0949-4918-8d4c-c6969476682b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[2월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="240" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="cd59aa5f-2d14-49e8-af72-d96e2efd239a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[3월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="320" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="54b10cb1-5202-4246-ad93-63025f57c259"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[4월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="400" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="0e480595-ea65-44d3-acd9-59aaa9354e2d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[5월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="480" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="5f7c468b-3a0a-404d-ae3d-e63db10f0b0c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[6월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="560" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="486dc1b5-7cfb-4a37-8e4e-17d05f2b76e7"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[7월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="640" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="55e089fb-ef6d-44e9-a8b5-e0d0a3223c98"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[8월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="720" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="4fc9fb9a-c29b-4b59-9ecd-3fc8bf102334"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[9월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="800" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="a0527d27-3735-435d-aa3c-6e4e55ac5249"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[10월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="880" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="b9b03414-b06b-4cfa-94c1-e873321b96f0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[11월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="960" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="4835af6e-7d75-4227-9824-e2eaca51c5c0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[12월]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1040" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="67cc7bdd-9125-4594-9c09-d00ff9d955e1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[합계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="80" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="15df55d9-c574-4697-b0af-8c694981e33a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="120" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="0439e34e-6a4d-4c6e-b068-2d23f422a68c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="160" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="9f999cfb-f08a-4346-8367-140bf9ea8a75"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="200" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="42b302e2-acce-48d4-879b-c5fade29913b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="240" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="0d1e21c7-08b4-46d4-a3d9-c3aee7c576b2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="489b796c-c162-4d32-8d0a-e5e48eff950a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="320" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="9cad6510-a589-4414-841b-9d67384582b8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="360" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="69988469-d486-40e1-a33e-eb5e096607bb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="400" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="ba7599a0-65aa-4c79-9aac-d88d73fd4f8e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="440" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="10fbcfc8-4210-4b17-8442-efc2de2c9cc6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="480" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="f76b10b9-11cd-41fb-a3f1-54ddb26bdfbc"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="520" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="da89987a-da5c-4c57-8c2b-2c3f35abfba1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="560" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="ceef7101-bb6a-49cd-8a71-97baba599744"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="600" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="e84afb60-1b38-4369-964d-d7f384a54966"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="640" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="4fd7de8f-878f-4fb5-b341-12733a1b9a38"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="680" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="05faaf5f-31bc-4879-9ee7-fb021d11322a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="720" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="59a0a89d-c5c9-4471-bf9f-09e02f9b56d6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="760" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="079d41d2-4bb0-4b23-9c9b-b2af7263a4b7"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="800" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="7e88f52b-340b-48c9-a65e-e06141adfe87"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="840" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="c52b1c65-1b64-4acc-9b6f-5f06dee2fe9d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="880" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="d9d7c28c-b36d-45b0-a2c3-c302496675ac"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="920" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="523c2c7a-2a48-4c52-8e60-d9bb71a78117"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="960" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="fd922462-ce1d-4d5c-97f5-c08aa3c546de"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1000" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="dd677fd2-9de9-4f0d-b3d2-b8db5a26b206"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1040" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="69eb9329-b8e7-47bb-916d-df4401043167"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[사용]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1080" y="20" width="40" height="20" backcolor="#CCCCCC" uuid="adf44cf2-e63c-4569-af94-8988063df505"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[미사용]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="80" height="30" uuid="a0c12355-5b9e-4745-a571-d1c6bd91ef9f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SANGJO_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="40" height="30" uuid="f729e414-e601-4350-ab84-755b386567f7"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USED_SANGJO_CNT_01}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="0" width="40" height="30" uuid="9f62edf6-c20d-4dca-8bd5-c94b26ed0d71"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNUSED_SANGJO_CNT_01}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="40" height="30" uuid="c20144d2-ccdb-4dc5-9ebe-840580c001c8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USED_SANGJO_CNT_02}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="40" height="30" uuid="2192edab-39b4-463d-ba93-1b563222a70f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNUSED_SANGJO_CNT_02}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="40" height="30" uuid="17e915ac-620e-4a62-9d65-b806deed0f22"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USED_SANGJO_CNT_03}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="40" height="30" uuid="46738653-e15b-4fa5-b535-2fd891475771"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNUSED_SANGJO_CNT_03}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="40" height="30" uuid="6ab1e3ca-d4f7-482e-b049-0fc04f00f474"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USED_SANGJO_CNT_04}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="40" height="30" uuid="4d0556da-bd4d-4189-a496-7409018ec7c3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNUSED_SANGJO_CNT_04}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="40" height="30" uuid="7f3d8bc5-0abd-435c-b5ca-56b4a75a8a41"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USED_SANGJO_CNT_05}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="0" width="40" height="30" uuid="bf0d683f-18b1-430b-b46f-2df990e02993"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNUSED_SANGJO_CNT_05}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="40" height="30" uuid="ad558791-3c16-4cb3-96d3-0aa08d839a0b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USED_SANGJO_CNT_06}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="0" width="40" height="30" uuid="ceda997a-a44a-4e7d-81ee-e1464dd4a73e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNUSED_SANGJO_CNT_06}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="560" y="0" width="40" height="30" uuid="a546ba76-f31d-4f1b-b71a-f011ea130ed7"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USED_SANGJO_CNT_07}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="0" width="40" height="30" uuid="38eaf74f-5369-481c-abad-681254af8ec4"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNUSED_SANGJO_CNT_07}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="640" y="0" width="40" height="30" uuid="ee36f7cd-166f-42c3-a8fa-f869ab985af8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USED_SANGJO_CNT_08}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="680" y="0" width="40" height="30" uuid="1cfca18e-4d45-4d9c-a17f-c16ccb74bb2f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNUSED_SANGJO_CNT_08}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="720" y="0" width="40" height="30" uuid="1f0ccdf9-813f-4c6a-8f1f-c6bea55ccb15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USED_SANGJO_CNT_09}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="760" y="0" width="40" height="30" uuid="4cd453b8-e4d1-4986-a819-9aff7e9e0f6b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNUSED_SANGJO_CNT_09}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="800" y="0" width="40" height="30" uuid="77316888-1927-4fa8-888d-b4592e5142a8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USED_SANGJO_CNT_10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="840" y="0" width="40" height="30" uuid="3af13de6-699d-46f9-bb73-ee04e4145e8f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNUSED_SANGJO_CNT_10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="880" y="0" width="40" height="30" uuid="c65f9902-899f-499c-8c4e-f4dc8a59749d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USED_SANGJO_CNT_11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="920" y="0" width="40" height="30" uuid="0096b67c-d931-45c9-a44c-fbd2595b95fc"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNUSED_SANGJO_CNT_11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="960" y="0" width="40" height="30" uuid="db3cfbd4-d8a1-4f61-9303-12fab5a92e31"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USED_SANGJO_CNT_12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1000" y="0" width="40" height="30" uuid="35fd3343-3318-47b4-bd66-6ec17a168b46"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNUSED_SANGJO_CNT_12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1040" y="0" width="40" height="30" uuid="90102889-3bbb-4dbb-83d5-76739d3018f0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1080" y="0" width="40" height="30" uuid="ed2c5f69-c84c-4959-81a2-92c123b05e3a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="30">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="80" height="30" backcolor="#FFD0CF" uuid="476c3c17-df2b-4167-9f04-4a198fd6763d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["[ 합 계 ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="80" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="a3124fc2-10b7-40c7-be79-53a83506b04c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP_01}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="120" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="ac3b0825-8cc4-4cbf-9595-0207fe5dba32"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP_01}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="160" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="c7058c09-4cac-47dc-8554-ec5c8c3917d8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP_02}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="200" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="b0ca1d4c-95a7-49e4-81ea-692946be0fb0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP_02}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="240" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="fd076ca5-8d89-4676-bcf4-4f723dcffa02"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP_03}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="280" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="7644e0e2-0432-47c0-9f99-aa6b78b90803"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP_03}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="320" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="c05f152d-0534-449a-adb0-44061777bcdf"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP_04}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="360" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="4fb69870-3edd-4a2d-987d-5628a4b59cd6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP_04}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="400" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="099b348b-7d2a-4ff5-8340-3720ca5602f0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP_05}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="440" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="142140b5-defa-4a40-add9-5593573602c4"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP_05}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="480" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="027b05cd-5ccc-40b8-af96-0064a2890da6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP_06}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="520" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="7608de25-9013-4d3f-9771-2f3b50f5a201"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP_06}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="560" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="622a22af-26d1-4f04-bb5a-42832717d32f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP_07}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="600" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="eb755e4a-b4bf-45ec-9d51-c74148b45436"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP_07}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="640" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="b9166bac-a0fa-452b-a0c6-0a0eab92c716"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP_08}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="680" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="4a34f743-96d5-4017-b3c0-f09853f9a9d0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP_08}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="720" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="771510b4-75e2-403a-9fe4-cd1b67087d89"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP_09}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="760" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="f1bce8af-0d38-4f83-bca5-ecee1ff785ae"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP_09}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="800" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="2a10cdd0-7768-4ad1-89b3-41f59c5438c8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP_10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="840" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="028d3c23-ab80-4e5e-88bf-223c428b1fdd"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP_10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="880" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="3b9502b6-f9eb-4a96-aeb0-f5d5b8a7458f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP_11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="920" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="7defecc7-1db6-48ad-93c8-29be724d1a4f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP_11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="960" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="ad7885e8-386f-44cb-b890-eedfd6c5ef4f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP_12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1000" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="e9920fb7-eb72-41da-8359-6c982475885f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP_12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1040" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="86430a18-3676-49a0-86fb-837c524d8a19"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_USED_HAP2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1080" y="0" width="40" height="30" backcolor="#FFD0CF" uuid="070ae12d-ce66-42ce-bc08-187ed15049f9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_UNUSED_HAP2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

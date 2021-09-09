@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.bigers.funeralsystem.common.domain.history.HistoryMapper">
+
+	<insert id="insertHistory">
+		INSERT INTO history
+			(id, user, ip, method, request_url, parameter, work_contents, request_time)
+		VALUES (
+			NULL
+			, #{user}
+			, #{ip}
+			, #{method}
+			, #{requestUrl}
+			, #{parameter}
+			, #{workContents}
+			, #{requestTime}
+			)
+	</insert>
+
+</mapper>

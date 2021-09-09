@@ -1,0 +1,1775 @@
+
+@font-face {
+    font-family: '나눔고딕Ex';
+    src: url('../font/NanumGoEx.eot?#iefix') format('embedded-opentype'),
+    url('../font/NanumGoEx.woff') format('woff'),
+    url('../font/NanumGoEx.ttf')  format('truetype'),
+    url('../font/NanumGoEx.svg#NanumGothicEB') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: '나눔고딕B';
+    src: url('../font/NanumGoB.eot?#iefix') format('embedded-opentype'),
+    url('../font/NanumGoB.woff') format('woff'),
+    url('../font/NanumGoB.ttf')  format('truetype'),
+    url('../font/NanumGoB.svg#NanumGothicB') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: '나눔고딕R';
+    src: url('../font/NanumGoR.eot?#iefix') format('embedded-opentype'),
+    url('../font/NanumGoR.woff') format('woff'),
+    url('../font/NanumGoR.ttf')  format('truetype'),
+    url('../font/NanumGoR.svg#NanumGothicR') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: '나눔고딕L';
+    src: url('../font/NanumGoL.eot?#iefix') format('embedded-opentype'),
+    url('../font/NanumGoL.woff') format('woff'),
+    url('../font/NanumGoL.ttf')  format('truetype'),
+    url('../font/NanumGoL.svg#NanumGothicL') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: '나눔명조';
+    src: url('../font/NanumMy.eot?#iefix') format('embedded-opentype'),
+    url('../font/NanumMy.woff') format('woff'),
+    url('../font/NanumMy.ttf')  format('truetype'),
+    url('../font/NanumMy.svg#NanumGothicL') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: '나눔명조B';
+    src: url('../font/NanumMyB.eot?#iefix') format('embedded-opentype'),
+    url('../font/NanumMyB.woff') format('woff'),
+    url('../font/NanumMyB.ttf')  format('truetype'),
+    url('../font/NanumMyB.svg#NanumGothicL') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: '나눔명조Ex';
+    src: url('../font/NanumMyEx.eot?#iefix') format('embedded-opentype'),
+    url('../font/NanumMyEx.woff') format('woff'),
+    url('../font/NanumMyEx.ttf')  format('truetype'),
+    url('../font/NanumMyEx.svg#NanumGothicL') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+html,body,div,ul,li,p,a,header{
+    margin: 0;padding: 0;
+    list-style: none;
+    font-family: "나눔고딕B";
+    letter-spacing: -1px;
+}
+
+a,a:visited,a:active{
+    text-decoration: none;
+}
+input[type="password"]{
+    outline:none;
+}
+button{
+    outline: none;
+}
+body{
+    overflow: hidden;
+}
+.bor{
+    border: solid 1px #ff0000;
+}
+.wrap{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.container{
+    width:100%;
+}
+.container-1920{
+    width:1920px;
+    height: 1080px;
+}
+.container-1280{
+    width:1280px;
+    height: 1024px;
+}
+.container-1024{
+    width:1024px;
+    height: 768px;
+
+}
+.container-1280-scale{
+    transform:scale(0.8,0.8);
+}
+.container-1024-scale{
+    transform:scale(0.7,0.7);
+}
+
+
+
+/*빈소주문시스템-메인-로그인 css 시작*/
+.header{
+    width: 100%;
+    height: 79px;
+    color: #ffffff;
+    font-size: 49px;
+    text-align: center;
+    padding-top: 24px;
+    background-image: url("../images/top_bg.png");
+    background-repeat: repeat-x;
+}
+.header-L{
+    width: 46%;
+    height: auto;
+    float: left;
+}
+.header-R{
+    width: 50%;
+    height: auto;
+    float: left;
+}
+.body{
+    transform: scale(1.0,1.0);
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: 65px;
+}
+.main-mid{
+    width: 1240px;
+    height: 865px;
+    color: #ffffff;
+    font-size: 49px;
+    text-align: center;
+    background-image: url("../images/main_mid_bg.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.mid-tit{
+    width: 100%;
+    height: 225px;
+    position: relative;
+    font-size: 60px;
+    color: #57566c;
+    font-family: "나눔고딕Ex";
+    display: flex;
+    align-items: center;
+}
+.mid-tit h3{
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+}
+.goin{
+    width: 320px;
+    height: 433px;
+    display: inline-block;
+    position: relative;
+    left: -280px;
+    margin-top: 40px;
+}
+.goin .g-img{
+    width: 320px;
+    height: 352px;
+    background-image: url("../images/goin_img_bg.png");
+    background-repeat: no-repeat;
+}
+.goin .g-img img{
+    width: 320px;
+    height: 352px;
+}
+
+.goin .g-name{
+    width: 320px;
+    height: 81px;
+    background-image: url("../images/goin_name_bg.png");
+    background-repeat: no-repeat;
+}
+.goin .g-name h5{
+    width: 320px;
+    text-align: center;
+    margin-top: 1px;
+    padding-top: 15px;
+}
+.keypad{
+    width: 422px;
+    height: 433px;
+    display: inline-table;
+    position: absolute;
+    margin-top: 40px;
+    margin-left: -150px;
+}
+.pw-input{
+    width: 100%;
+    height: 70px;
+    padding-top: 7px;
+    background-image: url("../images/pw_bg.png");
+    background-repeat: no-repeat;
+}
+.pw-input input{
+    width: 350px;
+    height: 58px;
+    border: 1px solid #ffffff;
+    margin-left: 60px;
+    font-size: 120px;
+    text-align: center;
+    letter-spacing: 20px;
+    color: #57566c;
+}
+.pw-input input[type=password]:focus{
+    background-color: #f1f1f1;
+}
+
+.pw-key a{
+    width: 132px;
+    height: 75px;
+    display: inline-table;
+    text-align: center;
+    padding-top: 5px;
+    color: #ffffff;
+    margin-left: -3px;
+    margin-top: 2px;
+    text-decoration: none;
+}
+
+.pw-key table{
+    margin-top: 15px;
+    margin-left: 3px;
+    width: 100%;
+    height: 346px;
+}
+.pw-key table td{
+    width: 33%;
+    background-image: url("../images/keypad_bg.png");
+    background-repeat: no-repeat;
+
+}
+
+.info-text{
+    position: absolute;
+    width: 1200px;
+    height: 80px;
+    margin-left: 20px;
+    margin-top: 60px;
+}
+.info-text h6{
+    color: #333333;
+    font-size: 32px;
+    display: inline;
+    padding-left: 10px;
+}
+/*빈소주문시스템-메인-로그인 css 끝*/
+
+
+/*빈소주문시스템-주문현황 css 시작*/
+.header01{
+    position: absolute;
+    top: 1px;
+    left: 670px;
+    padding-top: 25px;
+    width: 600px;
+}
+.header01 > div{
+    float: left;
+    background-color: #ffffff;
+    width: 220px;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    font-size: 28px;
+    border-right: solid 2px #333333;
+    text-align: center;
+}
+.body-gr{
+    width: 1920px;
+    height: 978px;
+    background-color: #eeeeee;
+    text-align: center;
+    position: relative;
+}
+.mid-wrap{
+    width: 1820px;
+    height: 900px;
+    text-align: center;
+    display: inline-block;
+    margin-top: 30px;
+}
+.mid-info-bar{
+    width: 1820px;
+    height: 100px;
+    border-radius: 10px;
+    background-color: #ffd156;
+}
+
+.mid-info-box{
+    width: 1718px;
+    height: 650px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: solid 1px #ffd156;
+    margin-top: 30px;
+    padding: 50px;
+}
+.mid-info-bar-count-tit{
+    width: 160px;
+    height: 50px;
+    background-image: url("../images/count_icon.png");
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    font-size: 36px;
+    color: #57566c;
+    float: left;
+    margin-top: 26px;
+    font-family: "나눔고딕Ex";
+    margin-left: 30px;
+}
+.mid-info-bar-count-view{
+    width: 200px;
+    height: 55px;
+    background-color: #f1f1f1;
+    border-left: solid 1px #333333;
+    border-top: solid 1px #333333;
+    font-size: 36px;
+    color: #57566c;
+    float: left;
+    margin-top: 22px;
+    margin-left: 10px;
+}
+.mid-info-bar p{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.mid-info-bar-sum-tit{
+    width: 200px;
+    height: 50px;
+    background-image: url("../images/sum_icon.png");
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    font-size: 36px;
+    color: #57566c;
+    float: left;
+    margin-top: 26px;
+    font-family: "나눔고딕Ex";
+    margin-left: 30px;
+}
+.mid-info-bar-sum-view{
+    width: 300px;
+    height: 55px;
+    background-color: #f1f1f1;
+    border-left: solid 1px #333333;
+    border-top: solid 1px #333333;
+    font-size: 36px;
+    color: #57566c;
+    float: left;
+    margin-top: 22px;
+    margin-left: 10px;
+    margin-right: 200px;
+}
+.mid-info-bar-sta{
+    width: 137px;
+    height: 74px;
+    float: left;
+    margin-top: 1px;
+    font-family: "나눔고딕Ex";
+    margin-right: 10px;
+}
+
+.mid-info-bar-sta .sta-count{
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    font-family: "나눔고딕Ex";
+    background-color: #ffffff;
+    padding-top: 8px;
+    border-top: solid 2px #999999;
+    border-left: solid 2px #999999;
+}
+
+.mid-info-bar-sta .sta-tit{
+    background-image: url("../images/sta_icon.png");
+    background-repeat: no-repeat;
+    background-position: left 5px top 14px;
+    width: 100%;
+    margin-top: 10px;
+    height: 27px;
+    font-size: 16px;
+    font-family: "나눔고딕Ex";
+    padding-top: 11px;
+    border-top: solid 2px #999999;
+    border-left: solid 2px #999999;
+}
+.color-01{
+    background-color: #ffea97
+}
+.color-02{
+    background-color: #c2ff80;
+}
+.color-03{
+    background-color: #99ffff;
+}
+.color-04{
+    background-color: #c0bfd3;
+}
+.order-res{
+    width: 478px;
+    height: 204px;
+    border-left: solid 8px #ff5656;
+    background-color: #eeeeee;
+    border-top: solid 1px #cccccc;
+    border-right: solid 1px #cccccc;
+    border-bottom: solid 1px #cccccc;
+}
+.order-res-tit{
+	width: 75px;
+    height: 205px;
+    font-size: 40px;
+    color: #57566c;
+    margin-top: 0px;
+    writing-mode: vertical-lr;
+    float: left;
+    padding-left: 10px;
+}
+.order-res-img{
+    width: 280px;
+    height: 175px;
+    background-image: url("../images/order_res_img.png");
+    background-repeat: no-repeat;
+    float: left;
+    margin-top: 17px;
+}
+.order-res-text{
+    font-size: 22px;
+    color: #ffffff;
+    width: 100%;
+    height: 40px;
+    background-color: #000000;
+    background: rgba(0, 0, 0, 0.5);
+    margin-top: 120px;
+    padding-top: 15px;
+}
+.order-res-btn{
+    width: 100px;
+    height: 100%;
+    background-color: #ffd156;
+    box-shadow:inset 0px 0px 5px 3px #d6ad43;
+    margin-left: 380px;
+    writing-mode: vertical-lr;
+    font-size: 36px;
+    color: #57566c;
+}
+.order-res-btn a{
+    width: 70px;
+    height: 100%;
+    display: inline-block;
+    padding-left: 28px;
+    color: #57566c;
+}
+.order-out{
+    width: 478px;
+    height: 204px;
+    border-left: solid 8px #ff5656;
+    background-color: #eeeeee;
+    border-top: solid 1px #cccccc;
+    border-right: solid 1px #cccccc;
+    border-bottom: solid 1px #cccccc;
+    margin-top: 17px;
+}
+.order-out-tit{
+	width: 75px;
+    height: 205px;
+    font-size: 40px;
+    color: #57566c;
+    margin-top: 0px;
+    writing-mode: vertical-lr;
+    float: left;
+    padding-left: 10px;
+}
+.order-out-img{
+    width: 280px;
+    height: 175px;
+    background-image: url("../images/order_out_img.png");
+    background-repeat: no-repeat;
+    float: left;
+    margin-top: 17px;
+}
+.order-out-text{
+    font-size: 22px;
+    color: #ffffff;
+    width: 100%;
+    height: 40px;
+    background-color: #000000;
+    background: rgba(0, 0, 0, 0.5);
+    margin-top: 120px;
+    padding-top: 15px;
+}
+.order-out-btn{
+    width: 100px;
+    height: 100%;
+    background-color: #ffd156;
+    box-shadow:inset 0px 0px 5px 3px #d6ad43;
+    margin-left: 380px;
+    writing-mode: vertical-lr;
+    font-size: 36px;
+    color: #57566c;
+}
+.order-out-btn a{
+    width: 70px;
+    height: 100%;
+    display: inline-block;
+    padding-left: 28px;
+    color: #57566c;
+}
+.order-snac{
+    width: 478px;
+    height: 204px;
+    border-left: solid 8px #ff5656;
+    background-color: #eeeeee;
+    border-top: solid 1px #cccccc;
+    border-right: solid 1px #cccccc;
+    border-bottom: solid 1px #cccccc;
+    margin-top: 20px;
+}
+.order-snac-tit{
+    width: 75px;
+    height: 205px;
+    font-size: 40px;
+    color: #57566c;
+    margin-top: 0px;
+    writing-mode: vertical-lr;
+    float: left;
+    padding-left: 10px;
+}
+.order-snac-img{
+    width: 280px;
+    height: 175px;
+    background-image: url("../images/order_snac_img.png");
+    background-repeat: no-repeat;
+    float: left;
+    margin-top: 17px;
+}
+.order-snac-text{
+    font-size: 22px;
+    color: #ffffff;
+    width: 100%;
+    height: 40px;
+    background-color: #000000;
+    background: rgba(0, 0, 0, 0.5);
+    margin-top: 120px;
+    padding-top: 15px;
+}
+.order-snac-btn{
+    width: 100px;
+    height: 100%;
+    background-color: #ffd156;
+    box-shadow:inset 0px 0px 5px 3px #d6ad43;
+    margin-left: 380px;
+    writing-mode: vertical-lr;
+    font-size: 36px;
+    color: #57566c;
+}
+.order-snac-btn a{
+    width: 70px;
+    height: 100%;
+    display: inline-block;
+    padding-left: 28px;
+    color: #57566c;
+}
+.order-table{
+    width: 1235px;
+    height: 650px;
+    position: relative;
+    top: -650px;
+    left: 500px;
+}
+.order-table table{
+    width: 100%;
+    border-collapse: collapse;
+    border-color: #cccccc;
+}
+.order-table table thead th{
+    height: 40px;
+    background-color: #333333;
+    color: #ffffff;
+    font-size: 18px;
+}
+.order-table table tbody td{
+    background-color: #ffffff;
+    height: 50px;
+}
+.order-table table tbody th{
+    background-color: #eeeeee;
+    height: 50px;
+}
+.box-full{
+    display: inline-block;
+    width: 100%;
+    height: 69%;
+    padding-top: 18px;
+}
+.order-btn-view,.order-btn-view:hover,.order-btn-view:active{
+    width: 80%;
+    height: 70%;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    border-top: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-bottom: solid 3px #666666;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+    text-decoration: none;
+    cursor: pointer;
+}
+.order-btn-view:active{
+    width: 80%;
+    height: 70%;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    border-top: 0px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-bottom: solid 0px #666666;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+    text-decoration: none;
+    cursor: pointer;
+}
+/*빈소주문시스템-주문현황 css 끝*/
+
+/*메시지박스 css*/
+.popup-box-mss{
+    border-radius: 10px;
+    width: 800px;
+    height: 400px;
+    z-index: 2;
+    margin-top: 300px;
+    margin-left: 550px;
+    box-shadow: 10px 10px 20px #333333;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    position: relative;
+    border: solid 3px #d6ad43;
+    background-color: #fcffd0;
+}
+.popup-box-close-mss{
+    width: 40px;
+    height: 40px;
+    margin-top: -1px;
+    float: right;
+}
+.popup-box-order-tit-mss{
+    border-left: solid 10px #dddddd;
+    width: 500px;
+    height: 40px;
+    font-size: 32px;
+    padding-left: 10px;
+    float: left;
+}
+.text-mss{
+    text-align: center;
+    margin-top: 50px;
+    display: flex;
+    padding: 10px;
+}
+.text-mss h5{
+    width:100%;
+    height: auto;
+    text-align: center;
+    align-items: center;
+    font-size: 30px;
+}
+.btn-mss{
+    width: 800px;
+    position: absolute;
+    bottom:0;
+    margin-left: -30px;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #ffffff;
+    border-top: solid 1px #eeeeee;
+}
+.btn-mss button{
+    width: 100px;
+    height: 50px;
+    border-radius: 25px;
+    outline: none;
+    border-width: thin;
+    border-color: #cccccc;
+    box-shadow: 0 3px 0 #999999;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+    font-size: 22px;
+    font-family: "나눔고딕Ex";
+    margin-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+/*메시지박스 css 끝*/
+
+/*빈소주문시스템-식당주문 css 시작*/
+.popup-bg{
+    background-color: #000000;
+    background: rgba(0, 0, 0, 0.5);
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+}
+
+.popup-box-order{
+    background-color: #ffffff;
+    border-radius: 30px;
+    width: 1280px;
+    height: 850px;
+    z-index: 2;
+    margin-top: 120px;
+    margin-left: 350px;
+    box-shadow: 10px 10px 20px #333333;
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+
+.popup-box-order-tit{
+    border-left: solid 10px #dddddd;
+    width: 600px;
+    height: 40px;
+    font-size: 32px;
+    padding-left: 10px;
+    float: left;
+}
+.popup-box-close{
+    width: 40px;
+    height: 40px;
+    margin-top: -1px;
+    margin-left: 1200px;
+    position: absolute;
+    clear: both;
+}
+.btn-close{
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 2px;
+    border-top: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-bottom: solid 3px #666666;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+    text-decoration: none;
+    cursor: pointer;
+    display: inline;
+}
+.order-time-info{
+    width: 1237px;
+    height: 70px;
+    margin-top: 80px;
+}
+.order-time-info table{
+    width: 100%;
+    height: 100%;
+    border: solid 1px #cccccc;
+    border-collapse: collapse;
+    text-align: center;
+    background-color: #eeeeee;
+}
+.order-time-info td{
+    width: 20%;
+    height: 100%;
+    border-left: solid 8px #ffd156;
+    border-right: solid 1px #cccccc;
+    float: left;
+    text-align: center;
+}
+.order-res-menu{
+    width: 700px;
+    height: 610px;
+    margin-top: 20px;
+    background-color: #eeeeee;
+    display: block;
+    float: left;
+}
+.order-res-menu-btn-box{
+    width: 700px;
+    height: 48px;
+    position: fixed;
+    border-bottom: solid 1px #aaaaaa;
+}
+
+.order-res-menu-type-btn-prev{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    width: 58px;
+    height: 48px;
+    background-image: url("../images/menu_btn_prev.png");
+    background-repeat: no-repeat;
+    float: left;
+    display: inline;
+}
+.order-res-menu-type-btn-next{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    width: 58px;
+    height: 48px;
+    background-image: url("../images/menu_btn_next.png");
+    background-repeat: no-repeat;
+    float: right;
+    display: inline;
+}
+.order-res-menu-type-btn{
+    display: inline;
+    width: 200px;
+}
+.order-res-menu-type-btn button{
+    float: left;
+    padding: 5px 15px 5px 15px;
+    font-size: 22px;
+    background-color: #eeeeee;
+    border-top: solid 1px #aaaaaa;
+    border-left: solid 1px #aaaaaa;
+    border-bottom: none;
+    border-right: none;
+    height: 48px;
+    outline: none;
+    font-family:"나눔고딕Ex";
+    color: #57566c;
+    cursor: pointer;
+    display: inline;
+    width: 146px;
+}
+.order-res-menu-type-btn button:hover{
+    background-color: #ffd156;
+    box-shadow:inset 0px 0px 5px 3px #d6ad43;
+    cursor: pointer;
+}
+.order-res-menu-type-btn button.btn-menu-on{
+    background-color: #ffd156;
+    box-shadow:inset 0px 0px 5px 3px #d6ad43;
+    cursor: pointer;
+}
+
+.order-res-menu-img-box{
+    width: 100%;
+    height: 494px;
+    display: block;
+    margin-top: 20px;
+    border: solid 1px #ffffff;
+}
+
+.order-res-menu-type-img-prev{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    width: 45px;
+    height: 150px;
+    background-image: url("../images/arrows_left.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    float: left;
+    margin-top: 220px;
+}
+.order-res-menu-type-img-next{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    width: 45px;
+    height: 150px;
+    background-image: url("../images/arrows_right.png");
+    background-repeat: no-repeat;
+    float: right;
+    margin-top: 220px;
+    background-position: center;
+}
+.res-menu-img-box{
+    width: 595px;
+    height: 494px;
+    float: left;
+    padding-left: 10px;
+    margin-top: 50px;
+}
+.menu-img-box{
+    width: 255px;
+    height: 212px;
+    border: solid 1px #cccccc;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px 0px #dddddd;
+    margin-top: 20px;
+    margin-left: 20px;
+    float: left;
+    background-color: #ffffff;
+}
+.menu-img-box-name{
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+    padding-top: 5px;
+    font-family:"나눔고딕Ex";
+}
+.menu-img-box-price{
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+    color: #ff5656;
+    text-align: center;
+    padding-bottom: 8px;
+    font-family:"나눔고딕Ex";
+
+}
+.menu-img-box-img{
+    width: 100%;
+    height: auto;
+    color: #ff5656;
+    text-align: center;
+    border-top: solid 1px #cccccc;
+    cursor: pointer;
+}
+.menu-img-box-img h5{
+    margin: 1em;
+}
+.clear-both{
+    clear: both;
+}
+.res-menu-img-box-page-num{
+    width: 100%;
+    height: 50px;
+    margin-top: 500px;
+    text-align: center;
+    padding-top: 15px;
+}
+.page-num-box{
+    text-align: center;
+    height: 30px;
+    width: 110px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    display: inline-block;
+    margin-top: -5px;
+    vertical-align: middle;
+    padding-top: 5px;
+    font-size: 20px;
+    border: solid 1xp #cccccc;
+    box-shadow: inset 1px 1px 2px #999999;
+}
+.order-list-box{
+    width: 515px;
+    height: 612px;
+    margin-left: 720px;
+    margin-top: 20px;
+    border: solid 1px #aaaaaa;
+    position: relative;
+}
+.order-list-box-tit{
+    width: 100%;
+    height: 50px;
+    background-color: #ffd156;
+    box-shadow: inset 0 0 5px 3px #d6ad43;
+}
+.order-list-box-tit p{
+    text-align: center;
+    font-size: 24px;
+    color: #57566c;
+    font-family: "나눔고딕Ex";
+    padding-top: 0.4em;
+
+}
+.order-list-box-list button{
+    cursor: pointer;
+}
+
+.order-list-box-list table{
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    padding: 0px;
+    border-collapse: collapse;
+    border: solid 1px #cccccc;
+}
+.order-list-box-list table tr{
+    border: solid 1px #cccccc;
+}
+.order-list-box-list-price{
+    color: #ff5656;
+    text-align: right;
+    padding-right: 10px;
+    width: 30%;
+}
+.order-list-box-list-btn-count{
+    width: 30%;
+    text-align: right;
+    padding-right: 10px;
+}
+.order-list-box-list-btn-count input{
+    width: 50px;
+    padding: 3px;
+    background-color: #ffea97;
+    outline: none;
+    border: solid 1px #cccccc;
+    text-align: center;
+}
+.order-list-box-list-btn-count span{
+    color: #ff5656;
+    font-size: 14px;
+    font-weight: bold;
+}
+.order-list-box-list-btn-del{
+    width: 20%;
+    text-align: right;
+    padding-right: 10px;
+}
+.order-list-box-list-num{
+    width: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+}
+.order-list-box-list-menu{
+    text-align: left;
+    padding-left: 10px;
+    width: 200px;
+}
+.order-list-box-page-btn-box{
+    width: 100%;
+    height: 50px;
+    background-color: #eeeeee;
+}
+.btn-page-up{
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+.btn-page-up button{
+    width: 100%;
+    height: 100%;
+}
+.btn-page-down{
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+.btn-page-down button{
+    width: 100%;
+    height: 100%;
+}
+.order-list-box-order-sum{
+    width: 100%;
+    height: 50px;
+    border-bottom: solid 1px #cccccc;
+    padding-top: 5px;
+}
+.order-sum-count{
+    width: 50%;
+    font-size: 20px;
+    text-align: center;
+    float: left;
+}
+.order-sum-count span{
+    font-size: 36px;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.order-sum-price{
+    width: 45%;
+    font-size: 20px;
+    text-align: right;
+    padding-right: 10px;
+    float: left;
+}
+.order-sum-price span{
+    font-size: 36px;
+    text-align: center;
+    font-weight: bold;
+    color: #ff5656;
+}
+.order-list-box-btn-final{
+    background-color: #ffffff;
+    width: 92%;
+    height: auto;
+    text-align: right;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 20px;
+}
+.btn-final-cancel{
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: "나눔고딕Ex";
+    border: solid 1px #cccccc;
+    box-shadow: 2px 2px 2px #aaaaaa;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+    margin-left: 20px;
+    cursor: pointer;
+}
+.order-list-box-btn-final button:hover{
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: "나눔고딕Ex";
+    border: solid 1px #cccccc;
+    box-shadow: 2px 2px 2px #aaaaaa;
+    background-image: linear-gradient(#cccccc, #aaaaaa);
+    margin-left: 20px;
+    cursor: pointer;
+}
+.order-list-box-btn-final button:active{
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-family: "나눔고딕Ex";
+    border: solid 1px #cccccc;
+    box-shadow: 0px 0px 0px #aaaaaa;
+    background-image: linear-gradient(#cccccc, #aaaaaa);
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.btn-final-order{
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: "나눔고딕Ex";
+    border: solid 1px #cccccc;
+    box-shadow: 2px 2px 2px #aaaaaa;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+    margin-left: 20px;
+    cursor: pointer;
+    color: #ff5656;
+}
+
+/*빈소주문시스템-식당주문 css 끝*/
+
+
+/*빈소주문시스템-주문확인-인계확인 css 시작*/
+.order-list-popup{
+    position: absolute;
+    width: 1230px;
+    height: 602px;
+    margin-top: 100px;
+    border: solid 2px #eeeeee;
+    background-color: #eeeeee;
+}
+.order-list-popup-tit{
+    background-color: #ffd156;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 32px;
+    font-family: "나눔고딕Ex";
+    color: #57566c;
+    padding-top: 10px;
+    box-shadow: 0px 5px 2px #d6ad43;
+}
+.order-list-popup-menu{
+    width: 100%;
+    height: 460px;
+    margin-top: 5px;
+}
+.order-popup-menu-img-box{
+    width: 100%;
+    height: 420px;
+    display: block;
+    margin-top: 20px;
+}
+.order-popup-img-prev{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    cursor: pointer;
+    width: 45px;
+    height: 380px;
+    background-image: url("../images/arrows_left.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    float: left;
+}
+.order-popup-img-next{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    cursor: pointer;
+    width: 45px;
+    height: 380px;
+    background-image: url("../images/arrows_right.png");
+    background-repeat: no-repeat;
+    float: right;
+    background-position: center;
+}
+.popup-menu-img-box{
+    width: 255px;
+    height: 400px;
+    border: solid 1px #cccccc;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px 0px #dddddd;
+    margin-top: 10px;
+    margin-left: 20px;
+    float: left;
+    background-color: #ffffff;
+}
+.popup-menu-table{
+    width: 100%;
+    border-top:solid 1px #cccccc;
+    padding: 10px;
+}
+.popup-menu-table-name{
+    width: 30%;
+    text-align: right;
+}
+.popup-menu-table-count{
+    width: 50%;
+    text-align: right;
+    font-size: 30px;
+    font-family: "나눔고딕Ex";
+    color: #ff5656;
+}
+.popup-menu-table-text{
+    width: 20%;
+    text-align: center;
+}
+.popup-menu-table-btn{
+    height: auto;
+    text-align: center;
+    width: 100%;
+    padding-top: 5px;
+}
+.btn-checked-menu{
+    width: 80%;
+    padding: 3px;
+    font-family: "나눔고딕Ex";
+    color: #000000;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    outline: none;
+    border-width: thin;
+    border-color: #dddddd;
+    box-shadow: #333333 0 1px;
+    background-image: linear-gradient(#eeeeee, #cccccc);
+}
+
+.popup-menu-table-btn.btn-checked{
+    display: inline-table;
+}
+.popup-menu-img-box-name{
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+    padding-top: 5px;
+    font-family:"나눔고딕Ex";
+    padding-top: 10px;
+}
+.popup-menu-img-box-price{
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+    text-align: center;
+    padding-bottom: 8px;
+    font-family:"나눔고딕Ex";
+    padding-bottom: 10px;
+
+}
+.popup-menu-img-box-img{
+    width: 100%;
+    height: 180px;
+    text-align: center;
+    border-top: solid 1px #cccccc;
+    cursor: pointer;
+}
+.popup-menu-table-li{
+    padding-bottom: 10px;
+    height: 50px;
+}
+.popup-menu-page-num{
+    width: 100%;
+    height: 40px;
+    margin-top: 420px;
+    text-align: center;
+    padding-top: 10px;
+    position: absolute;
+}
+.popup-menu-page-num-box{
+    text-align: center;
+    height: 30px;
+    width: 110px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 5px;
+    font-size: 20px;
+    border: solid 1xp #cccccc;
+    box-shadow: inset 1px 1px 2px #999999;
+}
+.order-list-popup-sum{
+    width: 100%;
+    height: 60px;
+    background-color: #ffffff;display: block;
+    border-bottom: solid 2px #eeeeee;
+    margin-top: 55px;
+}
+.order-list-popup-sum h1{
+    text-align: center;
+    width: 50%;
+    float: left;
+    padding-top: 6px;
+    margin-top: -1px;
+    font-size: 20px;
+}
+.font-40{
+    font-size: 40px;
+    padding-right: 10px;
+}
+.grey{
+    color: #333333;
+}
+.red{
+    color: #ff5656;
+}
+.blue{
+    color: #0000ff;
+}
+.popup-btn{
+    width: 1230px;
+    margin-top: 720px;
+    text-align: right;
+}
+.popup-btn button{
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    outline: none;
+    border: solid 1px #cccccc;
+    box-shadow: 0 3px 0 #999999;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+    font-size: 28px;
+    font-family: "나눔고딕Ex";
+    margin-left: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.popup-btn button.disabled{
+    color: #c0c0c0;
+    cursor: not-allowed;
+}
+
+.order-popup-list{
+    width: 95%;
+    height: 450px;
+    float: left;
+}
+.order-popup-list table{
+    border-collapse: collapse;
+    width: 100%;
+    float: left;
+}
+.order-popup-list th{
+    border-bottom: solid 1px #cccccc;
+    height: 50px;
+    background-color: #ffffff;
+}
+.order-popup-list td{
+    border-bottom: solid 1px #cccccc;
+    height: 50px;
+    background-color: #f0f0f0;
+}
+.list-num{
+    width: 5%;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+    text-align: center;
+}
+.list-menu{
+    width: 40%;
+    text-align: left;
+    padding-left: 20px;
+}
+.list-count{
+    width: 15%;
+    text-align: center;
+}
+.list-price{
+    width: 20%;
+    color: #ff5656;
+    text-align: right;
+    padding-right: 20px;
+}
+.list-status{
+    width: 20%;
+    color: #0000ff;
+    text-align: right;
+    padding-right: 20px;
+}
+.btn-table{
+    width: 30px;
+}
+.order-popup-list-btn{
+    width: 4%;
+    float: right;
+    height: 450px;
+}
+.order-popup-list-btn{
+    width: 4%;
+    float: right;
+    height: 450px;
+}
+.order-popup-list-btn table{
+    width: 100%;
+    height: 100%;
+    border: solid 1px #999999;
+    border-collapse: collapse;
+}
+.order-popup-list-btn table th{
+    width: 100%;
+    border: solid 1px #cccccc;
+}
+.list-num-up button{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-size: 14px;
+    border: solid 1px #eeeeee;
+    cursor: pointer;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+}
+.list-num-up button:active{
+    background-image: linear-gradient(#aaaaaa, #aaaaaa);
+}
+
+
+/*식당주문 전표 알림창 css*/
+
+
+.order-popup-list-check{
+    width: 100%;
+    height: auto;
+    float: left;
+}
+.order-popup-list-check table{
+    border-collapse: collapse;
+    width: 100%;
+    float: left;
+}
+.order-popup-list-check th{
+    border-bottom: solid 1px #cccccc;
+    height: 45px;
+    background-color: #ffffff;
+}
+.order-popup-list-check td{
+    border-bottom: solid 1px #cccccc;
+    height: 45px;
+    background-color: #f0f0f0;
+}
+.order-list-popup-text{
+    width: 100%;
+    height: 185px;
+    border: solid 1px #cccccc;
+    background-color: #fff7d5;
+    align-items: center;
+    display: flex;
+}
+.order-list-popup-text h1{
+    text-align: center;
+    border: solid 0px #000000;
+    width: 100%;
+    font-size: 60px;
+}
+
+
+/*빈소주문시스템-주문확인-인계확인 css 끝*/
+
+/*식당주문확인*/
+.mid-info-box-2{
+    width: 1718px;
+    height: 800px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: solid 1px #ffd156;
+    margin-top: 10px;
+    padding: 40px;
+}
+.order-list-view{
+    width: 738px;
+    height: 800px;
+    float: left;
+}
+.order-list-view-tit{
+    background-color: #ffd156;
+    width: 100%;
+    height: 50px;
+    font-size: 32px;
+    font-family: "나눔고딕Ex";
+    color: #57566c;
+    padding-top: 10px;
+    box-shadow: 0px 5px 2px #d6ad43;
+    text-align: left;
+}
+.order-list-view-tit .tit{
+    font-size: 32px;
+    border-left: solid 8px #aaaaaa;
+    display: inline-block;
+    margin-left: 30px;
+    padding-left: 15px;
+    margin-top: 3px;
+}
+.order-list-view-2{
+    width: 920px;
+    height: 800px;
+    float: left;
+    margin-left: 60px;
+}
+.sta-view{
+    width: 300px;
+    height: 42px;
+    margin-top: -5px;
+    background-color: #eeeeee;
+    color: #ff5656;
+    border: solid 1px #aaaaaa;
+    text-align: center;
+    float: right;
+    margin-right: 30px;
+    padding-top: 5px;
+}
+.order-list-view-check{
+    width: 920px;
+    height: 725px;
+    border: solid 1px #aaaaaa;
+    background-color: #eeeeee;
+}
+.order-list-view-check .btn{
+    margin-top: 10px;
+    width: auto;
+    text-align: right;
+    padding-right: 30px;
+}
+.order-list-view-check button{
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    outline: none;
+    border: solid 1px #cccccc;
+    box-shadow: 0 3px 0 #999999;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+    font-size: 28px;
+    font-family: "나눔고딕Ex";
+    margin-left: 20px;
+    cursor: pointer;
+}
+.btn button.disabled{
+    color: #c0c0c0;
+    cursor: not-allowed;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+}
+.btn button.btn-checked{
+    background-image: linear-gradient(#e0ffff, #99ffff);
+}
+.btn button.btn-ready{
+    background-image: linear-gradient(#fff1ce, #ffd156);
+}
+
+.order-table-2{
+    width:100%;
+    height: auto;
+}
+.order-table-2 table{
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    border-color: #cccccc;
+    font-size: 14px;
+}
+.order-table-2 table thead th{
+    height: 40px;
+    background-color: #333333;
+    color: #ffffff;
+}
+.order-table-2 table tbody td{
+    background-color: #ffffff;
+    height: 40px;
+    text-align: center;
+}
+.order-table-2 table tbody th{
+    background-color: #eeeeee;
+    height: 40px;
+}
+.order-table-2 table .box-full{
+    width: 100%;
+    height: 100%;
+    display: list-item;
+    align-items: center;
+    padding-top: 10%;
+}
+
+
+
+/*비밀번호입력 팝업시작 css*/
+.pw-popup-box-mss{
+    border-radius: 10px;
+    width: 1100px;
+    height: 700px;
+    z-index: 2;
+    margin-top: 200px;
+    margin-left: 350px;
+    box-shadow: 10px 10px 20px #333333;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    position: relative;
+    border: solid 3px #d6ad43;
+    background-color: #fcffd0;
+}
+.pw-popup-box-close-mss{
+    width: 40px;
+    height: 40px;
+    margin-top: -1px;
+    float: right;
+}
+.pw-popup-box-order-tit-mss{
+    border-left: solid 10px #dddddd;
+    width: 500px;
+    height: 40px;
+    font-size: 32px;
+    padding-left: 10px;
+    float: left;
+}
+.pw-text-mss{
+    text-align: center;
+    margin-top: 60px;
+    display: flex;
+    width: 45%;
+    float: left;
+}
+.pw-text-mss h5{
+    width:100%;
+    height: auto;
+    text-align: center;
+    align-items: center;
+    font-size: 42px;
+    padding: 5%;
+    line-height: 2.5em;
+}
+.pw-btn-mss{
+    width: 800px;
+    position: absolute;
+    bottom:0;
+    margin-left: -30px;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #ffffff;
+    border-top: solid 1px #eeeeee;
+}
+.pw-btn-mss button{
+    width: 100px;
+    height: 50px;
+    border-radius: 25px;
+    outline: none;
+    border-width: thin;
+    border-color: #cccccc;
+    box-shadow: 0 3px 0 #999999;
+    background-image: linear-gradient(#fefefe, #aaaaaa);
+    font-size: 22px;
+    font-family: "나눔고딕Ex";
+    margin-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.pw-popup-box-wrap{
+    width: 45%;
+    float: left;
+    height: 95%;
+    margin-left: 30px;
+    position: relative;
+}
+.pw-keypad{
+    width: 422px;
+    height: 433px;
+    display: inline-table;
+    position: fixed;
+    margin-top: 100px;
+    margin-left: 60px;
+}
+.pw-pw-input{
+    width: 100%;
+    height: 70px;
+    padding-top: 7px;
+    background-image: url("../images/pw_bg.png");
+    background-repeat: no-repeat;
+}
+.pw-pw-input input{
+    width: 350px;
+    height: 58px;
+    border: 1px solid #ffffff;
+    margin-left: 60px;
+    font-size: 120px;
+    text-align: center;
+    letter-spacing: 20px;
+    color: #57566c;
+}
+.pw-pw-input input[type=password]:focus{
+    background-color: #f1f1f1;
+}
+
+.pw-pw-key a{
+    width: 132px;
+    height: 75px;
+    display: inline-table;
+    text-align: center;
+    padding-top: 5px;
+    color: #ffffff;
+    margin-left: -3px;
+    margin-top: 2px;
+    text-decoration: none;
+    font-size: 50px;
+}
+
+.pw-pw-key table{
+    margin-top: 30px;
+    margin-left: 3px;
+    width: 100%;
+    height: 346px;
+}
+.pw-pw-key table td{
+    width: 33%;
+    background-image: url("../images/keypad_bg.png");
+    background-repeat: no-repeat;
+
+}
+
+/*비밀번호입력 팝업 css 끝*/

@@ -1,0 +1,1082 @@
+<%@page import="com.axisj.axboot.core.domain.user.AdminLoginUser"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ax" uri="http://axisj.com/axu4j" %>
+<ax:layout name="base.jsp">
+    <ax:set name="title" value="${PAGE_NAME}" />
+    <ax:set name="page_desc" value="${PAGE_REMARK}" />
+    <ax:div name="styles">
+        <style type="text/css">
+            span.td {min-height: 100px important; }
+        </style>
+    </ax:div>
+    <ax:div name="contents">
+        <ax:row>
+            <ax:col size="12">
+                <ax:custom customid="page-button" pageId="${PAGE_ID}" searchAuth="${SEARCH_AUTH}" saveAuth="${SAVE_AUTH}" excelAuth="${EXCEL_AUTH}" function1Auth="${FUNCTION_1_AUTH}" function2Auth="${FUNCTION_2_AUTH}" function3Auth="${FUNCTION_3_AUTH}" function4Auth="${FUNCTION_4_AUTH}" function5Auth="${FUNCTION_5_AUTH}"></ax:custom>
+				<div class="ax-button-group">
+                    <div class="right">
+                        <button type="button" class="AXButton" id="ax-form-btn-new"><i class="axi axi-plus-circle"></i> 신규</button>
+                    </div>
+                    <div class="ax-clear"></div>
+                </div>
+                <div class="ax-button-group">
+                	<div class="left" style="width: 49%;">
+		                <div class="ax-search" id="page-search-scatter"></div>
+                	</div>
+                	<div class="right" style="width: 49%;">
+		                <div class="ax-search" id="page-search-hwaCremation"></div>
+                	</div>
+                    <div class="ax-clear"></div>
+                </div>
+                <ax:custom customid="table">
+                    <ax:custom customid="tr">
+                        <ax:custom customid="td">
+							<ax:form id="form-info" name="form-info" method="get">
+								<input type="hidden" id="info-scaDateString" name=scaDateString value=""/>
+								<input type="hidden" id="info-scaSeq" name=scaSeq value=""/>
+			                    <input type="hidden" id="info-cremDateString" name="cremDateString" value=""/>
+			                    <input type="hidden" id="info-cremSeq" name="cremSeq" value=""/>
+   			                    <input type="hidden" id="info-feetypedivcd" name="feetypedivcd" value=""/>
+
+								<ax:fields >
+				                    <ax:field label="사망자명*" style="width: 194px;">
+				                    	<input type="text" id="info-deadId" name="deadId" class="AXInput W20 av-required" value="" readonly="readonly"/>
+				                        <input type="text" id="info-deadName" name="deadName" title="사망자명" placeholder="사망자명" maxlength="20" class="AXInput W80" value="" readonly="readonly" />
+				                       	<button id="btn-search-thedead" class="AXButton" onclick="return false;"><i class='axi axi-ion-android-search'></i>조회</button>
+				                    </ax:field>
+				                    <ax:field label="주민등록번호" style="width: 194px;">
+				                        <input type="text" id="info-deadJumin" name="deadJumin" title="주민등록번호" placeholder="주민등록번호" maxlength="100" class="AXInput W100" value=""  readonly="readonly"/>
+				                    </ax:field>
+   									<ax:field label="관내외구분" style="width: 194px;">
+										<select id="info-addrPart" name="addrPart" class="AXSelect W100"></select>
+									</ax:field>
+									<ax:field label="감면대상구분" style="width: 194px;">
+										<select id="info-dcGubun" name="dcGubun" class="AXSelect W150"></select>
+									</ax:field>
+				           		</ax:fields>
+				           		<ax:fields >
+				                    <ax:field label="사망일자*" style="width: 194px;">
+				                        <input type="text" id="info-deadDateString" name="deadDateString" title="사망일자" placeholder="사망일자" class="AXInput W100 av-required" value="" readonly="readonly"/>
+				                    </ax:field>
+				                    <ax:field label="사망시간" style="width: 194px;">
+				                        <input type="text" id="info-deadTimeString" name="deadTimeString" title="사망시간" placeholder="사망시간" maxlength="5" class="AXInput W100" value=""  readonly="readonly"/>
+				                    </ax:field>
+				                    <ax:field label="사용료*" style="width: 194px;">
+										<input type="number" id="info-rentalfee" name="rentalfee" title="사용료" placeholder="사용료" maxlength="15" class="AXInput W100 av-required" value=""/>
+										<button id="btn-search-rentalfee" class="AXButton" onclick="return false;"><i class='axi axi-ion-android-search'></i></button>
+									</ax:field>
+									<ax:field label="감면금액" style="width: 194px;">
+										<input type="number" id="info-dcAmt" name="dcAmt" title="감면금액" placeholder="감면금액" maxlength="15" class="AXInput W100" value=""/>
+									</ax:field>
+				           		</ax:fields>
+				           		<ax:fields>
+				                	<ax:field label="생년월일*" style="width: 194px;">
+				                        <input type="text" id="info-deadBirthString" name="deadBirthString" title="생년월일" placeholder="생년월일" maxlength="10" class="AXInput W100 av-required" value="" readonly="readonly"/>
+				                    </ax:field>
+				                   	<ax:field label="사망자성별" style="width: 194px;">
+				                        <select id="info-deadSex" name="deadSex" class="AXSelect W100"></select>
+				                    </ax:field>
+				                    <ax:field label="부과금액*" style="width: 194px;">
+										<input type="number" id="info-charge" name="charge" title="부과금액" placeholder="부과금액" maxlength="15" class="AXInput W100 av-required" value=""/>
+									</ax:field>
+									<ax:field label="수납구분" style="width: 194px;">
+										<select id="info-receiptGb" name="receiptGb" class="AXSelect W100"></select>
+									</ax:field>
+				           		</ax:fields>
+				           		<ax:fields >
+				                	<ax:field label="사망장소" style="width: 194px;">
+				                        <select id="info-deadPlace" name="deadPlace" class="AXSelect W160"></select>
+				                    </ax:field>
+				                	<ax:field label="사망사유*" style="width: 194px;">
+				                        <select id="info-deadReason" name="deadReason" class="AXSelect W160"></select>
+				                    </ax:field>
+				                    <ax:field label="현금수납" style="width: 194px;">
+										<input type="number" id="info-cashAmt" name="cashAmt" title="현금수납" placeholder="현금수납" maxlength="15" class="AXInput W100" value=""/>
+									</ax:field>
+									<ax:field label="카드수납" style="width: 194px;">
+										<input type="number" id="info-cardAmt" name="cardAmt" title="카드수납" placeholder="카드수납" maxlength="15" class="AXInput W100" value=""/>
+									</ax:field>
+				               	</ax:fields>
+				           		<ax:fields >
+				                	<ax:field label="사망자국적구분" style="width: 194px;">
+				                        <select id="info-deadNationGb" name="deadNationGb" class="AXSelect W100"></select>
+				                    </ax:field>
+				                    <ax:field label="주소구분" style="width: 194px;">
+				                        <select id="info-deadAddrGubun" name="deadAddrGubun" class="AXSelect W50"></select>
+			                       	</ax:field>
+		                       		<ax:field label="카드사" style="width: 194px;">
+										<select id="info-cardCode" name="cardCode" class="AXSelect W50"></select>
+									</ax:field>
+		                       		<ax:field label="주소코드" style="width: 194px;">
+										<select id="info-addrCode" name="addrCode" class="AXSelect W150"></select>
+									</ax:field>
+				                </ax:fields>
+				           		<ax:fields>
+				                    <ax:field label="사망자 주소" style="width: 1000px;">
+				                        <input type="text" id="info-deadPost" name="deadPost" title="우편번호" readonly="readonly" placeholder="우편번호" class="AXInput W50" value="" />
+				                        <input type="text" id="info-deadAddr1" name="deadAddr1" title="사망자 주소" readonly="readonly" placeholder="" class="AXInput W350 av-required" value="" />
+				                        <input type="text" id="info-deadAddr2" name="deadAddr2" title="사망자 주소" placeholder="상세주소" class="AXInput" value="" style="width:490px;"  readonly="readonly"/>
+				               		</ax:field>
+								</ax:fields>
+								<ax:fields >
+                                    <ax:field label="산골대상구분">
+                                        <select id="info-objt" name="objt" class="AXSelect W100"></select>
+                                    </ax:field>
+									<ax:field label="특이사항">
+										<input type="text" id="info-remark" name="remark" title="특이사항" placeholder="특이사항" class="AXInput" style="width: 600px;" value=""/>
+									</ax:field>
+								</ax:fields>
+
+								<div class="ax-button-group" style="display: inline-block; width: 98.3%;">
+				                	<div class="right">
+				                		<button type="button" class="AXButton" id="btn-report"><i class="axi axi-report"></i> 시설사용허가신청서</button>
+				                		<!-- <button type="button" class="AXButton" id="btn-report"><i class="axi axi-report"></i> 허가증</button> -->
+				                		<!-- <button type="button" class="AXButton" id="btn-certificate"><i class="axi axi-certificate"></i> 산골증명서</button> -->
+				                		<button type="button" class="AXButton" id="btn-receipt"><i class="axi axi-receipt"></i> 영수증</button>
+				                	</div>
+				                    <div class="ax-clear"></div>
+				                </div>
+							</ax:form>
+
+                       	</ax:custom>
+                    </ax:custom>
+                    <ax:custom customid="tr">
+                        <ax:custom customid="td">
+                        	<div id="div-tab"></div>
+                        	<div id="div-content"></div>
+                        	<div id="div-contents" style="opacity:0; position: absolute; top: 0px; z-index: -10000;">
+	                        	<div id="div-tab-content-A">
+	                        		<ax:form id="form-info-applicant" name="form-info-applicant" method="get">
+										<ax:fields>
+		                                    <ax:field label="신청자번호*" style="width:350px;">
+		                                        <input type="hidden" id="info-beforeApplId" name="beforeApplId" title="신청자번호" placeholder="신청자번호" readonly="readonly" maxlength="100" class="AXInput W100" value=""/>
+		                                        <input type="number" id="info-applId" name="applId" title="신청자번호" placeholder="신청자번호" readonly="readonly" maxlength="100" class="AXInput W100 av-required" value=""/>
+		                                        <button id="btn-search-applicant" class="AXButton" onclick="return false;"><i class='axi axi-ion-android-search'></i>조회</button>
+		                                    </ax:field>
+		                                    <ax:field label="신청자명*" style="width:350px;">
+		                                        <input type="text" id="info-applName" name="applName" title="신청자" placeholder="신청자" maxlength="100" class="AXInput W100 av-required" value="" readonly="readonly"/>
+		                                    </ax:field>
+		                                    <ax:field label="신청자 주민번호" style="width:350px;">
+		                                        <input type="text" id="info-applJumin" name="applJumin" title="신청자 주민번호" placeholder="신청자 주민번호" maxlength="13" class="AXInput W100" value="" readonly="readonly"/>
+		                                    </ax:field>
+		                                </ax:fields>
+		                                <ax:fields>
+		                                    <ax:field label="휴대폰*" style="width:350px;">
+		                                        <input type="text" id="info-applMobileno1" name="applMobileno1" title="휴대폰" maxlength="3" placeholder="000" class="AXInput W40 av-required" value="" readonly="readonly"/>
+		                                        <input type="text" id="info-applMobileno2" name="applMobileno2" title="휴대폰" maxlength="4" placeholder="0000" class="AXInput W40 av-required" value="" readonly="readonly"/>
+		                                        <input type="text" id="info-applMobileno3" name="applMobileno3" title="휴대폰" maxlength="4" placeholder="0000" class="AXInput W40 av-required" value="" readonly="readonly"/>
+		                                    </ax:field>
+		                                    <ax:field label="전화번호" style="width:350px;">
+		                                        <input type="text" id="info-applTelno1" name="applTelno1" title="전화번호" maxlength="3" placeholder="000" class="AXInput W40" value="" readonly="readonly"/>
+		                                        <input type="text" id="info-applTelno2" name="applTelno2" title="전화번호" maxlength="4" placeholder="0000" class="AXInput W40" value="" readonly="readonly"/>
+		                                        <input type="text" id="info-applTelno3" name="applTelno3" title="전화번호" maxlength="4" placeholder="0000" class="AXInput W40" value="" readonly="readonly"/>
+		                                    </ax:field>
+		                                    <ax:field label="email" style="width:350px;">
+		                                        <input type="text" id="info-emailId" name="emailId" title="email" placeholder="email" class="AXInput W100" value=""  readonly="readonly"/>@<input
+		                                        type="text" id="info-emailProvider" name="emailProvider" title="email" placeholder="이메일 서비스" class="AXInput W150" value=""  readonly="readonly"/>
+		                                    </ax:field>
+		                                </ax:fields>
+		                                <ax:fields>
+		                                    <ax:field label="신청자국적" style="width:350px;">
+		                                        <select id="info-applNationGb" name="applNationGb" class="AXSelect W100"></select>
+		                                    </ax:field>
+		                                    <ax:field label="신청자 주소*">
+		                                        <select id="info-applAddrGubun" name="applAddrGubun" class="AXSelect W50"></select>
+		                                        <input type="text" id="info-applPost" name="applPost" title="우편번호" readonly="readonly" placeholder="우편번호" class="AXInput W50" value="" />
+		                                        <input type="text" id="info-applAddr1" name="applAddr1" title="신청자 주소" readonly="readonly" placeholder="" class="AXInput W300 av-required" value="" />
+		                                        <input type="text" id="info-applAddr2" name="applAddr2" title="신청자 주소" placeholder="상세주소" class="AXInput W350 av-required" value=""  readonly="readonly"/>
+		                                    </ax:field>
+		                                </ax:fields>
+   		                                <ax:fields>
+   		                                    <ax:field label="사망자와의 관계*" style="width:350px;">
+		                                        <select id="info-deadRelation" name="deadRelation" class="AXSelect W160"></select>
+		                                        <input type="text" id="info-deadRelationNm" name="deadRelationNm" title="사망자와의 관계" maxlength="10" placeholder="사망자와의 관계" class="AXInput W100" value="" />
+		                                    </ax:field>
+		                                    <ax:field label="특이사항" style="width:800px;">
+		                                        <input type="text" id="info-applRemark" name="applRemark" title="특이사항" maxlength="200" placeholder="특이사항" class="AXInput" value="" style="width: 98%;" readonly="readonly"/>
+		                                    </ax:field>
+		                                </ax:fields>
+				                	</ax:form>
+									<div class="ax-button-group" style="display: inline-block; width: 98.3%;">
+					                	<div class="right">
+					                		<button type="button" class="AXButton" id="btn-list-applicant-addrhst"><i class="axi axi-list"></i> 주소변경이력</button>
+					                	</div>
+				                    	<div class="ax-clear"></div>
+				                	</div>
+	                        	</div>
+	                        	<div id="div-tab-content-P">
+	                        		<ax:form id="form-info-payer-applicant" name="form-info-payer-applicant" method="get">
+		                        		<ax:fields>
+		                                    <ax:field label="납부자번호*" style="width:350px;">
+		                                        <input type="hidden" id="info-payer-beforeApplId" name="beforeApplId" title="납부자번호" placeholder="납부자번호" readonly="readonly" maxlength="100" class="AXInput W100 av-required" value=""/>
+		                                        <input type="number" id="info-payer-applId" name="applId" title="납부자번호" placeholder="납부자번호" readonly="readonly" maxlength="100" class="AXInput W100 av-required" value=""/>
+		                                        <button id="btn-search-payerApplicant" class="AXButton" onclick="return false;"><i class='axi axi-ion-android-search'></i>조회</button>
+		                                    </ax:field>
+		                                    <ax:field label="납부자명*" style="width:350px;">
+		                                        <input type="text" id="info-payer-applName" name="applName" title="납부자명" placeholder="납부자명" maxlength="100" class="AXInput W100 av-required" value="" readonly="readonly"/>
+		                                    </ax:field>
+		                                    <ax:field label="납부자 주민번호" style="width:350px;">
+		                                        <input type="text" id="info-payer-applJumin" name="applJumin" title="납부자 주민번호" placeholder="납부자 주민번호" maxlength="13" class="AXInput W100" value="" readonly="readonly"/>
+		                                    </ax:field>
+		                                </ax:fields>
+		                                <ax:fields>
+		                                    <ax:field label="휴대폰*" style="width:350px;">
+		                                        <input type="text" id="info-payer-applMobileno1" name="applMobileno1" title="휴대폰" maxlength="3" placeholder="000" class="AXInput W40 av-required" value="" readonly="readonly"/>
+		                                        <input type="text" id="info-payer-applMobileno2" name="applMobileno2" title="휴대폰" maxlength="4" placeholder="0000" class="AXInput W40 av-required" value="" readonly="readonly"/>
+		                                        <input type="text" id="info-payer-applMobileno3" name="applMobileno3" title="휴대폰" maxlength="4" placeholder="0000" class="AXInput W40 av-required" value="" readonly="readonly"/>
+		                                    </ax:field>
+		                                    <ax:field label="전화번호" style="width:350px;">
+		                                        <input type="text" id="info-payer-applTelno1" name="applTelno1" title="전화번호" maxlength="3" placeholder="000" class="AXInput W40" value="" readonly="readonly"/>
+		                                        <input type="text" id="info-payer-applTelno2" name="applTelno2" title="전화번호" maxlength="4" placeholder="0000" class="AXInput W40" value="" readonly="readonly"/>
+		                                        <input type="text" id="info-payer-applTelno3" name="applTelno3" title="전화번호" maxlength="4" placeholder="0000" class="AXInput W40" value="" readonly="readonly"/>
+		                                    </ax:field>
+		                                    <ax:field label="email" style="width:350px;">
+		                                        <input type="text" id="info-payer-emailId" name="emailId" title="email" placeholder="email" class="AXInput W100" value=""  readonly="readonly"/>@<input
+		                                        type="text" id="info-payer-emailProvider" name="emailProvider" title="email" placeholder="이메일 서비스" class="AXInput W150" value=""  readonly="readonly"/>
+		                                    </ax:field>
+		                                </ax:fields>
+		                                <ax:fields>
+		                                    <ax:field label="납부자국적" style="width:350px;">
+		                                        <select id="info-payer-applNationGb" name="applNationGb" class="AXSelect W100"></select>
+		                                    </ax:field>
+		                                    <ax:field label="납부자 주소*">
+		                                        <select id="info-payer-applAddrGubun" name="applAddrGubun" class="AXSelect W50"></select>
+		                                        <input type="text" id="info-payer-applPost" name="applPost" title="우편번호" readonly="readonly" placeholder="우편번호" class="AXInput W50" value="" />
+		                                        <input type="text" id="info-payer-applAddr1" name="applAddr1" title="납부자 주소" readonly="readonly" placeholder="" class="AXInput W200 av-required" value="" />
+		                                        <input type="text" id="info-payer-applAddr2" name="applAddr2" title="납부자 주소" placeholder="상세주소" class="AXInput W400 av-required" value=""  readonly="readonly"/>
+		                                    </ax:field>
+		                                </ax:fields>
+		                                <ax:fields>
+		                                    <ax:field label="특이사항" style="width:1000px;">
+		                                        <input type="text" id="info-payer-applRemark" name="applRemark" title="특이사항" maxlength="200" placeholder="특이사항" class="AXInput" value="" style="width: 98%;" readonly="readonly"/>
+		                                    </ax:field>
+		                                </ax:fields>
+	                                </ax:form>
+									<div class="ax-button-group" style="display: inline-block; width: 98.3%;">
+					                	<div class="right">
+					                		<button type="button" class="AXButton" id="btn-list-payer-addrhst"><i class="axi axi-list"></i> 주소변경이력</button>
+					                	</div>
+				                    	<div class="ax-clear"></div>
+				                	</div>
+	                        	</div>
+                        	</div>
+                        </ax:custom>
+                    </ax:custom>
+                </ax:custom>
+
+            </ax:col>
+        </ax:row>
+    </ax:div>
+    <ax:div name="scripts">
+        <jsp:include page="/jsp/funeralsystem/common/postcode.jsp"></jsp:include>
+        <script type="text/javascript">
+
+            var resize_elements = [
+//                 {id:"div-content-A-grid", adjust:function(){
+//                     	return -axf.clientHeight()/2;
+//                 	}
+//                 }
+//                 , {id:"page-grid-box-hwaBooking", adjust:function(){
+//     	                return -axf.clientHeight()/2;
+// 	                }
+//                 }
+            ];
+            var fnObj = {
+
+                CODES: {
+                    "firstTab": [
+	                       					{optionValue:"A", optionText:"신청자", closable:false},
+                      					],
+                    "tab": [
+	                       					{optionValue:"A", optionText:"신청자", closable:false},
+	                      					{optionValue:"P", optionText:"납부자", closable:false}
+                      					],
+   					"applNationGb": Common.getCode("TCM11"),
+                    "addrGubun": Common.getCode("TCM07"),
+                    "applRelation": Common.getCode("TMC08"),
+                    "deadRelation": Common.getCode("TCM08"),
+                    "deadNationGb": Common.getCode("TCM04"),
+                    "cardCode": Common.getCode("TCM16"),
+                    "receiptGb": Common.getCode("TMC15"),
+                    "dcGubun": Common.getCode("TCM12"),
+                    "addrPart": Common.getCode("TCM10"),
+                    "deadSex": Common.getCode("TCM05"),
+                    "deadPlace": Common.getCode("TCM09"),
+                    "deadReason": Common.getCode("TCM03"),
+                    "objt": Common.getCode("TFM27"),
+                    "addrCode": Common.addr.getAddrCode()
+                },
+                pageStart: function(){
+                    this.searchScatter.bind();
+                    this.searchHwaCremation.bind();
+                    this.form.bind();
+                    this.formApplicant.bind();
+                    this.formPayerApplicant.bind();
+                    this.bindEvent();
+					this.defaultSearch();
+                },
+                defaultSearch: function(){
+					var scaDate = "${param.scaDate}";
+					var scaSeq = "${param.scaSeq}";
+					if(scaDate.length == 0 || scaSeq.length == 0){
+
+					}else{
+						Common.search.setValue(fnObj.searchScatter.target, "scaDateString", scaDate);
+						Common.search.setValue(fnObj.searchScatter.target, "scaSeq", scaSeq);
+						fnObj.searchScatter.submit();
+					}
+					var cremDate = "${param.cremDate}";
+					var cremSeq = "${param.cremSeq}";
+					if(cremDate.length == 0 || cremSeq.length == 0){
+
+					}else{
+						Common.search.setValue(fnObj.searchHwaCremation.target, "cremDate", cremDate);
+						Common.search.setValue(fnObj.searchHwaCremation.target, "cremSeq", cremSeq);
+						fnObj.searchHwaCremation.submit();
+					}
+                },
+                tabs:{},
+                bindEvent: function(){
+                    var _this = this;
+                    $("#ax-page-btn-fn1").html("<i class=\"axi axi-minus-circle\"></i> 삭제");
+                    $("#ax-page-btn-fn1").bind("click", function(){
+                        setTimeout(function() {
+                        	_this.del();
+                        }, 500);
+                    });
+                    $("#info-addrCode").bindSelect({
+                        options:fnObj.CODES.addrCode
+                    });
+                    $("#info-objt").bindSelect({
+                        options:fnObj.CODES.objt
+                    });
+                    $("#info-deadReason").bindSelect({
+                        options:fnObj.CODES.deadReason
+                    });
+                    $("#info-deadAddr1").change(function(){
+                    	Common.addr.getAddrPart(this.value, "info-addrCode", "info-addrPart");
+                    });
+                    $("#info-objt").bindSelect({
+                        options:fnObj.CODES.objt
+                    });
+                    $("#info-dcGubun").bindSelect({
+                        options:fnObj.CODES.dcGubun
+                    });
+                    $("#info-addrPart").bindSelect({
+                        options:fnObj.CODES.addrPart
+                    });
+                    $("#info-boneGb").bindSelect({
+        				options:fnObj.CODES.boneGb
+        			});
+					$("#info-deadRelation").bindSelect({
+						options:fnObj.CODES.deadRelation
+					});
+                    $("#info-deadNationGb").bindSelect({
+        				options:fnObj.CODES.deadNationGb
+        			});
+                    $("#info-deadJumin").bindPattern({pattern: "custom", max_length: 14, patternString:"999999-9999999"});
+                    $("#info-deadSex").bindSelect({
+        				options:fnObj.CODES.deadSex
+        			});
+                    $("#info-deadDateString").bindDate();
+                    $("#info-deadBirthString").bindDate();
+                    $("#info-deadPlace").bindSelect({
+        				options:fnObj.CODES.deadPlace
+        			});
+                    $("#info-deadAddrGubun").bindSelect({
+        				options:fnObj.CODES.addrGubun
+        			});
+                    $("#btn-deadpost").bind("click", function(){
+                    	daumPopPostcode("info-deadPost", "info-deadAddr1", "info-deadAddr2");
+                    });
+                    $("#info-receiptGb").bindSelect({
+        				options:fnObj.CODES.receiptGb
+        			});
+                    $("#info-cardCode").bindSelect({
+        				options:fnObj.CODES.cardCode
+        			});
+                    $("#btn-search-rentalfee").bind("click", function(){
+
+	                    app.modal.open({
+	                        url:"/jsp/funeralsystem/ensh0000/ensh1000/ENSH1017.jsp",
+	                        pars:"callBack=fnObj.searchRentalfeeModalResult&jobGubun=S&priceGubun=U",
+	                        width:1200, // 모달창의 너비 - 필수값이 아닙니다. 없으면 900
+	                        //top:100 // 모달창의 top 포지션 - 필수값이 아닙니다. 없으면 axdom(window).scrollTop() + 30
+	                    });
+                    });
+                    $("#ax-page-btn-save").bind("click", function(){
+                        setTimeout(function() {
+                            _this.save();
+                        }, 500);
+                    });
+                    $("#div-tab").bindTab({
+        				theme : "AXTabs",
+        				value:"A",
+        				overflow:"scroll", /* "visible" */
+        				options:fnObj.CODES.firstTab,
+        				onchange: function(selectedObject, value){
+        					//toast.push(Object.toJSON(this));
+        					//toast.push(Object.toJSON(selectedObject));
+//         					toast.push("onchange: "+Object.toJSON(value));
+
+// 		                    $("#div-contents").empty();
+//         					$("#div-contents").append(fnObj.tabs["div-tab-content-"+value].tab);
+//         					fnObj.tabs["div-tab-content-"+value].bindEvent();
+//         					$("[id^='div-tab-content-']").css("display", "none");
+//         					$("#div-tab-content-"+value).css("display", "");
+							$("#div-contents").append($("[id^='div-tab-content-']"));
+							$("#div-content").append($("#div-tab-content-"+value));
+
+        				},
+        				onclose: function(selectedObject, value){
+        					//toast.push(Object.toJSON(this));
+        					//toast.push(Object.toJSON(selectedObject));
+        					toast.push("onclose: "+Object.toJSON(value));
+        				}
+        			});
+                    $("#btn-search-thedead").bind("click", function(){
+
+	                    app.modal.open({
+	                        url:"/jsp/funeralsystem/ensh0000/ensh1000/ENSH1011.jsp",
+	                        //pars:"callBack=fnObj.searchThedeadModalResult&deadId="+$("#info-deadId").val(),
+	                        pars:"callBack=fnObj.searchThedeadModalResult&deadId="+$("#info-deadId").val()+"&deadDate="+$("#"+fnObj.searchScatter.target.getItemId("scaDateString")).val(),
+	                        width:1200, // 모달창의 너비 - 필수값이 아닙니다. 없으면 900
+	                        //top:100 // 모달창의 top 포지션 - 필수값이 아닙니다. 없으면 axdom(window).scrollTop() + 30
+	                    });
+                    });
+                    $("#info-endDateString").bindTwinDate({
+                        startTargetID: "info-strDateString",
+                        handleLeft: 25,
+                        align: "right",
+                        valign: "bottom",
+                        separator: "-",
+                        buttonText: "선택",
+                        onChange: function () {
+                            //toast.push(Object.toJSON(this));
+                        },
+                        onBeforeShowDay: function (date) {
+//                             if (date.getDay() == 3) {
+//                                 return { isEnable: false, title: "수요일 선택불가", className: "", style: "" };
+//                             }
+                        }
+                    });
+                    $("#info-extEndDateString").bindTwinDate({
+                        startTargetID: "info-extStrDateString",
+                        handleLeft: 25,
+                        align: "right",
+                        valign: "bottom",
+                        separator: "-",
+                        buttonText: "선택",
+                        onChange: function () {
+                            //toast.push(Object.toJSON(this));
+                        },
+                        onBeforeShowDay: function (date) {
+//                             if (date.getDay() == 3) {
+//                                 return { isEnable: false, title: "수요일 선택불가", className: "", style: "" };
+//                             }
+                        }
+                    });
+	               	$("#info-applJumin").bindPattern({pattern: "custom", max_length: 14, patternString:"999999-9999999"});
+	                   $("#info-applAddrGubun").bindSelect({
+	       				options:fnObj.CODES.addrGubun
+	       			});
+	                   $("#btn-applpost").bind("click", function(){
+	                   	daumPopPostcode("info-applPost", "info-applAddr1", "info-applAddr2");
+	                   });
+	                   $("#info-applNationGb").bindSelect({
+	       				options:fnObj.CODES.applNationGb
+	       			});
+					$("#info-applRelation").bindSelect({
+						options:fnObj.CODES.applRelation
+					});
+	                $("#btn-search-applicant").bind("click", function(){
+
+	                    app.modal.open({
+	                        url:"/jsp/funeralsystem/ensh0000/ensh1000/ENSH1012.jsp",
+	                        pars:"callBack=fnObj.searchApplicantModalResult&applId="+$("#info-applId").val(),
+	                        width:1200, // 모달창의 너비 - 필수값이 아닙니다. 없으면 900
+	                        //top:100 // 모달창의 top 포지션 - 필수값이 아닙니다. 없으면 axdom(window).scrollTop() + 30
+	                    });
+	                });
+	                $("#btn-search-payerApplicant").bind("click", function(){
+
+	                    app.modal.open({
+	                        url:"/jsp/funeralsystem/ensh0000/ensh1000/ENSH1012.jsp",
+	                        pars:"callBack=fnObj.searchPayerApplicantModalResult",
+	                        width:1200, // 모달창의 너비 - 필수값이 아닙니다. 없으면 900
+	                        //top:100 // 모달창의 top 포지션 - 필수값이 아닙니다. 없으면 axdom(window).scrollTop() + 30
+	                    });
+	                });
+                	$("#info-payer-applJumin").bindPattern({pattern: "custom", max_length: 14, patternString:"999999-9999999"});
+                    $("#info-payer-applAddrGubun").bindSelect({
+        				options:fnObj.CODES.addrGubun
+        			});
+                    $("#btn-applpost",$("#div-tab-content-P")).bind("click", function(){
+                    	daumPopPostcode("info-payer-applPost", "info-payer-applAddr1", "info-payer-applAddr2");
+                    });
+                    $("#info-payer-applNationGb").bindSelect({
+        				options:fnObj.CODES.applNationGb
+        			});
+                    $("#info-payer-applRelation").bindSelect({
+        				options:fnObj.CODES.applRelation
+        			});
+                    $("#btn-search-applicant",$("#div-tab-content-P")).bind("click", function(){
+
+	                    app.modal.open({
+	                        url:"/jsp/funeralsystem/ensh0000/ensh1000/ENSH1012.jsp",
+	                        pars:"callBack=fnObj.searchApplicantModalResult&applId="+$("#info-payer-applId").val(),
+	                        width:1200, // 모달창의 너비 - 필수값이 아닙니다. 없으면 900
+	                        //top:100 // 모달창의 top 포지션 - 필수값이 아닙니다. 없으면 axdom(window).scrollTop() + 30
+	                    });
+                    });
+//                     $("[id^='div-tab-content-']").css("display", "none");
+//                    	$("#div-tab-content-A").css("display", "block");
+					$("#div-content").append($("#div-tab-content-A"));
+//                     setTimeout(function(){
+//                     	$("#div-contents").empty();
+//                     	$("#div-contents").append(fnObj.tabs["div-tab-content-A"].tab);
+//                     	fnObj.tabs["div-tab-content-A"].bindEvent();
+//                    	}, 500);
+					$("#btn-save-applicant").bind("click",function(){
+						fnObj.saveApplicant("A", false, fnObj.formApplicant);
+					});
+					$("#btn-save-applicant-addrhst").bind("click",function(){
+						fnObj.saveApplicant("A", true, fnObj.formApplicant);
+					});
+					$("#btn-list-applicant-addrhst").bind("click",function(){
+	                    app.modal.open({
+	                        url:"/jsp/funeralsystem/ensh0000/ensh1000/ENSH1013.jsp",
+	                        pars:"callBack=fnObj.addrhstModalResult&applId="+$("#info-applId", fnObj.formApplicant.target).val(),
+	                        width:1200, // 모달창의 너비 - 필수값이 아닙니다. 없으면 900
+	                        //top:100 // 모달창의 top 포지션 - 필수값이 아닙니다. 없으면 axdom(window).scrollTop() + 30
+	                    });
+					});
+					$("#btn-save-payer").bind("click",function(){
+						fnObj.saveApplicant("P", false, fnObj.formPayerApplicant);
+					});
+					$("#btn-save-payer-addrhst").bind("click",function(){
+						fnObj.saveApplicant("P", true, fnObj.formPayerApplicant);
+					});
+					$("#btn-list-payer-addrhst").bind("click",function(){
+	                    app.modal.open({
+	                        url:"/jsp/funeralsystem/ensh0000/ensh1000/ENSH1013.jsp",
+	                        pars:"callBack=fnObj.addrhstModalResult&applId="+$("#info-payer-applId", fnObj.formPayerApplicant.target).val(),
+	                        width:1200, // 모달창의 너비 - 필수값이 아닙니다. 없으면 900
+	                        //top:100 // 모달창의 top 포지션 - 필수값이 아닙니다. 없으면 axdom(window).scrollTop() + 30
+	                    });
+					});
+					$("#info-deadTimeString").bindPattern({
+		                pattern: "custom", patternString:"99:99"
+		            });
+					$("#info-addrPart, #info-dcGubun").bind("change", fnObj.calcPriceAndTerm);
+					$("#info-cashAmt, #info-cardAmt").bind("keyup", function(){
+						var charge = $("#info-charge").val();
+						var ids = ["info-cashAmt", "info-cardAmt"];
+						var _this = this;
+						ids.forEach(function(val){
+
+							if(val == $(_this).attr("id")){
+								$("#"+val).val(+$(_this).val());
+							}else{
+								$("#"+val).val(+charge-$(_this).val());
+							}
+						});
+					});
+
+					 $("#btn-report").bind("click", function(){
+	                    	var params = [];
+	                    	var scaDate = $("#info-scaDateString").val().date().print("yyyymmdd");
+	                    	var scaSeq =  Common.search.getValue(fnObj.searchScatter.target, "scaSeq");
+	                    	if(scaDate ==  "" || scaSeq == "" ){
+
+	                    		return;
+	                    	}
+	                    	params.push("scaDate="+scaDate);
+	                		params.push("scaSeq="+scaSeq);
+	                		Common.report.open("/reports/scat/SCAT1011", "pdf", params.join("&"));
+	                    });
+
+					 $("#btn-receipt").bind("click", function(){
+	                    	var params = [];
+	                    	var scaDate = $("#info-scaDateString").val().date().print("yyyymmdd");
+	                    	var scaSeq =  Common.search.getValue(fnObj.searchScatter.target, "scaSeq");
+	                    	if(scaDate ==  "" || scaSeq == "" ){
+
+	                    		return;
+	                    	}
+	                    	params.push("scaDate="+scaDate);
+	                		params.push("scaSeq="+scaSeq);
+	                		Common.report.open("/reports/scat/SCAT1012", "pdf", params.join("&"));
+	                    });
+				},
+				isNew: function(){
+                	var scaSeq = Common.search.getValue(fnObj.searchScatter.target, "scaSeq");
+                	if(!scaSeq || scaSeq.length == 0){
+                		return true;
+                	}else{
+                		return false;
+                	}
+                },
+                calcPriceAndTerm: function(){
+                	if(!fnObj.isNew()){
+//                 		return;
+                	}
+                	app.ajax({
+                        type: "GET",
+                        url: "/SCAT1010/pricelist/"+$("#info-addrPart").val()+"/"+$("#info-dcGubun").val(),
+                        data: ""
+                    },
+                    function(res){
+                    	if(res.error){
+                    		alert(res.message);
+                    	}else{
+                    		if(res.map.pricelist == null){
+                    			toast.push("사용료가 등록되지 않았습니다.");
+                    			return;
+                    		}
+                    		$("#info-rentalfee").val(res.map.pricelist.charge);
+                    		$("#info-dcAmt").val(res.map.dcAmt);
+                    		$("#info-charge").val(res.map.pricelist.charge-res.map.dcAmt);
+                    		$("#info-cashAmt").val(res.map.pricelist.charge);
+                    		$("#info-feetypedivcd").val(res.map.pricelist.feetypedivcd);
+
+                        }
+                    });
+                },
+                del: function(){
+                	if(!confirm("현재자료를 삭제하시겠습니까?")){
+                		return;
+                	}
+                	app.ajax({
+            			async: false,
+                        type: "DELETE",
+                        url: "/SCAT1010/scatter/"+$("#"+fnObj.searchScatter.target.getItemId("scaDateString")).val().date().print("yyyymmdd")+"/"+$("#"+fnObj.searchScatter.target.getItemId("scaSeq")).val(),
+                        data: ""
+                    },
+                    function(res){
+                    	if(res.error){
+                    		alert(res.massage);
+                    	}else{
+                    		toast.push("삭제하였습니다.");
+                    		$('#ax-form-btn-new').click();
+                    	}
+                	});
+                },
+                save: function(){
+                    var validateResult = fnObj.form.validate_target.validate();
+                    if (!validateResult) {
+                        var msg = fnObj.form.validate_target.getErrorMessage();
+                        axf.alert(msg);
+                        fnObj.form.validate_target.getErrorElement().focus();
+                        return false;
+                    }
+                    validateResult = fnObj.formApplicant.validate_target.validate();
+                    if (!validateResult) {
+                        var msg = fnObj.formApplicant.validate_target.getErrorMessage();
+                        axf.alert(msg);
+                        fnObj.formApplicant.validate_target.getErrorElement().focus();
+                        return false;
+                    }
+
+                    var info = fnObj.form.getJSON();
+                    info.applId = $("#info-applId").val();
+                    info.payerId = $("#info-payer-applId").val();
+                    info.deadRelation = $("#info-deadRelation").bindSelectGetValue().optionValue;
+                    info.deadRelationNm = $("#info-deadRelationNm").val();
+//                     var applicant = fnObj.formApplicant.getJSON();
+//                     var payerApplicant = fnObj.formPayerApplicant.getJSON();
+//                     for(var key in applicant){
+//                     	info[key] = applicant[key];
+//                     }
+//                     info.payerApplicant = payerApplicant;
+                    app.ajax({
+                        type: "PUT",
+                        url: "/SCAT1010/scatter",
+                        data: Object.toJSON(info)
+                    },
+                    function(res){
+                    	if(res.error){
+                    		alert(res.message);
+                    	}else if(res.map.error){
+                            var errorLog = res.map.error.log;
+                            var message = [];
+                            for(var i=0; i<errorLog.length; i++){
+	                            $('input[name="'+errorLog[i].field+'"], select[name="'+errorLog[i].field+'"]').css("background-color", "#FF0000");
+	                            $('input[name="'+errorLog[i].field+'String"], select[name="'+errorLog[i].field+'String"]').css("background-color", "#FF0000");
+	                            message.push(errorLog[i].message);
+                            }
+                            alert(message.join("\n"));
+                        }
+                        else
+                        {
+                            toast.push("저장되었습니다.");
+                            Common.search.setValue(fnObj.searchScatter.target, "scaDateString", res.map.scaDateString.date().print());
+                            Common.search.setValue(fnObj.searchScatter.target, "scaSeq", res.map.scaSeq);
+                            fnObj.searchScatter.submit();
+//                             fnObj.form.clear();
+                        }
+                    });
+                },
+                saveApplicant: function(applType, changeAddr, form){
+                    var validateResult = form.validate_target.validate();
+                    if (!validateResult) {
+                        var msg = form.validate_target.getErrorMessage();
+                        axf.alert(msg);
+                        form.validate_target.getErrorElement().focus();
+                        return false;
+                    }
+
+                    var beforeApplId = applType == "A" ? $("#info-beforeApplId").val() : $("#info-payer-beforeApplId").val();
+                    var info = form.getJSON();
+                    app.ajax({
+                        type: "PUT",
+                        url: "/SCAT1010/applicant/"+$("#info-scaDateString").val().date().print("yyyymmdd")+"/"+$("#info-scaSeq").val()+"/"+applType+"/"+changeAddr+"/"+beforeApplId,
+                        data: Object.toJSON(info)
+                    },
+                    function(res){
+                    	if(res.error){
+                    		alert(res.message);
+                    	}else if(res.map.error){
+                            var errorLog = res.map.error.log;
+                            var message = [];
+                            for(var i=0; i<errorLog.length; i++){
+	                            $('input[name="'+errorLog[i].field+'"], select[name="'+errorLog[i].field+'"]', form.target).css("background-color", "#FF0000");
+	                            $('input[name="'+errorLog[i].field+'String"], select[name="'+errorLog[i].field+'String"]', form.target).css("background-color", "#FF0000");
+	                            message.push(errorLog[i].message);
+                            }
+                            alert(message.join("\n"));
+                        }
+                        else
+                        {
+                            toast.push("저장되었습니다.");
+//                             fnObj.form.clear();
+                        }
+                    });
+                },
+                searchRentalfeeModalResult : function(item){
+
+                	app.ajax({
+                        type: "GET",
+                        url: "/SCAT1010/pricelist/"+item.addrPart+"/"+item.dcGubun,
+                        data: ""
+                    },
+                    function(res){
+                    	if(res.error){
+                    		alert(res.message);
+                    		app.modal.close();
+                    	}else{
+                    		if(res.map.pricelist == null){
+                    			toast.push("사용료가 등록되지 않았습니다.");
+                    			return;
+                    		}
+                    		$("#info-rentalfee").val(res.map.pricelist.charge);
+                    		$("#info-dcAmt").val(res.map.dcAmt);
+                    		$("#info-charge").val(res.map.pricelist.charge-res.map.dcAmt);
+                    		$("#info-cashAmt").val(res.map.pricelist.charge-res.map.dcAmt);
+
+                    		$("#info-feetypedivcd").val(res.map.pricelist.feetypedivcd);
+                    		app.modal.close();
+                        }
+                    });
+                },
+                searchThedeadModalResult: function(thedead){
+                	for(var key in thedead){
+                		$("#info-"+key).val(thedead[key]);
+                		$("#info-"+key).bindSelectSetValue(thedead[key]);
+                		app.modal.close();
+                		$("[id^='info-dead']").change();
+                		$("[id^='info-dead']").blur();
+                	}
+                },
+                searchApplicantModalResult: function(applicant){
+                	$("#info-beforeApplId").val($("#info-applId").val());
+                	for(var key in applicant){
+                		$("#info-"+key).val(applicant[key]);
+                		$("#info-"+key).bindSelectSetValue(applicant[key]);
+                	}
+               		app.modal.close();
+                },
+                searchPayerApplicantModalResult: function(applicant){
+                	$("#info-payer-beforeApplId").val($("#info-payer-applId").val());
+                	for(var key in applicant){
+                		$("#info-payer-"+key).val(applicant[key]);
+                		$("#info-payer-"+key).bindSelectSetValue(applicant[key]);
+                	}
+               		app.modal.close();
+                },
+                searchScatter: {
+                    target: new AXSearch(),
+                    bind: function(){
+                        var _this = this;
+                        this.target.setConfig({
+                            targetID:"page-search-scatter",
+                            theme : "AXSearch",
+                            /*
+                             mediaQuery: {
+                             mx:{min:"N", max:767}, dx:{min:767}
+                             },
+                             */
+                            onsubmit: function(){
+                                // 버튼이 선언되지 않았거나 submit 개체가 있는 경우 발동 합니다.
+                                fnObj.searchScatter.submit();
+                            },
+                            rows:[
+                                {display:true, addClass:"", style:"", list:[
+                                    {label:"산골관리번호", labelWidth:"", type:"inputText", width:"150", key:"scaDateString", addClass:"", valueBoxStyle:"", value:new Date().print(),
+                                    	AXBind:{
+            								type:"date", config:{
+            									align:"right", valign:"top", defaultDate:new Date(),
+            									onChange:function(){
+//             										$("#info-ensDate").val(this.value);
+            									}
+            								}
+            							}
+                                    }
+                                    , {label:"", labelWidth:"", type:"inputText", width:"150", key:"scaSeq", addClass:"", valueBoxStyle:"", value:""
+                                    	, onChange: function(changedValue){
+            								//아래 2개의 값을 사용 하실 수 있습니다.
+//             								toast.push(Object.toJSON(this));
+//             								toast.push(changedValue);
+//                                     		$("#info-ensSeq").val(changedValue);
+            							}
+                                    }
+            						, {label:"", labelWidth:"", type:"button", width:"50", key:"button", addClass:"", valueBoxStyle:"padding-left:0px;padding-right:5px;", value:"<i class='axi axi-ion-android-search'></i>조회",
+            							onclick: function(){
+            								fnObj.searchScatter.submit();
+            							}
+            						},
+                                ]}
+                            ]
+                        });
+                    },
+                    submit: function(){
+                    	app.ajax({
+                			async: false,
+                            type: "GET",
+                            url: "/SCAT1010/scatter/"+$("#"+fnObj.searchScatter.target.getItemId("scaDateString")).val().date().print("yyyymmdd")+"/"+$("#"+fnObj.searchScatter.target.getItemId("scaSeq")).val(),
+                            data: ""
+                        },
+                        function(res){
+                        	if(res.error){
+                        		alert(res.massage);
+                        	}else{
+                        		if(!res.map.scatterVTO || res.map.scatterVTO == null){
+                        			toast.push("검색 결과가 존재하지 않습니다.");
+                        			return;
+                        		}
+                        		if(res.map.scatterVTO.thedeadVTO){
+	                        		$.each(res.map.scatterVTO.thedeadVTO, function(key, value){
+	                       				res.map.scatterVTO[key] = value;
+	                        		});
+                        		}
+                        		if(res.map.scatterVTO.applicantVTO){
+	                        		$.each(res.map.scatterVTO.applicantVTO, function(key, value){
+	                       				res.map.scatterVTO[key] = value;
+	                        		});
+                        		}
+                        		if(res.map.scatterVTO.payerApplicantVTO){
+	                        		fnObj.formPayerApplicant.clear();
+	                        		fnObj.formPayerApplicant.setJSON(res.map.scatterVTO.payerApplicantVTO);
+                        		}
+                        		fnObj.form.clear();
+                        		fnObj.formApplicant.clear();
+                        		fnObj.form.setJSON(res.map.scatterVTO);
+                        		fnObj.formApplicant.setJSON(res.map.scatterVTO);
+                        		$("#info-beforeApplId").val(res.map.scatterVTO.applId);
+                        		$("#div-tab").updateTabs(fnObj.CODES.tab);
+    							$("#div-contents").append($("[id^='div-tab-content-']"));
+    							$("#div-content").append($("#div-tab-content-A"));
+                        	}
+                    	});
+                    }
+                },
+                searchHwaCremation: {
+                    target: new AXSearch(),
+                    bind: function(){
+                        var _this = this;
+                        this.target.setConfig({
+                            targetID:"page-search-hwaCremation",
+                            theme : "AXSearch",
+                            /*
+                             mediaQuery: {
+                             mx:{min:"N", max:767}, dx:{min:767}
+                             },
+                             */
+                            onsubmit: function(){
+                                // 버튼이 선언되지 않았거나 submit 개체가 있는 경우 발동 합니다.
+                                fnObj.searchHwaCremation.submit();
+                            },
+                            rows:[
+                                {display:true, addClass:"", style:"", list:[
+                                    {label:"화장관리번호", labelWidth:"", type:"inputText", width:"150", key:"cremDate", addClass:"", valueBoxStyle:"", value:new Date().print(),
+                                    	AXBind:{
+            								type:"date", config:{
+            									align:"right", valign:"top", defaultDate:new Date(),
+            									onChange:function(){
+            										toast.push(Object.toJSON(this));
+            									}
+            								}
+            							}
+                                    }
+                                    , {label:"", labelWidth:"", type:"inputText", width:"150", key:"cremSeq", addClass:"", valueBoxStyle:"", value:""}
+            						, {label:"", labelWidth:"", type:"button", width:"50", key:"button", addClass:"", valueBoxStyle:"padding-left:0px;padding-right:5px;", value:"<i class='axi axi-ion-android-search'></i>조회",
+            							onclick: function(){
+            								fnObj.searchHwaCremation.submit();
+            							}
+            						},
+                                ]}
+                            ]
+                        });
+                    },
+                    submit: function(){
+                    	$('#ax-form-btn-new').click();
+                        var pars = this.target.getParam();
+                        var url = "/CREM2010/hwaCremation/"+$("#"+fnObj.searchHwaCremation.target.getItemId("cremDate")).val().date().print("yyyymmdd")+"/"+$("#"+fnObj.searchHwaCremation.target.getItemId("cremSeq")).val();
+                        if(url.endsWith("/")){
+                        	toast.push("화장관리번호를 입력해 주세요.");
+                        	return;
+                        }
+                    	app.ajax({
+                			async: false,
+                            type: "GET",
+                            url: url,
+                            data: ""
+                        },
+                        function(res){
+                        	if(res.error){
+                        		alert(res.message);
+                        	}else{
+                        		if(!res.map.hwaCremationVTO || res.map.hwaCremationVTO == null){
+                        			toast.push("검색 결과가 존재하지 않습니다.");
+                        			return;
+                        		}
+                        		if(res.map.hwaCremationVTO.thedeadVTO){
+	                        		$.each(res.map.hwaCremationVTO.thedeadVTO, function(key, value){
+	                       				res.map.hwaCremationVTO[key] = value;
+	                        		});
+                        		}
+                        		if(res.map.hwaCremationVTO.applicantVTO){
+	                        		$.each(res.map.hwaCremationVTO.applicantVTO, function(key, value){
+	                       				res.map.hwaCremationVTO[key] = value;
+	                        		});
+                        		}
+                        		fnObj.form.clear();
+                        		fnObj.formApplicant.clear();
+                        		fnObj.form.setJSON(res.map.hwaCremationVTO);
+                        		fnObj.formApplicant.setJSON(res.map.hwaCremationVTO);
+                        		$("[id^='info-dead']").change();
+                        	}
+                    	});
+                    }
+                },
+
+                /*******************************************************
+                 * 상세 폼
+                 */
+                form: {
+                    target: $('#form-info'),
+                    validate_target: new AXValidator(),
+                    bind: function() {
+                        var _this = this;
+
+                        this.validate_target.setConfig({
+                            targetFormName : "form-info"
+                        });
+
+                        $('#ax-form-btn-new').click(function() {
+                            fnObj.form.clear();
+                            fnObj.formApplicant.clear();
+                           	fnObj.formPayerApplicant.clear();
+                           	$("#div-tab").updateTabs(fnObj.CODES.firstTab);
+							$("#div-contents").append($("[id^='div-tab-content-']"));
+							$("#div-content").append($("#div-tab-content-A"));
+							Common.search.setValue(fnObj.searchScatter.target, "scaDateString", new Date().print());
+							Common.search.setValue(fnObj.searchScatter.target, "scaSeq", "");
+                        });
+                    },
+                    setJSON: function(item) {
+                        var _this = this;
+
+                        // 수정시 입력 방지 처리 필드 처리
+//                         $('#info-key').attr("readonly", "readonly");
+
+                        var info = $.extend({}, item);
+                        app.form.fillForm(_this.target, info, 'info-');
+                        // 추가적인 값 수정이 필요한 경우 처리
+                        // $('#info-useYn').bindSelectSetValue( info.useYn );
+                    },
+                    getJSON: function() {
+                        return app.form.serializeObjectWithIds(this.target, 'info-');
+                    },
+                    clear: function() {
+                        app.form.clearForm(this.target);
+                        $('#info-key').removeAttr("readonly");
+                    }
+                },
+                formApplicant: {
+                    target: $('#form-info-applicant'),
+                    validate_target: new AXValidator(),
+                    bind: function() {
+                        var _this = this;
+
+                        this.validate_target.setConfig({
+                            targetFormName : "form-info-applicant"
+                        });
+
+                    },
+                    setJSON: function(item) {
+                        var _this = this;
+
+                        // 수정시 입력 방지 처리 필드 처리
+//                         $('#info-key').attr("readonly", "readonly");
+
+                        var info = $.extend({}, item);
+                        app.form.fillForm(_this.target, info, 'info-');
+                        // 추가적인 값 수정이 필요한 경우 처리
+                        // $('#info-useYn').bindSelectSetValue( info.useYn );
+                    },
+                    getJSON: function() {
+                        return app.form.serializeObjectWithIds(this.target, 'info-');
+                    },
+                    clear: function() {
+                        app.form.clearForm(this.target);
+                    }
+                },
+                formPayerApplicant: {
+                    target: $('#form-info-payer-applicant'),
+                    validate_target: new AXValidator(),
+                    bind: function() {
+                        var _this = this;
+
+                        this.validate_target.setConfig({
+                            targetFormName : "form-info-payer-applicant"
+                        });
+
+                    },
+                    setJSON: function(item) {
+                        var _this = this;
+
+                        // 수정시 입력 방지 처리 필드 처리
+//                         $('#info-key').attr("readonly", "readonly");
+
+                        var info = $.extend({}, item);
+                        app.form.fillForm(_this.target, info, 'info-payer-');
+                        // 추가적인 값 수정이 필요한 경우 처리
+                        // $('#info-useYn').bindSelectSetValue( info.useYn );
+                    },
+                    getJSON: function() {
+                        return app.form.serializeObjectWithIds(this.target, 'info-payer-');
+                    },
+                    clear: function() {
+                        app.form.clearForm(this.target);
+                    }
+                },
+                // form
+
+            };
+        </script>
+
+    </ax:div>
+</ax:layout>

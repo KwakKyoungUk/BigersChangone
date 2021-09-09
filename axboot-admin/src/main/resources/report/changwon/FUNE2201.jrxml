@@ -1,0 +1,2041 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FUNE2201" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e65c5470-5a95-430a-89d2-7546bd9f3920">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://192.168.0.52:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/suwon/fune/FUNE2201_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/suwon/fune/FUNE2201"/>
+	<subDataset name="Dataset1" uuid="239463bf-e6cb-4184-93a8-174ac77774b6">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="FROM02" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[-- 이용매출현황
+SELECT
+-- 1분기
+(SELECT COUNT(*) FROM funeral WHERE binso_code NOT LIKE '8%'
+                                    AND BALIN_DATE BETWEEN STR_TO_DATE(CONCAT($P{FROM02},'0101','000000'),'%Y%m%d%H%i%s')
+                                                       AND STR_TO_DATE(CONCAT($P{FROM02},'0331','235959'),'%Y%m%d%H%i%s')) AS cnt01
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('01','02','03') THEN IF(i.GROUP_CODE = '01' || i.GROUP_CODE = '02', sb.T_AMOUNT-sb.DC_AMT, 0) ELSE 0 END)/1000)) AS BINSO_ANCHI01 -- 빈소,안치
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('01','02','03') THEN IF(sb.ITEM_CODE = '03-0010' || sb.ITEM_CODE = '03-0020' || sb.ITEM_CODE = '03-0030' || sb.ITEM_CODE = '03-0040' 
+|| sb.ITEM_CODE = '03-0050' || sb.ITEM_CODE = '03-0060' || sb.ITEM_CODE = '03-0070', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS SHROUDING_SHROOM01 -- 염습비용,염습실사용료 
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('01','02','03') THEN IF(sb.PART_CODE = '40-001' || sb.PART_CODE = '60-001', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS GOODS_HWAWON01 -- 장례용품, 화원
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('01','02','03') THEN IF(sb.PART_CODE = '20-001' || sb.PART_CODE = '21-001', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS REST_JESUSIL01 -- 식당,제수
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('01','02','03') THEN IF(sb.PART_CODE = '30-001', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS STORE01 -- 매점
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('01','02','03') THEN IF(sb.ITEM_CODE = '04-0040' || sb.ITEM_CODE = '04-0050' || sb.ITEM_CODE = '04-0060' || sb.ITEM_CODE = '04-0070' 
+|| sb.ITEM_CODE = '04-0080' || sb.ITEM_CODE = '04-0090' || sb.ITEM_CODE = '04-0100' || sb.ITEM_CODE = '04-0110', T_AMOUNT, 0) ELSE 0 END)/1000)) AS TOT_PROC01 -- 통합처리비
+
+-- 2분기
+,(SELECT COUNT(*) FROM funeral WHERE binso_code NOT LIKE '8%'
+                                    AND BALIN_DATE BETWEEN STR_TO_DATE(CONCAT($P{FROM02},'0401','000000'),'%Y%m%d%H%i%s')
+                                                       AND STR_TO_DATE(CONCAT($P{FROM02},'0631','235959'),'%Y%m%d%H%i%s')) AS cnt02
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('04','05','06') THEN IF(i.GROUP_CODE = '01' || i.GROUP_CODE = '02', sb.T_AMOUNT-sb.DC_AMT, 0) ELSE 0 END)/1000)) AS BINSO_ANCHI02 -- 빈소,안치
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('04','05','06') THEN IF(sb.ITEM_CODE = '03-0010' || sb.ITEM_CODE = '03-0020' || sb.ITEM_CODE = '03-0030' || sb.ITEM_CODE = '03-0040' 
+|| sb.ITEM_CODE = '03-0050' || sb.ITEM_CODE = '03-0060' || sb.ITEM_CODE = '03-0070', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS SHROUDING_SHROOM02 -- 염습비용,염습실사용료 
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('04','05','06') THEN IF(sb.PART_CODE = '40-001' || sb.PART_CODE = '60-001', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS GOODS_HWAWON02 -- 장례용품, 화원
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('04','05','06') THEN IF(sb.PART_CODE = '20-001' || sb.PART_CODE = '21-001', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS REST_JESUSIL02 -- 식당,제수
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('04','05','06') THEN IF(sb.PART_CODE = '30-001', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS STORE02 -- 매점
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('04','05','06') THEN IF(sb.ITEM_CODE = '04-0040' || sb.ITEM_CODE = '04-0050' || sb.ITEM_CODE = '04-0060' || sb.ITEM_CODE = '04-0070' 
+|| sb.ITEM_CODE = '04-0080' || sb.ITEM_CODE = '04-0090' || sb.ITEM_CODE = '04-0100' || sb.ITEM_CODE = '04-0110', T_AMOUNT, 0) ELSE 0 END)/1000)) AS TOT_PROC02 -- 통합처리비
+
+-- 3분기
+,(SELECT COUNT(*) FROM funeral WHERE binso_code NOT LIKE '8%'
+                                    AND BALIN_DATE BETWEEN STR_TO_DATE(CONCAT($P{FROM02},'0701','000000'),'%Y%m%d%H%i%s')
+                                                       AND STR_TO_DATE(CONCAT($P{FROM02},'0931','235959'),'%Y%m%d%H%i%s')) AS cnt03
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('07','08','09') THEN IF(i.GROUP_CODE = '01' || i.GROUP_CODE = '02', sb.T_AMOUNT-sb.DC_AMT, 0) ELSE 0 END)/1000)) AS BINSO_ANCHI03 -- 빈소,안치
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('07','08','09') THEN IF(sb.ITEM_CODE = '03-0010' || sb.ITEM_CODE = '03-0020' || sb.ITEM_CODE = '03-0030' || sb.ITEM_CODE = '03-0040' 
+|| sb.ITEM_CODE = '03-0050' || sb.ITEM_CODE = '03-0060' || sb.ITEM_CODE = '03-0070', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS SHROUDING_SHROOM03 -- 염습비용,염습실사용료 
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('07','08','09') THEN IF(sb.PART_CODE = '40-001' || sb.PART_CODE = '60-001', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS GOODS_HWAWON03 -- 장례용품, 화원
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('07','08','09') THEN IF(sb.PART_CODE = '20-001' || sb.PART_CODE = '21-001', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS REST_JESUSIL03 -- 식당,제수
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('07','08','09') THEN IF(sb.PART_CODE = '30-001', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS STORE03 -- 매점
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('07','08','09') THEN IF(sb.ITEM_CODE = '04-0040' || sb.ITEM_CODE = '04-0050' || sb.ITEM_CODE = '04-0060' || sb.ITEM_CODE = '04-0070' 
+|| sb.ITEM_CODE = '04-0080' || sb.ITEM_CODE = '04-0090' || sb.ITEM_CODE = '04-0100' || sb.ITEM_CODE = '04-0110', T_AMOUNT, 0) ELSE 0 END)/1000)) AS TOT_PROC03 -- 통합처리비
+
+-- 4분기
+,(SELECT COUNT(*) FROM funeral WHERE binso_code NOT LIKE '8%'
+                                    AND BALIN_DATE BETWEEN STR_TO_DATE(CONCAT($P{FROM02},'1001','000000'),'%Y%m%d%H%i%s')
+                                                       AND STR_TO_DATE(CONCAT($P{FROM02},'1231','235959'),'%Y%m%d%H%i%s')) AS cnt04
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('10','11','12') THEN IF(i.GROUP_CODE = '01' || i.GROUP_CODE = '02', sb.T_AMOUNT-sb.DC_AMT, 0) ELSE 0 END)/1000)) AS BINSO_ANCHI04 -- 빈소,안치
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('10','11','12') THEN IF(sb.ITEM_CODE = '03-0010' || sb.ITEM_CODE = '03-0020' || sb.ITEM_CODE = '03-0030' || sb.ITEM_CODE = '03-0040' 
+|| sb.ITEM_CODE = '03-0050' || sb.ITEM_CODE = '03-0060' || sb.ITEM_CODE = '03-0070', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS SHROUDING_SHROOM04 -- 염습비용,염습실사용료 
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('10','11','12') THEN IF(sb.PART_CODE = '40-001' || sb.PART_CODE = '60-001', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS GOODS_HWAWON04 -- 장례용품, 화원
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('10','11','12') THEN IF(sb.PART_CODE = '20-001' || sb.PART_CODE = '21-001', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS REST_JESUSIL04 -- 식당,제수
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('10','11','12') THEN IF(sb.PART_CODE = '30-001', sb.T_AMOUNT, 0) ELSE 0 END)/1000)) AS STORE04 -- 매점
+,ROUND((SUM(CASE WHEN SUBSTR(f.balin_date,6,2) IN ('10','11','12') THEN IF(sb.ITEM_CODE = '04-0040' || sb.ITEM_CODE = '04-0050' || sb.ITEM_CODE = '04-0060' || sb.ITEM_CODE = '04-0070' 
+|| sb.ITEM_CODE = '04-0080' || sb.ITEM_CODE = '04-0090' || sb.ITEM_CODE = '04-0100' || sb.ITEM_CODE = '04-0110', T_AMOUNT, 0) ELSE 0 END)/1000)) AS TOT_PROC04 -- 통합처리비
+ 
+FROM funeral f
+JOIN sale_stmt_bd sb
+ON f.customer_no = sb.customer_no
+JOIN item i
+ON i.item_code = sb.item_code
+AND i.part_code = sb.part_code
+WHERE 1=1
+AND f.BALIN_DATE BETWEEN STR_TO_DATE(CONCAT($P{FROM02},'0101','000000'),'%Y%m%d%H%i%s')
+                     AND STR_TO_DATE(CONCAT($P{FROM02},'1231','235959'),'%Y%m%d%H%i%s')
+AND f.binso_code NOT LIKE '8%']]>
+		</queryString>
+		<field name="cnt01" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="cnt01"/>
+		</field>
+		<field name="BINSO_ANCHI01" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="BINSO_ANCHI01"/>
+		</field>
+		<field name="SHROUDING_SHROOM01" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="SHROUDING_SHROOM01"/>
+		</field>
+		<field name="GOODS_HWAWON01" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="GOODS_HWAWON01"/>
+		</field>
+		<field name="REST_JESUSIL01" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="REST_JESUSIL01"/>
+		</field>
+		<field name="STORE01" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="STORE01"/>
+		</field>
+		<field name="TOT_PROC01" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="TOT_PROC01"/>
+		</field>
+		<field name="cnt02" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="cnt02"/>
+		</field>
+		<field name="BINSO_ANCHI02" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="BINSO_ANCHI02"/>
+		</field>
+		<field name="SHROUDING_SHROOM02" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="SHROUDING_SHROOM02"/>
+		</field>
+		<field name="GOODS_HWAWON02" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="GOODS_HWAWON02"/>
+		</field>
+		<field name="REST_JESUSIL02" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="REST_JESUSIL02"/>
+		</field>
+		<field name="STORE02" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="STORE02"/>
+		</field>
+		<field name="TOT_PROC02" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="TOT_PROC02"/>
+		</field>
+		<field name="cnt03" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="cnt03"/>
+		</field>
+		<field name="BINSO_ANCHI03" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="BINSO_ANCHI03"/>
+		</field>
+		<field name="SHROUDING_SHROOM03" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="SHROUDING_SHROOM03"/>
+		</field>
+		<field name="GOODS_HWAWON03" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="GOODS_HWAWON03"/>
+		</field>
+		<field name="REST_JESUSIL03" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="REST_JESUSIL03"/>
+		</field>
+		<field name="STORE03" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="STORE03"/>
+		</field>
+		<field name="TOT_PROC03" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="TOT_PROC03"/>
+		</field>
+		<field name="cnt04" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="cnt04"/>
+		</field>
+		<field name="BINSO_ANCHI04" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="BINSO_ANCHI04"/>
+		</field>
+		<field name="SHROUDING_SHROOM04" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="SHROUDING_SHROOM04"/>
+		</field>
+		<field name="GOODS_HWAWON04" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="GOODS_HWAWON04"/>
+		</field>
+		<field name="REST_JESUSIL04" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="REST_JESUSIL04"/>
+		</field>
+		<field name="STORE04" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="STORE04"/>
+		</field>
+		<field name="TOT_PROC04" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="TOT_PROC04"/>
+		</field>
+		<variable name="sumAmt01" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{BINSO_ANCHI01}+$F{SHROUDING_SHROOM01}+$F{GOODS_HWAWON01}+$F{REST_JESUSIL01}+$F{STORE01}+$F{TOT_PROC01}]]></variableExpression>
+		</variable>
+		<variable name="sumAmt02" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{BINSO_ANCHI02}+$F{SHROUDING_SHROOM02}+$F{GOODS_HWAWON02}+$F{REST_JESUSIL02}+$F{STORE02}+$F{TOT_PROC02}]]></variableExpression>
+		</variable>
+		<variable name="sumAmt03" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{BINSO_ANCHI03}+$F{SHROUDING_SHROOM03}+$F{GOODS_HWAWON03}+$F{REST_JESUSIL03}+$F{STORE03}+$F{TOT_PROC03}]]></variableExpression>
+		</variable>
+		<variable name="sumAmt04" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{BINSO_ANCHI04}+$F{SHROUDING_SHROOM04}+$F{GOODS_HWAWON04}+$F{REST_JESUSIL04}+$F{STORE04}+$F{TOT_PROC04}]]></variableExpression>
+		</variable>
+		<variable name="sumBinsoAnchi" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{BINSO_ANCHI01}+$F{BINSO_ANCHI02}+$F{BINSO_ANCHI03}+$F{BINSO_ANCHI04}]]></variableExpression>
+		</variable>
+		<variable name="sumShroudingShroom" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{SHROUDING_SHROOM01}+$F{SHROUDING_SHROOM02}+$F{SHROUDING_SHROOM03}+$F{SHROUDING_SHROOM04}]]></variableExpression>
+		</variable>
+		<variable name="sumGoodsHwawon" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{GOODS_HWAWON01}+$F{GOODS_HWAWON02}+$F{GOODS_HWAWON03}+$F{GOODS_HWAWON04}]]></variableExpression>
+		</variable>
+		<variable name="sumRestJesusil" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{REST_JESUSIL01}+$F{REST_JESUSIL02}+$F{REST_JESUSIL03}+$F{REST_JESUSIL04}]]></variableExpression>
+		</variable>
+		<variable name="sumStore" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{STORE01}+$F{STORE02}+$F{STORE03}+$F{STORE04}]]></variableExpression>
+		</variable>
+		<variable name="sumTotproc" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{TOT_PROC01}+$F{TOT_PROC02}+$F{TOT_PROC03}+$F{TOT_PROC04}]]></variableExpression>
+		</variable>
+		<variable name="cntAll" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{cnt01}+$F{cnt02}+$F{cnt03}+$F{cnt04}]]></variableExpression>
+		</variable>
+		<variable name="sumAmtAll" class="java.lang.Integer">
+			<variableExpression><![CDATA[$V{sumAmt01}+$V{sumAmt02}+$V{sumAmt03}+$V{sumAmt04}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="Dataset2" uuid="5196e2c4-89e5-4f1d-ab5b-7df7319401ff">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sung_suwon"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="327"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="664"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="FROM03" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT 
+	IFNULL(b01.gigan,0) AS gigna01
+	,IFNULL(b01.binsoRice,0) AS binsoRice01
+	,IFNULL(b01.sik,0) AS sik01
+	,IFNULL(b02.gigan,0) AS gigna02
+	,IFNULL(b02.binsoRice,0) AS binsoRice02
+	,IFNULL(b02.sik,0) AS sik02
+	,IFNULL(b03.gigan,0) AS gigna03
+	,IFNULL(b03.binsoRice,0) AS binsoRice03
+	,IFNULL(b03.sik,0) AS sik03
+	,IFNULL(b04.gigan,0) AS gigna04
+	,IFNULL(b04.binsoRice,0) AS binsoRice04
+	,IFNULL(b04.sik,0) AS sik04
+  FROM			
+		   (SELECT TO_DAYS(MAX(B.BALIN_DATE))-TO_DAYS(MIN(B.BALIN_DATE))+1 AS gigan, 
+                           SUM(IF(A.PART_CODE = '20-001' AND A.ITEM_CODE = '368', A.QTY, 0)) AS binsoRice,
+                           (SELECT SUM(A.QTY)
+                              FROM sale_stmt B, sale_stmt_bd A
+                             WHERE     B.CUSTOMER_NO = A.CUSTOMER_NO
+                                   AND B.PART_CODE = A.PART_CODE
+				   AND A.BILL_NO = B.BILL_NO
+				   AND LENGTH(A.CUSTOMER_NO) = 8
+				   AND B.ET_DATE BETWEEN CONCAT($P{FROM03},'0101') AND CONCAT($P{FROM03},'0331')
+				   AND A.part_code IN ('30-001','31-001')
+				   AND A.item_code IN ('80-0010','001')) AS sik
+                      FROM sale_stmt_bd A,
+                           funeral B                           
+                     WHERE     A.CUSTOMER_NO = B.CUSTOMER_NO                           
+                           AND B.BALIN_DATE BETWEEN STR_TO_DATE(CONCAT($P{FROM03},'0101','000000'),'%Y%m%d%H%i%s')
+                                                AND STR_TO_DATE(CONCAT($P{FROM03},'0331','235959'),'%Y%m%d%H%i%s')                           
+                           AND B.BINSO_CODE NOT LIKE '8%') b01,
+                           
+                                      
+                   (SELECT TO_DAYS(MAX(B.BALIN_DATE))-TO_DAYS(MIN(B.BALIN_DATE))+1 AS gigan, 
+                           SUM(IF(A.PART_CODE = '20-001' AND A.ITEM_CODE = '368', A.QTY, 0)) AS binsoRice,
+                           (SELECT SUM(A.QTY)
+                              FROM sale_stmt B, sale_stmt_bd A
+                             WHERE     B.CUSTOMER_NO = A.CUSTOMER_NO
+                                   AND B.PART_CODE = A.PART_CODE
+				   AND A.BILL_NO = B.BILL_NO
+				   AND LENGTH(A.CUSTOMER_NO) = 8
+				   AND B.ET_DATE BETWEEN CONCAT($P{FROM03},'0401') AND CONCAT($P{FROM03},'0631')
+				   AND A.part_code IN ('30-001','31-001')
+				   AND A.item_code IN ('80-0010','001')) AS sik
+                      FROM sale_stmt_bd A,
+                           funeral B
+                     WHERE     A.CUSTOMER_NO = B.CUSTOMER_NO
+                           AND B.BALIN_DATE BETWEEN STR_TO_DATE(CONCAT($P{FROM03},'0401','000000'),'%Y%m%d%H%i%s')
+                                                AND STR_TO_DATE(CONCAT($P{FROM03},'0631','235959'),'%Y%m%d%H%i%s')
+                           AND B.BINSO_CODE NOT LIKE '8%') b02,
+                                             
+                   (SELECT TO_DAYS(MAX(B.BALIN_DATE))-TO_DAYS(MIN(B.BALIN_DATE))+1 AS gigan, 
+                           SUM(IF(A.PART_CODE = '20-001' AND A.ITEM_CODE = '368', A.QTY, 0)) AS binsoRice,
+                           (SELECT SUM(A.QTY)
+                              FROM sale_stmt B, sale_stmt_bd A
+                             WHERE     B.CUSTOMER_NO = A.CUSTOMER_NO
+                                   AND B.PART_CODE = A.PART_CODE
+				   AND A.BILL_NO = B.BILL_NO
+				   AND LENGTH(A.CUSTOMER_NO) = 8
+				   AND B.ET_DATE BETWEEN CONCAT($P{FROM03},'0701') AND CONCAT($P{FROM03},'0931')
+				   AND A.part_code IN ('30-001','31-001')
+				   AND A.item_code IN ('80-0010','001')) AS sik
+                      FROM sale_stmt_bd A,
+                           funeral B
+                     WHERE     A.CUSTOMER_NO = B.CUSTOMER_NO
+                           AND B.BALIN_DATE BETWEEN STR_TO_DATE(CONCAT($P{FROM03},'0701','000000'),'%Y%m%d%H%i%s')
+                                                AND STR_TO_DATE(CONCAT($P{FROM03},'0931','235959'),'%Y%m%d%H%i%s')
+                           AND B.BINSO_CODE NOT LIKE '8%') b03,
+                                              
+                   (SELECT TO_DAYS(MAX(B.BALIN_DATE))-TO_DAYS(MIN(B.BALIN_DATE))+1 AS gigan, 
+                           SUM(IF(A.PART_CODE = '20-001' AND A.ITEM_CODE = '368', A.QTY, 0)) AS binsoRice,
+                           (SELECT SUM(A.QTY)
+                              FROM sale_stmt B, sale_stmt_bd A
+                             WHERE     B.CUSTOMER_NO = A.CUSTOMER_NO
+                                   AND B.PART_CODE = A.PART_CODE
+				   AND A.BILL_NO = B.BILL_NO
+				   AND LENGTH(A.CUSTOMER_NO) = 8
+				   AND B.ET_DATE BETWEEN CONCAT($P{FROM03},'1001') AND CONCAT($P{FROM03},'1231')
+				   AND A.part_code IN ('30-001','31-001')
+				   AND A.item_code IN ('80-0010','001')) AS sik 
+                      FROM sale_stmt_bd A,
+                           funeral B
+                     WHERE     A.CUSTOMER_NO = B.CUSTOMER_NO
+                           AND B.BALIN_DATE BETWEEN STR_TO_DATE(CONCAT($P{FROM03},'1001','000000'),'%Y%m%d%H%i%s')
+                                                AND STR_TO_DATE(CONCAT($P{FROM03},'1231','235959'),'%Y%m%d%H%i%s')
+                           AND B.BINSO_CODE NOT LIKE '8%') b04]]>
+		</queryString>
+		<field name="gigna01" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="gigna01"/>
+		</field>
+		<field name="binsoRice01" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="binsoRice01"/>
+		</field>
+		<field name="sik01" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="sik01"/>
+		</field>
+		<field name="gigna02" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="gigna02"/>
+		</field>
+		<field name="binsoRice02" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="binsoRice02"/>
+		</field>
+		<field name="sik02" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="sik02"/>
+		</field>
+		<field name="gigna03" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="gigna03"/>
+		</field>
+		<field name="binsoRice03" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="binsoRice03"/>
+		</field>
+		<field name="sik03" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="sik03"/>
+		</field>
+		<field name="gigna04" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="gigna04"/>
+		</field>
+		<field name="binsoRice04" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="binsoRice04"/>
+		</field>
+		<field name="sik04" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="sik04"/>
+		</field>
+		<variable name="sumBinsoRice" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{binsoRice01}+$F{binsoRice02}+$F{binsoRice03}+$F{binsoRice04}]]></variableExpression>
+		</variable>
+		<variable name="sumSik" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{sik01}+$F{sik02}+$F{sik03}+$F{sik04}]]></variableExpression>
+		</variable>
+		<variable name="sumAllCnt" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{binsoRice01}+$F{sik01}+$F{binsoRice02}+$F{sik02}+$F{binsoRice03}+$F{sik03}+$F{binsoRice04}+$F{sik04}]]></variableExpression>
+		</variable>
+		<variable name="sumAllCnt01" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{binsoRice01}+$F{sik01}]]></variableExpression>
+		</variable>
+		<variable name="sumAllCnt02" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{binsoRice02}+$F{sik02}]]></variableExpression>
+		</variable>
+		<variable name="sumAllCnt03" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{binsoRice03}+$F{sik03}]]></variableExpression>
+		</variable>
+		<variable name="sumAllCnt04" class="java.lang.Integer">
+			<variableExpression><![CDATA[$F{binsoRice04}+$F{sik04}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="FROM" class="java.lang.String"/>
+	<parameter name="printName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{printName}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DOC_NAME1
+,DOC_NAME2
+, LINE1
+, LINE2
+, REP_NAME
+, FIELD1
+,(SELECT USER_NM FROM USER_M WHERE USER_CD = $P{printName}) AS printUser
+FROM DOCFORM,FACILITYINFO
+WHERE DOC_CODE = 'FUNE2201']]>
+	</queryString>
+	<field name="DOC_NAME1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DOC_NAME1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="DOC_NAME2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DOC_NAME2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="LINE1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LINE1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="LINE2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LINE2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="REP_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="REP_NAME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="facilityinfo"/>
+	</field>
+	<field name="FIELD1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="FIELD1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="docform"/>
+	</field>
+	<field name="printUser" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="printUser"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<textField pattern="yyyy-MM-dd" isBlankWhenNull="true">
+				<reportElement x="0" y="60" width="680" height="20" uuid="3c86b0b5-9035-4bf3-b1bd-fc5eed973ea6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["년도 : "+$P{FROM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="802" height="60" uuid="9657e3e4-dce0-46ae-a5e0-02470202757a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="25"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOC_NAME1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd" isBlankWhenNull="true">
+				<reportElement x="680" y="60" width="122" height="20" uuid="3dbca86c-22ee-4c21-afbe-23e7ba82ab58"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="11" isBold="true"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA["( 단위 : 천원 )"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="361" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="802" height="150" uuid="77121d7d-3627-4305-96e7-7f4ffc1effff"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset1" uuid="ba170493-5702-4081-963f-156fdf2f136d">
+						<datasetParameter name="FROM02">
+							<datasetParameterExpression><![CDATA[$P{FROM}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="150" width="802">
+						<textField pattern="###,##0">
+							<reportElement mode="Opaque" x="52" y="30" width="80" height="40" backcolor="#FFE6C4" uuid="cdf5fe1c-877f-4662-8f71-e4ae1456c54e"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{cntAll}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement mode="Opaque" x="0" y="0" width="52" height="30" backcolor="#D3F0EB" uuid="dfbac73f-e93f-442a-afd2-5cd8f7bdccee"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[구분]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="52" y="0" width="80" height="30" backcolor="#D3F0EB" uuid="2b11d9c6-42c9-42ee-ae30-d5ddd2123dd5"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[상가수]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="132" y="0" width="82" height="30" backcolor="#D3F0EB" uuid="aba38d7e-b523-4a09-9124-addcf34d333d"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[평균매출]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="214" y="0" width="96" height="30" backcolor="#D3F0EB" uuid="43123dea-e0ad-4671-8444-f683e4ce8c22"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[계]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="310" y="0" width="82" height="30" backcolor="#D3F0EB" uuid="656de31a-cca2-4542-8b18-12566dc18151"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[안치∙빈소
+(비율)]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="392" y="0" width="82" height="30" backcolor="#D3F0EB" uuid="fc8583a3-6ce4-481d-ab87-dd8d752e3a99"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[염습∙염습실
+(비율)]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="474" y="0" width="82" height="30" backcolor="#D3F0EB" uuid="27f8cb8c-897e-4926-8c88-f80bf7b1d8b2"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[장례용품∙화원
+(비율)]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="556" y="0" width="82" height="30" backcolor="#D3F0EB" uuid="e7ed929a-3030-4373-b36e-0e4533544455"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[식당∙제수
+(비율)]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="638" y="0" width="82" height="30" backcolor="#D3F0EB" uuid="8bbd6f16-6bb4-4de2-96b0-c3d6cbb41238"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[매  점
+(비율)]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="720" y="0" width="82" height="30" backcolor="#D3F0EB" uuid="d5f9005a-a826-4c04-ba03-ffb3c2a3f0ee"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[통합처리비
+(비율)]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="25" y="30" width="27" height="40" backcolor="#FFE6C4" uuid="0d4fd917-b63d-4b04-b168-6184ee5e7511"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[계]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="25" y="70" width="27" height="20" backcolor="#FFFFFF" uuid="2f7fa82d-1a43-4738-92af-c2e95bab4770"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[1분기]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="25" y="90" width="27" height="20" backcolor="#FFFFFF" uuid="bc8d3842-b8ff-45b7-8ae5-48911241e26a"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[2분기]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="25" y="110" width="27" height="20" backcolor="#FFFFFF" uuid="c90c8ea8-7dac-4ca3-a690-37284c253a68"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[3분기]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="25" y="130" width="27" height="20" backcolor="#FFFFFF" uuid="683de816-bba5-405e-97c5-5c22dcf14f42"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[4분기]]></text>
+						</staticText>
+						<textField pattern="###,##0">
+							<reportElement mode="Opaque" x="132" y="30" width="82" height="40" backcolor="#FFE6C4" uuid="88c850f6-97a6-4e65-88ea-5f1cf543b1d3"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAmtAll}.intValue() == 0?0:$V{sumAmtAll}/$V{cntAll}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement mode="Opaque" x="310" y="30" width="82" height="20" backcolor="#FFE6C4" uuid="b9273ba8-6552-4794-99bc-ab7fabf6a302"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumBinsoAnchi}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement mode="Opaque" x="214" y="30" width="96" height="40" backcolor="#FFE6C4" uuid="273727fb-33e5-494f-b865-f8621f815f38"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAmtAll}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement mode="Opaque" x="392" y="30" width="82" height="20" backcolor="#FFE6C4" uuid="9d340c60-ce16-44bc-93c5-1c35d72daf8e"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumShroudingShroom}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement mode="Opaque" x="474" y="30" width="82" height="20" backcolor="#FFE6C4" uuid="95e768ad-2c1c-4c39-8d1e-cbe7b09c293c"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumGoodsHwawon}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement mode="Opaque" x="638" y="30" width="82" height="20" backcolor="#FFE6C4" uuid="90d56191-2d03-4bdb-a01a-cfe6a3d949d1"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumStore}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement mode="Opaque" x="720" y="30" width="82" height="20" backcolor="#FFE6C4" uuid="133fec63-0899-4a3a-ac6b-4c5e3252cbb6"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumTotproc}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement mode="Opaque" x="556" y="30" width="82" height="20" backcolor="#FFE6C4" uuid="4fb1e719-71fb-4288-9a09-7f42b874bb38"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumRestJesusil}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="720" y="70" width="82" height="20" uuid="f5a7315a-4b30-4452-ab37-75108a61f247"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{TOT_PROC01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="132" y="70" width="82" height="20" uuid="3298952a-fb01-47f1-8002-4d00854a6ac3"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAmt01}.intValue() == 0?0:$V{sumAmt01}/$F{cnt01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="474" y="70" width="82" height="20" uuid="9a59b806-5572-46c4-929d-b17e56262dc8"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GOODS_HWAWON01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="214" y="70" width="96" height="20" uuid="4691a1fc-0f4a-4c60-9cd9-f5d86c44ac08"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAmt01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="556" y="70" width="82" height="20" uuid="f0d1c074-e5b7-4ff9-92d9-d491e3f34671"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{REST_JESUSIL01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="392" y="70" width="82" height="20" uuid="e924b060-20c1-42ee-84b9-1a1643b230b6"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{SHROUDING_SHROOM01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="638" y="70" width="82" height="20" uuid="c46ed7b7-42bc-4cfa-bf48-207415c2364c"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{STORE01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="310" y="70" width="82" height="20" uuid="83ed8766-6e7f-45a9-8a31-afbbd75489d8"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{BINSO_ANCHI01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="52" y="70" width="80" height="20" uuid="8e752b57-c503-42cd-a0bb-6cb8adbada63"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{cnt01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="638" y="90" width="82" height="20" uuid="61fd6a31-46f2-4d48-888e-126a1b0760f3"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{STORE02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="392" y="90" width="82" height="20" uuid="c9bf1c16-6883-4fad-ac12-c1f537a7ab02"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{SHROUDING_SHROOM02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="310" y="90" width="82" height="20" uuid="286f8347-a4e9-455c-9d4a-167234fb7248"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{BINSO_ANCHI02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="556" y="90" width="82" height="20" uuid="8c939838-1ac9-4188-9c5a-e3381b5cb9bf"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{REST_JESUSIL02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="52" y="90" width="80" height="20" uuid="9b11a3e9-6d92-4ee7-a89e-0848637da308"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{cnt02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="720" y="90" width="82" height="20" uuid="dfe963bc-96c3-40ca-9c02-032f60ac9ef4"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{TOT_PROC02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="474" y="90" width="82" height="20" uuid="348b002a-843e-4eca-960c-cc22d05838d8"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GOODS_HWAWON02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="214" y="90" width="96" height="20" uuid="8a59e19f-beff-4a5b-8d68-8da3361d944d"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAmt02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="638" y="110" width="82" height="20" uuid="9da2ffb0-e166-43a1-8cba-4c8b9b20ce96"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{STORE03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="392" y="110" width="82" height="20" uuid="aaddb489-fe4a-4633-be8a-f5ba7ee733d2"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{SHROUDING_SHROOM03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="310" y="110" width="82" height="20" uuid="cc359dbf-2ed0-49bb-9e37-1d40f0ebe73c"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{BINSO_ANCHI03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="556" y="110" width="82" height="20" uuid="7d60c706-8824-4146-9654-4cbddd96be80"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{REST_JESUSIL03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="52" y="110" width="80" height="20" uuid="5d867ce9-e169-40fc-ab6f-eb664a57a194"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{cnt03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="720" y="110" width="82" height="20" uuid="9cbbe2b6-3ffe-48a8-9858-89651a5150cc"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{TOT_PROC03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="474" y="110" width="82" height="20" uuid="1f064d9d-5897-4f03-b7d1-d5acddf02b4e"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GOODS_HWAWON03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="214" y="110" width="96" height="20" uuid="f013d537-897d-474e-bb3b-fc4423479fab"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAmt03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="310" y="130" width="82" height="20" uuid="ff85aa24-abb8-4743-bd8e-4583baa988e5"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{BINSO_ANCHI04}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="52" y="130" width="80" height="20" uuid="7dfe893a-e25b-4e2a-a36f-5aa86411b923"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{cnt04}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="214" y="130" width="96" height="20" uuid="47fc06b0-ce9a-4be5-ad3d-cb53ab086f08"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAmt04}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="30" width="25" height="120" uuid="eb68302b-377e-410f-9260-7af2f4096a89"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$P{FROM02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="720" y="130" width="82" height="20" uuid="89a5a9ea-c65a-485d-af42-93588e41a216"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{TOT_PROC04}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="556" y="130" width="82" height="20" uuid="55c368d5-b36e-4fbd-aca6-2e8541a04d8d"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{REST_JESUSIL04}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="638" y="130" width="82" height="20" uuid="dadbc68e-20b9-42e0-b78b-e51debc4753d"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{STORE04}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="474" y="130" width="82" height="20" uuid="b9382395-334e-4fcc-99a0-d551d752fec7"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{GOODS_HWAWON04}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="392" y="130" width="82" height="20" uuid="1b7787a8-54f8-4369-a80d-fc1393267cb5"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{SHROUDING_SHROOM04}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement mode="Opaque" x="392" y="50" width="82" height="20" backcolor="#FFE6C4" uuid="cce85835-54de-4e44-8368-858cd61baffe"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Dotted"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($V{sumShroudingShroom}.doubleValue()/$V{sumAmtAll}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement mode="Opaque" x="720" y="50" width="82" height="20" backcolor="#FFE6C4" uuid="81f6ba31-ea3d-4a03-a3ab-9357bb96f4da"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Dotted"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($V{sumTotproc}.doubleValue()/$V{sumAmtAll}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement mode="Opaque" x="638" y="50" width="82" height="20" backcolor="#FFE6C4" uuid="ec906bb1-a4f6-402e-97b2-e21af04d1a00"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Dotted"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($V{sumStore}.doubleValue()/$V{sumAmtAll}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement mode="Opaque" x="310" y="50" width="82" height="20" backcolor="#FFE6C4" uuid="0b19e550-54c4-4d48-8da3-8fdf4678ed7f"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Dotted"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($V{sumBinsoAnchi}.doubleValue()/$V{sumAmtAll}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement mode="Opaque" x="556" y="50" width="82" height="20" backcolor="#FFE6C4" uuid="8259f19c-e109-4873-8f6d-fe3958d0c44d"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Dotted"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($V{sumRestJesusil}.doubleValue()/$V{sumAmtAll}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="#.#">
+							<reportElement mode="Opaque" x="474" y="50" width="82" height="20" backcolor="#FFE6C4" uuid="af35f9f4-dc8a-4f07-a5f6-3356ed8190c7"/>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Dotted"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($V{sumGoodsHwawon}.doubleValue()/$V{sumAmtAll}.doubleValue())*100]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="132" y="90" width="82" height="20" uuid="6d61ea32-2cfd-4f68-b129-fd87afbf4b25"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAmt02}.intValue() == 0?0:$V{sumAmt02}/$F{cnt02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="132" y="110" width="82" height="20" uuid="228ec8b5-c9ce-4aba-8d26-b62e247a2cc4"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAmt03}.intValue() == 0?0:$V{sumAmt03}/$F{cnt03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="132" y="130" width="82" height="20" uuid="df19f2e2-5a4b-4458-8c21-b23f8df9ecb3"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAmt04}.intValue() == 0?0:$V{sumAmt04}/$F{cnt04}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="0" y="231" width="802" height="130" uuid="697779c9-f7e2-4e0b-80b5-2669996c0155"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Dataset2" uuid="f16f8ff8-81fd-4c03-a05a-4e9e8bb18e6c">
+						<datasetParameter name="FROM03">
+							<datasetParameterExpression><![CDATA[$P{FROM}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="130" width="802">
+						<textField pattern="###,##0">
+							<reportElement mode="Opaque" x="52" y="30" width="130" height="20" backcolor="#FFE6C4" uuid="d9699412-0e52-441a-b5f4-2816582f8b77"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAllCnt}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement mode="Opaque" x="0" y="0" width="52" height="30" backcolor="#D3F0EB" uuid="473c4b64-409a-47da-b8ee-48c34eae3219"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[구분]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="52" y="0" width="378" height="15" backcolor="#D3F0EB" uuid="897697ba-be99-484a-a30d-6da15eb15171"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[총 이용인원]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="182" y="15" width="124" height="15" backcolor="#D3F0EB" uuid="42a423d4-68b8-4513-9f1a-21362894030e"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[빈소]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="306" y="15" width="124" height="15" backcolor="#D3F0EB" uuid="991a722c-29e4-49e1-8836-19b8b287a386"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[식당]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="430" y="0" width="124" height="30" backcolor="#D3F0EB" uuid="58b88478-c065-4c9e-b017-d0cfc1c89717"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[1일 평균 
+이용객수]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="554" y="0" width="124" height="30" backcolor="#D3F0EB" uuid="1e7d63ac-4ff9-4021-8f3d-660ad4b4f99e"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[빈 소 
+1일평균이용객]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="678" y="0" width="124" height="30" backcolor="#D3F0EB" uuid="4429c428-f986-43f8-91e7-95bc5a3779b8"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[식 당 
+1일평균이용객]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="25" y="30" width="27" height="20" backcolor="#FFE6C4" uuid="80241c93-cf4c-425b-86f2-0bd9372183b8"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[계]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="25" y="50" width="27" height="20" backcolor="#FFFFFF" uuid="723f06be-a23c-41c1-9748-ceca7f8d62d1"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[1분기]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="25" y="70" width="27" height="20" backcolor="#FFFFFF" uuid="3e8b5536-0c94-4e5a-9fbe-01b129eacfba"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[2분기]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="25" y="90" width="27" height="20" backcolor="#FFFFFF" uuid="f7a474b8-977d-42ed-a048-a10b2ce34ebd"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[3분기]]></text>
+						</staticText>
+						<staticText>
+							<reportElement mode="Opaque" x="25" y="110" width="27" height="20" backcolor="#FFFFFF" uuid="2c643c12-8ff6-40ea-9001-bbb71873235c"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<text><![CDATA[4분기]]></text>
+						</staticText>
+						<textField pattern="###,##0">
+							<reportElement mode="Opaque" x="182" y="30" width="124" height="20" backcolor="#FFE6C4" uuid="1b1378c4-2911-4ca4-b39f-e77595bb0376"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumBinsoRice}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement mode="Opaque" x="430" y="30" width="124" height="20" backcolor="#FFE6C4" uuid="1dbf3a9e-3c52-480b-a781-ee6b26dba2d0"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumBinsoRice} == 0 || $V{sumSik} == 0?0:($V{sumBinsoRice}.doubleValue()/365)+($V{sumSik}.doubleValue()/365)]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement mode="Opaque" x="306" y="30" width="124" height="20" backcolor="#FFE6C4" uuid="170c9a48-df04-4f0e-9861-cb073a188151"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumSik}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement mode="Opaque" x="554" y="30" width="124" height="20" backcolor="#FFE6C4" uuid="0f1ebe78-f930-45c2-a250-5d6ad1e06471"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumBinsoRice} == 0?0:$V{sumBinsoRice}.doubleValue()/365]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement mode="Opaque" x="678" y="30" width="124" height="20" backcolor="#FFE6C4" uuid="a4a8360f-39dc-4d4a-b54e-9fea563cb7da"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumSik} == 0?0:$V{sumSik}.doubleValue()/365]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="182" y="50" width="124" height="20" uuid="41a22fee-1535-4102-9766-3e2a01dc5efb"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{binsoRice01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement x="678" y="50" width="124" height="20" uuid="cd5b4b34-d19e-4ce1-8189-1ec3b727ed0a"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sik01} == 0?0:$F{sik01}/$F{gigna01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="306" y="50" width="124" height="20" uuid="fbf27634-253f-4cd0-973c-b28c553fd563"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sik01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement x="554" y="50" width="124" height="20" uuid="2d505af6-4f24-4d91-af21-d3f78c2a8039"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{binsoRice01} == 0?0:$F{binsoRice01}/$F{gigna01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement x="430" y="50" width="124" height="20" uuid="035e171e-2200-49ee-9fc9-5fa0e3f938f2"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sik01} == 0 || $F{binsoRice01} == 0?0:($F{sik01}/$F{gigna01})+($F{binsoRice01}/$F{gigna01})]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="52" y="50" width="130" height="20" uuid="cd2ccc59-3d5f-4e2d-8c6d-5b86613d7c0a"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAllCnt01}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement x="554" y="70" width="124" height="20" uuid="f9774b94-b089-44b9-9a34-fce62e00f5b7"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{binsoRice02} == 0?0:$F{binsoRice02}/$F{gigna02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement x="430" y="70" width="124" height="20" uuid="a845f274-2e74-4d18-b426-109d035882a7"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sik02} == 0 || $F{binsoRice02} == 0?0:($F{sik02}/$F{gigna02})+($F{binsoRice02}/$F{gigna02})]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="182" y="70" width="124" height="20" uuid="4435efe3-adc1-4d4f-8d27-b577263cae00"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{binsoRice02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="52" y="70" width="130" height="20" uuid="ad839c36-0bd3-4bd3-bb2e-1c6010cd7989"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAllCnt02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement x="678" y="70" width="124" height="20" uuid="1e1d7a4e-c096-47e4-aa70-2bd188623f9d"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sik02} == 0?0:$F{sik02}/$F{gigna02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="306" y="70" width="124" height="20" uuid="c6fe336a-8444-4568-a49c-b4ac986cfe32"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sik02}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement x="554" y="90" width="124" height="20" uuid="a1706b8d-de72-47d6-b76d-fe0a4edf9e2d"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{binsoRice03} == 0?0:$F{binsoRice03}/$F{gigna03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement x="430" y="90" width="124" height="20" uuid="1aefbd18-ab7a-40ed-9de8-05e0b942193d"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sik03} == 0 || $F{binsoRice03} == 0?0:($F{sik03}/$F{gigna03})+($F{binsoRice03}/$F{gigna03})]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="182" y="90" width="124" height="20" uuid="b5a46c58-594d-4c45-8792-af9df62e95fb"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{binsoRice03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="52" y="90" width="130" height="20" uuid="4f062497-5518-489b-8428-f1acf5b8ea97"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAllCnt03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement x="678" y="90" width="124" height="20" uuid="223268f9-4766-4604-b86f-61647febaab9"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sik03} == 0?0:$F{sik03}/$F{gigna03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="306" y="90" width="124" height="20" uuid="dc5e29bd-10f2-4b58-a491-342897b0644d"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sik03}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement x="554" y="110" width="124" height="20" uuid="93572463-59fe-4acd-acb2-646eed6324b9"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{binsoRice04} == 0?0:$F{binsoRice04}/$F{gigna04}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement x="430" y="110" width="124" height="20" uuid="0de37886-7bd0-4e0b-9979-331e57ebcd49"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sik04} == 0 || $F{binsoRice04} == 0?0:($F{sik04}/$F{gigna04})+($F{binsoRice04}/$F{gigna04})]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="182" y="110" width="124" height="20" uuid="9c93c974-e028-4da5-aa16-df9fc9b3e59e"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{binsoRice04}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="52" y="110" width="130" height="20" uuid="6ef625b7-1db7-4a7f-95aa-027364bb389c"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sumAllCnt04}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#">
+							<reportElement x="678" y="110" width="124" height="20" uuid="385f1aef-1ff2-4a3d-8e19-80a60145fa3e"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sik04} == 0?0:$F{sik04}/$F{gigna04}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,##0">
+							<reportElement x="306" y="110" width="124" height="20" uuid="da8a9805-4998-4d94-9816-67a18d31c76c"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+								<paragraph rightIndent="3"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sik04}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement mode="Opaque" x="52" y="15" width="130" height="15" backcolor="#D3F0EB" uuid="f6d0721e-2105-418c-8fc1-07556bbda6f2"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="11"/>
+							</textElement>
+							<text><![CDATA[계]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="0" y="30" width="25" height="100" uuid="89619341-8de1-49f2-bf99-03fb208f7992"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="font" size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$P{FROM03}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<textField>
+				<reportElement x="0" y="151" width="802" height="60" uuid="5795869b-a29b-4620-925a-4024da596cc5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="25"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOC_NAME2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd" isBlankWhenNull="true">
+				<reportElement x="680" y="211" width="122" height="20" uuid="0c88eff6-3578-4afb-9395-5c4a0210b2f7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="11" isBold="true"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA["( 단위 : 명 )"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="802" height="20" uuid="5b32096f-c063-4de1-aba3-0c1c9ab2421b">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FIELD1}+" "+ DATEFORMAT( new Date(),"yyyy/MM/dd HH:mm:ss")+" 출력자 : "+$F{printUser}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

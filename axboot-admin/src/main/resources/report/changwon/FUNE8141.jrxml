@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FUNE8141" pageWidth="1042" pageHeight="595" orientation="Landscape" columnWidth="1022" leftMargin="10" rightMargin="10" topMargin="20" bottomMargin="20" uuid="a2119ea6-379c-40c6-be1e-c9dac9a8fb9d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jupiter"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://192.168.0.52:9080/jasperserver/services/repository/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/suwon/fune/FUNE8141"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/suwon/fune/FUNE8141_files/main_jrxml"/>
+	<parameter name="FROM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{FROM}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{TO}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="partCode" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{partCode}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="partName" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM(
+	SELECT  DATE_FORMAT(BALIN_DATE, '%Y-%m-%d') AS BALIN_DATE_YMD
+	, FUNE.CUSTOMER_NO
+	, BINSO_NAME
+	, DEAD_NAME
+	, APPL_NAME
+	, FUNERAL_CAR_DATE
+	, IF(FUNERAL_CAR_COMPANY = '004', '경수', IF(FUNERAL_CAR_COMPANY = '001',  '일송',IF(FUNERAL_CAR_COMPANY = '006','뉴스타',FUNERAL_CAR.NAME))) AS FUNERAL_CAR_COMPANY
+	, FUNERAL_CAR_PRICE
+	, IF(CADILLAC_COMPANY = '004', '경수', IF(CADILLAC_COMPANY = '001',  '일송',IF(CADILLAC_COMPANY = '006','뉴스타',CADILLAC_CAR.NAME))) AS CADILLAC_COMPANY
+	, CADILLAC_PRICE
+	, JANGJI
+	, FUNERAL_CAR_REMARK
+	FROM FUNERAL FUNE
+	JOIN THEDEAD DEAD
+	ON FUNE.DEAD_ID = DEAD.DEAD_ID
+	JOIN APPLICANT APPL
+	ON FUNE.APPL_ID = APPL.APPL_ID
+	JOIN BINSO BS
+	ON FUNE.BINSO_CODE = BS.BINSO_CODE
+	LEFT JOIN BASIC_M FUNERAL_CAR
+	ON FUNERAL_CAR.BASIC_CD = '507'
+	AND FUNERAL_CAR.CODE = FUNE.FUNERAL_CAR_COMPANY
+	LEFT JOIN BASIC_M CADILLAC_CAR
+	ON CADILLAC_CAR.BASIC_CD = '507'
+	AND CADILLAC_CAR.CODE = FUNE.CADILLAC_COMPANY
+	WHERE DATE_FORMAT(BALIN_DATE, '%Y-%m-%d') BETWEEN $P{FROM} AND $P{TO} 
+	AND FUNE.FUNERAL_CAR_COMPANY LIKE CONCAT('%', $P{partCode}  , '%')
+	ORDER BY BALIN_DATE
+)A
+WHERE FUNERAL_CAR_COMPANY IS NOT NULL
+AND FUNERAL_CAR_PRICE > 0 OR CADILLAC_PRICE > 0]]>
+	</queryString>
+	<field name="BALIN_DATE_YMD" class="java.lang.String"/>
+	<field name="CUSTOMER_NO" class="java.lang.String"/>
+	<field name="BINSO_NAME" class="java.lang.String"/>
+	<field name="DEAD_NAME" class="java.lang.String"/>
+	<field name="APPL_NAME" class="java.lang.String"/>
+	<field name="FUNERAL_CAR_DATE" class="java.sql.Timestamp"/>
+	<field name="FUNERAL_CAR_COMPANY" class="java.lang.String"/>
+	<field name="FUNERAL_CAR_PRICE" class="java.math.BigDecimal"/>
+	<field name="CADILLAC_COMPANY" class="java.lang.String"/>
+	<field name="CADILLAC_PRICE" class="java.math.BigDecimal"/>
+	<field name="JANGJI" class="java.lang.String"/>
+	<field name="FUNERAL_CAR_REMARK" class="java.lang.String"/>
+	<variable name="COL_NUMBER" class="java.math.BigDecimal" calculation="Count">
+		<variableExpression><![CDATA[$F{DEAD_NAME}]]></variableExpression>
+	</variable>
+	<variable name="CADILLAC_PRICE1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{CADILLAC_PRICE}]]></variableExpression>
+	</variable>
+	<variable name="FUNERAL_CAR_PRICE1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{FUNERAL_CAR_PRICE}]]></variableExpression>
+	</variable>
+	<variable name="FUNERAL_CAR_PRICE2" class="java.lang.Long" calculation="Count">
+		<variableExpression><![CDATA[$F{FUNERAL_CAR_PRICE}]]></variableExpression>
+	</variable>
+	<variable name="CADILLAC_PRICE2" class="java.lang.Long" calculation="Count">
+		<variableExpression><![CDATA[$F{CADILLAC_PRICE}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109">
+			<staticText>
+				<reportElement x="2" y="88" width="58" height="20" uuid="2b99ee53-f824-4092-887b-1c0b43f88c38"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" isBold="true"/>
+				</textElement>
+				<text><![CDATA[발인일자 : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="65" y="88" width="180" height="21" uuid="000d905b-6fff-4e7a-9e65-2ae3de246c68"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FROM} + " ~ " + $P{TO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="258" y="89" width="82" height="20" uuid="01b43dd8-84f5-4914-91f5-4c8703a5e491"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" isBold="true"/>
+				</textElement>
+				<text><![CDATA[장의차량 업체 : ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="346" y="88" width="123" height="21" uuid="b700725e-466c-41c7-929b-2ceb35572179"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{partName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="10" width="890" height="51" uuid="7fbd605d-9745-428b-a69e-d14254b9d593"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[장의차량 이용 현황]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="10" width="20" height="20" backcolor="#CFCFCF" uuid="62d14538-6638-4cae-bae5-5062fa54e98e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="20" y="10" width="80" height="20" backcolor="#CFCFCF" uuid="906934cb-6b5c-4171-94fd-c618ddb79fcd"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[일자]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="100" y="10" width="60" height="20" backcolor="#CFCFCF" uuid="9b1864a6-da29-4ea5-8ef0-7aaf00c4051f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[고객번호]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="160" y="10" width="60" height="20" backcolor="#CFCFCF" uuid="1b3cec2d-9b36-4065-ba03-7993c04e65b3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[빈소명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="220" y="10" width="50" height="20" backcolor="#CFCFCF" uuid="cca5ab65-9cf3-4cd0-8e34-7f41ddbf0bc0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[고인명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="270" y="10" width="50" height="20" backcolor="#CFCFCF" uuid="e0f49529-b448-4eee-99fc-0ebe58dafbdd"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[상주명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="320" y="10" width="100" height="20" backcolor="#CFCFCF" uuid="4d11067d-3d59-4d85-913b-6a6b9e7b349e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[배차일시]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="420" y="10" width="70" height="20" backcolor="#CFCFCF" uuid="eef8d586-cd92-479d-9671-a51342cc1e26"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<text><![CDATA[장의차량업체]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="490" y="10" width="100" height="20" backcolor="#CFCFCF" uuid="d71c51d3-9cbd-48d0-a603-bae8ca02e632"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[장의차량금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="590" y="10" width="70" height="20" backcolor="#CFCFCF" uuid="3d2ed54e-785c-410f-a969-544c59b43db5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[캐딜락업체]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="660" y="10" width="90" height="20" backcolor="#CFCFCF" uuid="2063cbfc-0f76-479a-910a-609613fb58a0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[캐딜락이용금액]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="750" y="10" width="100" height="20" backcolor="#CFCFCF" uuid="5240a03e-7aef-4a3a-a2f1-c2b136236d5b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[장지]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="850" y="10" width="170" height="20" backcolor="#CFCFCF" uuid="f7bc23b0-5f4d-4059-b0c0-175303c58b59"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<text><![CDATA[메모]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="20" height="20" isPrintInFirstWholeBand="true" uuid="458d1800-2704-4853-a0f8-bbda46cbffc3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COL_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="20" y="0" width="80" height="20" uuid="f2b969e8-5336-49ff-b56a-23556f1021a0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BALIN_DATE_YMD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="0" width="60" height="20" uuid="6d58b943-4e4b-43b5-a11f-c30ca4f01db5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CUSTOMER_NO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="160" y="0" width="60" height="20" uuid="653eea24-ca93-4f11-9da6-b851a57e88b0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BINSO_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="220" y="0" width="50" height="20" uuid="0d488006-e5c9-4b5a-aa19-fd358169ed80"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DEAD_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="270" y="0" width="50" height="20" uuid="71b3d980-ee83-4404-9aa5-25bd6225a445"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APPL_NAME}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd HH:mm" isBlankWhenNull="true">
+				<reportElement x="320" y="0" width="100" height="20" uuid="831c11d4-7516-4b59-a2e4-133c0d1ca0c8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FUNERAL_CAR_DATE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="0" width="70" height="20" uuid="7f0b16a7-7fab-429f-afb8-441fb7aed114"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FUNERAL_CAR_COMPANY}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0" isBlankWhenNull="true">
+				<reportElement x="490" y="0" width="100" height="20" uuid="4de2a08a-b3d9-4a5d-b628-d65e52151df7"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FUNERAL_CAR_PRICE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="590" y="0" width="70" height="20" uuid="88ff834e-6a66-45aa-b628-782ba1eb475e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CADILLAC_COMPANY}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,##0" isBlankWhenNull="true">
+				<reportElement x="660" y="0" width="90" height="20" uuid="a6d1f3cc-e5bd-4717-9d5d-81b41bd988bf"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph leftIndent="0" rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CADILLAC_PRICE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="750" y="0" width="100" height="20" uuid="1152b09b-3a1d-439c-983a-3edd5460d07a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{JANGJI}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="850" y="0" width="170" height="20" uuid="645c9ce6-5d35-4dd3-9056-450b47d60b17"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FUNERAL_CAR_REMARK}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="25">
+			<staticText>
+				<reportElement x="333" y="4" width="77" height="21" uuid="5e416e67-d6bd-4b56-b9c2-8f7b61d4689d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<text><![CDATA[건수 / 합계: ]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="660" y="3" width="90" height="18" uuid="f2dceef5-f972-4066-9310-88542c2c8d71"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{CADILLAC_PRICE1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="490" y="3" width="100" height="18" uuid="2b5cb4fa-6a2f-4d42-b6d7-15c920654f3c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{FUNERAL_CAR_PRICE1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="422" y="3" width="68" height="18" uuid="7f3ce0ce-9452-407e-889e-c246bf2e4074"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{FUNERAL_CAR_PRICE2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

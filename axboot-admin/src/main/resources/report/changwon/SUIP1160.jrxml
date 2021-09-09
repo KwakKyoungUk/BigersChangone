@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SUIP1160" pageWidth="595" pageHeight="842" columnWidth="565" leftMargin="15" rightMargin="15" topMargin="28" bottomMargin="28" uuid="9619a27d-f4c0-4b81-bdd0-ab1c9717db8a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jupiter"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/changwon/suip/SUIP1160_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/changwon/suip/SUIP1160"/>
+	<parameter name="payGb" class="java.lang.String"/>
+	<parameter name="from" class="java.lang.String"/>
+	<parameter name="to" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT m.et_date etDate, m.pay_gb payGb, m.pay_gb payGbNm, m.menu_nm suip, SUM(m.vat_amt) vat FROM v_erp_suip m
+ WHERE m.et_date BETWEEN $P{from}   AND $P{to} 
+ AND m.pay_gb LIKE CONCAT( ifnull(IF($P{payGb} = 'TMC1500001', '현금', '카드'), ''), '%')
+ GROUP BY m.et_date, m.pay_gb, m.menu_nm]]>
+	</queryString>
+	<field name="etDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="etDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="etDate"/>
+	</field>
+	<field name="payGb" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="payGb"/>
+		<property name="com.jaspersoft.studio.field.label" value="payGb"/>
+	</field>
+	<field name="payGbNm" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="payGbNm"/>
+		<property name="com.jaspersoft.studio.field.label" value="payGbNm"/>
+	</field>
+	<field name="suip" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="suip"/>
+		<property name="com.jaspersoft.studio.field.label" value="suip"/>
+	</field>
+	<field name="vat" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="vat"/>
+		<property name="com.jaspersoft.studio.field.label" value="vat"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="130" height="20" uuid="453f9927-8ff5-431d-85a7-6d95c31c88ea">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[일자]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="0" width="120" height="20" uuid="cd835295-5df5-440d-8fc5-5d7dc0201e3e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[결제구분]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="0" width="120" height="20" uuid="a816c58b-c44a-4472-b3ce-41190770d432">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[수입명]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="190" height="20" uuid="210bc28e-e4dc-478d-ae5b-cb82a4b91bcf">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[부가세]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="yyyy-MM-dd">
+				<reportElement x="0" y="0" width="130" height="20" uuid="cb4ec5cd-1d37-4e90-bc13-5fd07850f4fe">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dcfcaddb-e04a-4351-90c7-e0d45cf25e43"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{etDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="120" height="20" uuid="0ec4caa4-b489-47d8-89ae-2fe58cb6f64b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="507b88dd-b187-4bfe-9c18-e68fd8db2ff3"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{payGbNm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="0" width="120" height="20" uuid="a6ae3c22-0caa-4e2c-b2d8-74f5fd91b806">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="507b88dd-b187-4bfe-9c18-e68fd8db2ff3"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{suip}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="370" y="0" width="190" height="20" uuid="8246277a-5e6c-4844-9fb9-0ee6e5749813">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="507b88dd-b187-4bfe-9c18-e68fd8db2ff3"/>
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="14"/>
+					<paragraph rightIndent="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vat}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="STAT4023" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fc070695-7bc0-4d3e-8210-05230d47c414">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="migtest"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.jasperserver.url" value="http://192.168.0.52:9080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/suwon/stat/STAT4023"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/suwon/stat/STAT4023_files/main_jrxml"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="bf8aafac-0424-4257-84ce-9017990c169a">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="migtest"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="FROM" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{FROM}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="TO" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{TO}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT 0 GROUPALL
+	,YEAR
+	,NAT_CNT
+	,GAWNNAE
+	,GAWNWOE
+	,DAY_AVG
+	,SUM(CREM_CNT) CREM_CNT
+	,TRUNCATE(NAT_CNT/SUM(CREM_CNT)*100,1) USE_PER
+FROM 
+
+
+(SELECT  LEFT(N.NAT_DATE,4) YEAR
+	,COUNT(*) NAT_CNT
+	, SUM(IF(ND.ADDR_PART = 'TCM1000001',1,0)) AS GAWNNAE
+	, SUM(IF(ND.ADDR_PART = 'TCM1000003',1,0)) AS GAWNWOE
+	, TRUNCATE(COUNT(*)/365,1) AS DAY_AVG
+	, 0 AS CREM_CNT
+      
+FROM NATURE N
+JOIN NATUREDEAD ND
+ON N.NAT_DATE = ND.NAT_DATE
+AND N.NAT_SEQ = ND.NAT_SEQ
+WHERE N.NAT_DATE BETWEEN  $P{FROM} AND $P{TO} 
+GROUP BY LEFT(N.NAT_DATE,4)
+
+
+UNION 
+
+SELECT  LEFT(CREM_DATE,4) YEAR
+	, 0 NAT_CNT
+	, 0 AS GAWNNAE
+	, 0 AS GAWNWOE
+	, 0 AS DAY_AVG
+        , COUNT(*) CREM_CNT
+
+FROM  HWA_CREMATION 
+WHERE CREM_DATE BETWEEN  $P{FROM}  AND  $P{TO} 
+GROUP BY LEFT(CREM_DATE,4)) A
+GROUP BY YEAR
+ORDER BY YEAR DESC]]>
+		</queryString>
+		<field name="YEAR" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="YEAR"/>
+		</field>
+		<field name="NAT_CNT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="NAT_CNT"/>
+		</field>
+		<field name="GAWNNAE" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GAWNNAE"/>
+		</field>
+		<field name="GAWNWOE" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="GAWNWOE"/>
+		</field>
+		<field name="DAY_AVG" class="java.lang.Double">
+			<property name="com.jaspersoft.studio.field.label" value="DAY_AVG"/>
+		</field>
+		<field name="CREM_CNT" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="CREM_CNT"/>
+		</field>
+		<field name="USE_PER" class="java.lang.Double">
+			<property name="com.jaspersoft.studio.field.label" value="USE_PER"/>
+		</field>
+		<field name="GROUPALL" class="java.lang.String"/>
+		<variable name="NAT_CNT1" class="java.lang.Long" resetType="Group" resetGroup="Group1" calculation="Sum">
+			<variableExpression><![CDATA[$F{NAT_CNT}]]></variableExpression>
+		</variable>
+		<variable name="GAWNNAE1" class="java.lang.Long" resetType="Group" resetGroup="Group1" calculation="Sum">
+			<variableExpression><![CDATA[$F{GAWNNAE}]]></variableExpression>
+		</variable>
+		<variable name="GAWNWOE1" class="java.lang.Long" resetType="Group" resetGroup="Group1" calculation="Sum">
+			<variableExpression><![CDATA[$F{GAWNWOE}]]></variableExpression>
+		</variable>
+		<variable name="DAY_AVG1" class="java.lang.Double" resetType="Group" resetGroup="Group1" calculation="Sum">
+			<variableExpression><![CDATA[$F{DAY_AVG}]]></variableExpression>
+		</variable>
+		<variable name="USE_PER1" class="java.lang.Double" resetType="Group" resetGroup="Group1" calculation="Sum">
+			<variableExpression><![CDATA[$F{USE_PER}]]></variableExpression>
+		</variable>
+		<variable name="USE_PER2" class="java.lang.Double" resetType="Group" resetGroup="Group1" calculation="Average">
+			<variableExpression><![CDATA[$F{USE_PER}]]></variableExpression>
+		</variable>
+		<group name="Group1">
+			<groupExpression><![CDATA[$F{GROUPALL}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="FROM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{FROM}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{TO}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="printName" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT DOC_NAME1
+, FIELD1
+,IFNULL(USER_NM, '') AS USER_NM
+FROM docform, user_m
+WHERE 	 DOC_CODE = 'STAT4023'
+AND USER_CD =  $P{printName}]]>
+	</queryString>
+	<field name="DOC_NAME1" class="java.lang.String"/>
+	<field name="FIELD1" class="java.lang.String"/>
+	<field name="USER_NM" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="42" width="555" height="48" uuid="84b15344-6d8e-4db3-bbeb-9b6ba4546421">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="font" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOC_NAME1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="5" width="90" height="40" backcolor="#DEDEDE" uuid="7132fe71-630b-4cf2-b6d8-7206c5f99448">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11" isBold="true"/>
+					<paragraph spacingBefore="-2"/>
+				</textElement>
+				<text><![CDATA[구분]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="90" y="5" width="95" height="40" backcolor="#DEDEDE" uuid="228092ac-ab0a-4022-a210-d3528cfd0f84">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11" isBold="true"/>
+					<paragraph spacingBefore="-2"/>
+				</textElement>
+				<text><![CDATA[계]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="470" y="5" width="85" height="40" backcolor="#DEDEDE" uuid="ba61de50-70c7-45b9-9c5b-0cead1c1235a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11" isBold="true"/>
+					<paragraph spacingBefore="-2"/>
+				</textElement>
+				<text><![CDATA[화장대비
+이용률(%)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="185" y="5" width="95" height="40" backcolor="#DEDEDE" uuid="68df6b56-1c00-4455-87f3-daa254c08705">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11" isBold="true"/>
+					<paragraph spacingBefore="-2"/>
+				</textElement>
+				<text><![CDATA[관내]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="5" width="95" height="40" backcolor="#DEDEDE" uuid="e384254a-450a-40fd-b0f2-670ec577d02a">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11" isBold="true"/>
+					<paragraph spacingBefore="-2"/>
+				</textElement>
+				<text><![CDATA[관외]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="375" y="5" width="95" height="40" backcolor="#DEDEDE" uuid="4313feba-4f4c-415e-8916-8cc1b9bad3c0">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="font" size="11" isBold="true"/>
+					<paragraph spacingBefore="-2"/>
+				</textElement>
+				<text><![CDATA[1일평균]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="-10" width="555" height="60" uuid="0aed9297-3507-4083-889e-16bdda941e98">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset1" uuid="221e59a9-12f2-42a0-8efb-dc29ba67ccef">
+						<datasetParameter name="FROM">
+							<datasetParameterExpression><![CDATA[$P{FROM}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="TO">
+							<datasetParameterExpression><![CDATA[$P{TO}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="9122da13-c21a-47b4-bc6f-b8de48381dce">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:groupHeader groupName="Group1">
+							<jr:cell style="Table_CH" height="30" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="90" height="30" uuid="8a43ad0e-dc1c-4e41-a832-1878cff742a5"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="font" size="11"/>
+									</textElement>
+									<textFieldExpression><![CDATA["합 계"]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="30" uuid="f72958b6-0f35-459b-b594-2389d58a7ce8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{YEAR}+"년"]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="95" uuid="b3b2c1f6-d33d-45b1-9639-8136dd2d88b7">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:groupHeader groupName="Group1">
+							<jr:cell style="Table_CH" height="30" rowSpan="1">
+								<textField evaluationTime="Report">
+									<reportElement x="0" y="0" width="95" height="30" uuid="ad158122-e173-49ac-87e7-6b1f52bdea05">
+										<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+									</reportElement>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="font" size="11"/>
+										<paragraph rightIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{NAT_CNT1}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="95" height="30" uuid="d13e0062-53a8-4142-ab29-75140c0a990e">
+									<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="font" size="11"/>
+									<paragraph rightIndent="3"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{NAT_CNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="95" uuid="6bc4419d-4b71-41f6-aec4-00d709196a9a">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:groupHeader groupName="Group1">
+							<jr:cell style="Table_CH" height="30" rowSpan="1">
+								<textField evaluationTime="Report">
+									<reportElement x="0" y="0" width="95" height="30" uuid="fcfc6aa6-6b55-43a6-a7c9-29562f24b94e">
+										<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+									</reportElement>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="font" size="11"/>
+										<paragraph rightIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{GAWNNAE1}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="95" height="30" uuid="da63af40-55d8-4b74-bc19-dba0d72981a3">
+									<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="font" size="11"/>
+									<paragraph rightIndent="3"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{GAWNNAE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="95" uuid="959f127f-5743-46af-b86f-ca92f5f5d6df">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:groupHeader groupName="Group1">
+							<jr:cell style="Table_CH" height="30" rowSpan="1">
+								<textField evaluationTime="Report">
+									<reportElement x="0" y="0" width="95" height="30" uuid="cbb21046-404d-41f0-a3fb-855e3e0adcbd">
+										<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+									</reportElement>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="font" size="11"/>
+										<paragraph rightIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{GAWNWOE1}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="95" height="30" uuid="f56a5cd3-313e-4e60-b8ce-f3a833edeae8">
+									<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="font" size="11"/>
+									<paragraph rightIndent="3"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{GAWNWOE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="95" uuid="6c56f2e5-a07e-494f-b72b-70eb9d54dfd4">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<jr:groupHeader groupName="Group1">
+							<jr:cell style="Table_CH" height="30" rowSpan="1">
+								<textField evaluationTime="Report" pattern="#,##0.#">
+									<reportElement x="0" y="0" width="95" height="30" uuid="ac5eb659-972f-4e44-8b3e-338d128f52ce">
+										<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+									</reportElement>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="font" size="11"/>
+										<paragraph rightIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{DAY_AVG1}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="95" height="30" uuid="5dae7a17-661d-4347-949e-aeb3ff2224cd">
+									<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="font" size="11"/>
+									<paragraph rightIndent="3"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DAY_AVG}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="85" uuid="5ffbea03-a253-4e34-9820-edf02b1a32a6">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
+						<jr:groupHeader groupName="Group1">
+							<jr:cell style="Table_CH" height="30" rowSpan="1">
+								<textField evaluationTime="Report" pattern="#,##0.#">
+									<reportElement x="0" y="0" width="85" height="30" uuid="03c5b0a4-d137-4bdb-b8e0-82b341e1ebb5">
+										<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+									</reportElement>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="font" size="11"/>
+										<paragraph rightIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USE_PER2}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="85" height="30" uuid="41bac058-e0d2-4ae9-b4f4-80c231a9f1c4">
+									<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="font" size="11"/>
+									<paragraph rightIndent="3"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{USE_PER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="15">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="555" height="15" uuid="2f96cdb9-98a3-40a0-b141-4ce0686cc70a">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="font" size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FIELD1}+" "+ DATEFORMAT( new Date(),"yyyy/MM/dd HH:mm:ss")+" 출력자 : " +$F{USER_NM}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,681 @@
+@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+@import url('http://fonts.googleapis.com/earlyaccess/NanumMyeongjo.css');
+@import url('/static/disp/css/styles_font.css');
+
+
+/*====================================================================================================================*/
+html,body,div,ul,li,p,a,header{
+    margin: 0;padding: 0;
+    list-style: none;
+    font-family: "NanumMyeongjo", sans-serif;
+    overflow: hidden;
+}
+img{border: none;}
+h1,h2,h3,h4,h5,h6{
+    font-family: "NanumMyeongjo", serif;
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-size: 40px;
+}
+h2{
+    font-size: 30px;
+}
+h3{
+    font-size: 24px;
+    font-weight: bold;
+}
+.border{
+    border:solid 1px #00ff00;
+}
+.absolute{
+    position: absolute;
+}
+.gap30{width:30px;display: inline-block;height: 10px;}
+.gap20{width:20px;display: inline-block;height: 10px;}
+.gap10{width:10px;display: inline-block;height: 10px;}
+
+
+
+/*==1920*1080=====01/02.html==========================================================================================*/
+.container{
+    width:1920px;
+    height: 1080px;
+    padding: 20px;
+}
+.container Header{
+    width: 1880px;
+    height: 116px;
+}
+.clock{
+    width: auto;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: right;
+    color: #e4ca90;
+    letter-spacing: -2px;
+    margin-top: 38px;
+    margin-right: 52px;
+    font-family: "NanumGothic", sans-serif;
+}
+
+/*==1280*1080=====03/04/05.html=======================================================================================*/
+.container_M{
+    width:1280px;
+    height: 1024px;
+}
+.container_M Header{
+    width: 100%;
+    height: 200px;
+    text-align: center;
+}
+/*==background img====================================================================================================*/
+.bg01{
+    background:url("/static/disp/images/01_bg.png") no-repeat;
+}
+.bg02{
+    background:url("/static/disp/images/02_bg.png") no-repeat;
+}
+.bg03_re{
+    background:url("/static/disp/images/03_bg_re.png") no-repeat;
+}
+.bg03_bl{
+    background:url("/static/disp/images/03_bg_bl.png") no-repeat;
+}
+.bg03_gr{
+    background:url("/static/disp/images/03_bg_gr.png") no-repeat;
+}
+.bg04{
+    background:url("/static/disp/images/04_bg.png") no-repeat;
+}
+
+/*==01================================================================================================================*/
+.block_bl{
+    width: 1819px;
+    height: 282px;
+    margin-top: 20px;
+    margin-left: 30px;
+    background:url("/static/disp/images/01_block_bg_blue.png") no-repeat;
+    position: relative;
+}
+.block_re{
+    width: 1819px;
+    height: 282px;
+    margin-top: 20px;
+    margin-left: 30px;
+    background:url("/static/disp/images/01_block_bg_red.png") no-repeat;
+    position: relative;
+}
+.block_gr{
+    width: 1819px;
+    height: 282px;
+    margin-top: 20px;
+    margin-left: 30px;
+    background:url("/static/disp/images/01_block_bg_green.png") no-repeat;
+    position: relative;
+}
+.room{
+    width: 125px;
+    height: 237px;
+    margin-top: 22px;
+    margin-left: 26px;
+}
+.room_fl{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    margin-top:7%;
+    text-shadow: 1px 2px white;
+    color: #462f0c;
+}
+.room_na{
+    width: 30%;
+    margin-left: 33%;
+    text-align: center;
+    height: 240px;
+}
+.v_center{
+    top: 40%;
+    height: auto;
+    width: auto;
+    margin:0 auto;
+    margin-top: -50px;
+    font-size: 2.5em;
+    font-family: "NanumMyeongjo", serif;
+    font-weight: 800;
+    text-shadow: 1px 2px white;
+    line-height: 1.5em;
+    color: #462f0c;
+}
+.photo_guide{
+    width: 215px;
+    height: 255px;
+    margin-left: 173px;
+    margin-top: 13px;
+    background:url("/static/disp/images/photo_guide.png") no-repeat;
+}
+.photo{
+    margin-left: 192px;
+    margin-top: 31px;
+}
+.img{
+    width: 180px;
+    height: 225px;
+    display: block;
+}
+.title{
+    width: 1395px;
+    height: 80px;
+    top: -235px;
+    left: 400px;
+    position: relative;
+}
+.title_center{
+    width: 100%;
+    height: 60px;
+    top: 50%;
+    margin-top: -30px;
+}
+.deceased{
+    width: 100px;
+    height: 80%;
+    padding-top: 7px;
+    text-align: center;
+    margin-left: 30px;
+    margin-top: 5px;
+    text-shadow: 1px 1px white;
+    font-weight: 700;
+    font-size: 30px;
+    font-family: "NanumMyeongjo" , serif;
+}
+.deceased_name{
+    width: 200px;
+    height: 100%;
+    padding-top: 5px;
+    text-align: center;
+    margin-left: 150px;
+    margin-top: -5px;
+    text-shadow: 1px 1px white;
+    font-weight: 700;
+    font-size: 50px;
+    font-family: "NanumMyeongjo" , serif;
+    letter-spacing: 10px;
+}
+.deceased_nick{
+    width: 150px;
+    height: 80%;
+    padding-top: 7px;
+    text-align: center;
+    margin-left: 350px;
+    margin-top: 5px;
+    text-shadow: 1px 1px white;
+    font-weight: 700;
+    font-size: 30px;
+    font-family: "NanumMyeongjo" , serif;
+}
+.deceased_carry{
+    width: 360px;
+    height: 80%;
+    padding-top: 10px;
+    text-align: right;
+    margin-left: 600px;
+    margin-top: 0;
+    text-shadow: 1px 1px white;
+    font-weight: 700;
+    font-size: 30px;
+    font-family: "NanumMyeongjo" , serif;
+    background:url("/static/disp/images/icon_carry.png") no-repeat;
+}
+.deceased_burial{
+    width: 370px;
+    height: 80%;
+    padding-top: 10px;
+    text-align: right;
+    margin-left: 1000px;
+    margin-top: 0;
+    text-shadow: 1px 1px white;
+    font-weight: 700;
+    font-size: 30px;
+    font-family: "NanumMyeongjo" , serif;
+    background:url("/static/disp/images/icon_burial.png") no-repeat;
+}
+.deceased_family{
+    width: 1395px;
+    height: 150px;
+    font-weight: 500;
+    position:absolute;
+    top:115px;
+    left: 400px;
+}
+.deceased_family ul{
+    width: 80%;
+    margin-top: 15px;
+    margin-left: 150px;
+    padding-left: 70px;
+    background:url("/static/disp/images/icon_chief.png") 15px 0px no-repeat;
+}
+.deceased_family ul li{
+    font-size: 24px;
+    font-family: "NanumMyeongjo" , serif;
+    color: white;
+    line-height: 160%;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 3px black;
+}
+
+/*==02================================================================================================================*/
+
+.content01{
+    width: 1820px;
+    height: 361px;
+    margin-top: 15px;
+    margin-left: 27px;
+    background:url("/static/disp/images/02_content01_bg.png") no-repeat;
+}
+.mark{
+    width: 118px;
+    height: 315px;
+    margin-top: 25px;
+    margin-left: 30px;
+}
+.mark > div{
+    font-size: 40px;
+    font-family: "NanumMyeongjo" , serif;
+    text-shadow: 1px 1px white;
+    color: #462f0c;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+}
+.list_btn_wrap{
+    top: 177px;
+    left: 206px;
+    width: 1629px;
+    height: 315px;
+}
+.btn{
+    width: 181px;
+    height: 151px;
+    float: left;
+    margin-bottom: 13px;
+}
+.btn > .num{
+    width: 100%;
+    height: 35px;
+    padding-top: 5px;
+    text-align: center;
+    font-size: 30px;
+    font-family: "NanumMyeongjo" , serif;
+    text-shadow: 1px 1px white;
+    color: #462f0c;
+    font-weight: 600;
+}
+.btn > .name > ul{
+    width: 100%;
+    height: 115px;
+}
+.btn > .name > ul.bl{
+    background:url("/static/disp/images/btn_bl.png") 100% no-repeat;
+}
+.btn > .name > ul.gl{
+    background:url("/static/disp/images/btn_gl.png") 100% no-repeat;
+}
+.btn > .name > ul > li{
+    text-align: center;
+    font-family: "NanumMyeongjo" , serif;
+    color: white;
+    font-size: 38px;
+    padding-top: 10px;
+    text-shadow: -1px -1px black;
+}
+.content02{
+    width: 1820px;
+    height: 531px;
+    margin-top: 10px;
+    margin-left: 27px;
+    background:url("/static/disp/images/02_content02_bg_01.png") no-repeat;
+}
+
+.content02 ul {
+    width: 100%;
+}
+
+.content02 ul li.w01{
+    width: 143px
+}
+.content02 ul li.w02{
+    width: 198px
+}
+.content02 ul li.w03{
+    width: 103px
+}
+.content02 ul li.w04{
+    width: 110px
+}
+.content02 ul li.w05{
+    width: 194px
+}
+.content02 ul li.w06{
+    width: 334px
+}
+.content02 ul li.w07{
+    width: 343px
+}
+.content02 ul li.w08{
+    width: 338px
+}
+.list_title{
+    width: 1764px;
+    height: 87px;
+    margin-top: 16px;
+    margin-left: 29px;
+}
+.list_title > ul > li{
+    float: left;
+    text-align: center;
+    font-size: 40px;
+    font-family: "NanumMyeongjo" , serif;
+    text-shadow: 1px 1px white;
+    color: #462f0c;
+    font-weight: 600;
+    padding-top: 20px;
+}
+.list_body{
+    width: 100%;
+    height: 413px;
+    margin-left: 29px;
+}
+.list_body > ul > li{
+    height: 63px;
+    float: left;
+    text-align: center;
+    font-size: 36px;
+    font-family: "NanumMyeongjo" , serif;
+    text-shadow: -2px -1px black;
+    color: white;
+    font-weight: 400;
+    padding-top: 20px;
+}
+
+
+/*==03================================================================================================================*/
+.tit_ks{
+    background:url("/static/disp/images/tit_ks.png") 392px 70px no-repeat;
+}
+.tit_bs{
+    background:url("/static/disp/images/tit_bs.png") 392px 70px no-repeat;
+}
+.tit_hd{
+    background:url("/static/disp/images/tit_hd.png") 392px 70px no-repeat;
+}
+.tit_jd{
+    background:url("/static/disp/images/tit_jd.png") 392px 70px no-repeat;
+}
+.tit_cb{
+    background:url("/static/disp/images/tit_cb.png") 392px 70px no-repeat;
+}
+.tit_hs{
+    background:url("/static/disp/images/tit_hs.png") 392px 70px no-repeat;
+}
+.tit_mh{
+    background:url("/static/disp/images/tit_mh.png") 392px 70px no-repeat;
+}
+.tit_sk{
+    background:url("/static/disp/images/tit_sk.png") 392px 70px no-repeat;
+}
+.tit_sl{
+    background:url("/static/disp/images/tit_sl.png") 392px 70px no-repeat;
+}
+.tit_ml{
+    background:url("/static/disp/images/tit_ml.png") 392px 70px no-repeat;
+}
+.tit_db{
+    background:url("/static/disp/images/tit_db.png") 392px 70px no-repeat;
+}
+.tit_js{
+    background:url("/static/disp/images/tit_js.png") 392px 70px no-repeat;
+}
+.tit_jm{
+    background:url("/static/disp/images/tit_jm.png") 392px 70px no-repeat;
+}
+.tit_cj{
+    background:url("/static/disp/images/tit_cj.png") 392px 70px no-repeat;
+}
+
+
+.container_M > .photo_guide{
+    width: 550px;
+    height: 605px;
+    margin-left: 78px;
+    margin-top: 8px;
+/*     background:url("/static/disp/images/photo_guide_L.png") no-repeat; */
+    background:url("/static/disp/images/photo_guide_L_none2.png") no-repeat;
+}
+.container_M > .photo{
+    margin-left: 178px;
+    margin-top:102px;
+}
+.deceased_03{
+    width: 197px;
+    height: 460px;
+    top: 270px;
+    left: 653px;
+    text-shadow: 1px 2px white;
+    font-weight: 500;
+    font-family: "NanumGothicExtraBold" , serif;
+}
+.deceased_03_go{
+    width: 100%;
+    font-size: 40px;
+    text-align: center;
+    display: block;
+}
+.deceased_03_nick{
+    width: 30px;
+    text-align: center;
+    font-size: 26px;
+    float: right;
+    margin-top: -20px;
+    margin-right: 20px;
+    display: block;
+    line-height: 140%;
+}
+.deceased_03_name{
+    width: 70px;
+    text-align: center;
+    font-size: 50px;
+    padding-left: 10px;
+    margin-top: 30px;
+    margin-left: 50px;
+    display: block;
+    line-height: 160%;
+}
+.deceased_03_nim{
+    width: 100%;
+    font-size: 40px;
+    text-align: center;
+    display: block;
+    padding-top: 10px;
+}
+.deceased_03_info{
+    width: 305px;
+    height: 460px;
+    top: 280px;
+    left: 875px;
+    text-shadow: 1px 2px white;
+    font-weight: 700;
+}
+.deceased_03_info > .block {
+    margin-bottom: 24px;
+    font-family: "NanumGothicExtraBold" , serif;
+    letter-spacing: -3px;
+    margin-left: 30px;
+}
+.deceased_03_casket{
+    width: 100%;
+    font-size: 40px;
+    text-align: left;
+    display: block;
+    padding-top: 10px;
+    color: #5e2800;
+}
+.deceased_03_casket_date{
+    width: 100%;
+    font-size: 30px;
+    text-align: left;
+    display: block;
+    padding-top: 20px;
+    padding-left: 5px;
+}
+.deceased_03_carry{
+     width: 100%;
+     font-size: 40px;
+     text-align: left;
+     display: block;
+     padding-top: 10px;
+     color: #5e2800;
+ }
+.deceased_03_carry_date{
+    width: 100%;
+    font-size: 30px;
+    text-align: left;
+    display: block;
+    padding-top: 20px;
+    padding-left: 5px;
+}
+.deceased_03_burial{
+    width: 100%;
+    font-size: 40px;
+    text-align: left;
+    display: block;
+    padding-top: 10px;
+    color: #5e2800;
+}
+.deceased_03_burial_date{
+    width: 100%;
+    font-size: 30px;
+    text-align: left;
+    display: block;
+    padding-top: 20px;
+    padding-left: 5px;
+}
+.deceased_03_family{
+    width: 1395px;
+    height: 150px;
+    font-weight: 500;
+    position:absolute;
+    top:825px;
+    left: 100px;
+}
+.deceased_03_family ul{
+    width: 80%;
+    margin-top: 15px;
+    margin-left: 150px;
+    padding-left: 70px;
+    background:url("/static/disp/images/icon_chief.png") 15px 0 no-repeat;
+}
+.deceased_03_family ul li{
+    font-size: 24px;
+    font-family: "NanumMyeongjo" , serif;
+    color: white;
+    line-height: 160%;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 3px black;
+}
+
+
+/*==04================================================================================================================*/
+.deceased_04_info{
+    width: 305px;
+    height: 460px;
+    top: 280px;
+    left: 910px;
+    text-shadow: 1px 2px white;
+    font-weight: 700;
+}
+.deceased_04_info > .block{
+    margin-bottom: 25px;
+    font-family: "亦낃낯苑뚳㎗占�" , serif;
+    letter-spacing: -1px;
+}
+.deceased_04_casket{
+    width: 100%;
+    font-size: 40px;
+    text-align: left;
+    display: block;
+    padding-top: 10px;
+    color: #5e2800;
+}
+.deceased_04_casket_date{
+    width: 100%;
+    font-size: 28px;
+    text-align: left;
+    display: block;
+    padding-top: 20px;
+    padding-left: 5px;
+}
+.deceased_04_chief{
+    width: 100%;
+    font-size: 40px;
+    text-align: left;
+    display: block;
+    padding-top: 10px;
+    color: #5e2800;
+}
+.deceased_04_chief_name{
+    width: 100%;
+    font-size: 40px;
+    text-align: left;
+    display: block;
+    padding-top: 20px;
+    padding-left: 5px;
+}
+.deceased_04_burial{
+    width: 100%;
+    font-size: 40px;
+    text-align: left;
+    display: block;
+    padding-top: 10px;
+    color: #5e2800;
+}
+.deceased_04_burial_date{
+    width: 100%;
+    font-size: 30px;
+    text-align: left;
+    display: block;
+    padding-top: 20px;
+}
+.flowers_bg{
+    width: 1280px;
+    height: 173px;
+    text-align: center;
+    bottom: 1px;
+    margin-bottom: 36px;
+    position: absolute;
+}
+.deceased_04_flowers{
+    width: 1133px;
+    height: 173px;
+    margin-left: 15px;
+    display: inline;
+}
+
+/*==05================================================================================================================*/
+.deceased_05_funeral{
+    width: 100%;
+    font-size: 40px;
+    text-align: left;
+    display: block;
+    padding-top: 10px;
+    color: #5e2800;
+}
+.deceased_05_funeral_name{
+    width: 100%;
+    font-size: 29px;
+    text-align: left;
+    display: block;
+    padding-top: 20px;
+    padding-left: 10px;
+}
