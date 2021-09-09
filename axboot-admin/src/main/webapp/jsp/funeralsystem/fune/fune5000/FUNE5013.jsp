@@ -105,6 +105,12 @@
 								<label for="info-accountFlag">계좌이체</label>
 							</div></td>
 						</tr>
+						<tr>
+							<th><div class='tdRel'>수납잔액</div>
+							</th>
+							<td><div class='tdRel'><b:input id="info-dcAmt" clazz="W150" readonly="readonly" value="${dcAmt }"></b:input>
+							</div></td>
+						</tr>
 					</table>
 				</ax:form>
 
